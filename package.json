@@ -1,0 +1,32 @@
+{
+  "name": "williamtucker.ca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billski/WilliamTucker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/billski/WilliamTucker/issues"
+  },
+  "homepage": "https://github.com/billski/WilliamTucker#readme",
+  "dependencies": {
+    "parcel": "^2.13.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@babel/preset-react": "^7.26.3",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.17"
+  }
+}
