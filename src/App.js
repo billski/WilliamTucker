@@ -12,7 +12,7 @@ import Skills from "./Skills";
 function App() {
   console.log("App component rendered");
   return (
-    <Router>
+    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />

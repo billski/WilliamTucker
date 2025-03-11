@@ -8,19 +8,23 @@ function Login() {
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("http://localhost:3000/api/login", { username, password });
-      if (response.data.success) {
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        setError("");
-        window.location.href = "/main";
-      }
-    } catch (err) {
-      setError(err.response?.data?.error || "Login failed");
+  e.preventDefault();
+  const deviceId = Date.now().toString(); // Simple device identifier (can be improved)
+  try {
+    console.log("Attempting login with:", { username, password, deviceId });
+    const response = await axios.post("http://192.168.1.64:3000/api/login", { username, password });
+    console.log("Login response:", response.data);
+    if (response.data.success) {
+      localStorage.setItem(`token_${deviceId}`, response.data.token);
+      localStorage.setItem(`user_${deviceId}`, JSON.stringify(response.data.user));
+      setError("");
+      window.location.href = "/main";
     }
-  };
+  } catch (err) {
+    console.error("Login error:", err.response?.data?.error || err.message);
+    setError(err.response?.data?.error || "Login failed");
+  }
+};
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
