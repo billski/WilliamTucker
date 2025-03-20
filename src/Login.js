@@ -11,10 +11,11 @@ function Login() {
     const deviceId = Date.now().toString();
     try {
       console.log("Attempting login with:", { username, password, deviceId });
-      const response = await axios.post("http://localhost:3000/api/login", {
+      console.log("Request URL:", "http://192.168.1.71:3000/api/login");
+      const response = await axios.post("http://192.168.1.71:3000/api/login", {
         username,
         password,
-      }); // Changed port to 3000
+      });
       console.log("Login response:", response.data);
       if (response.data.success) {
         localStorage.setItem(`token_${deviceId}`, response.data.token);
@@ -27,8 +28,19 @@ function Login() {
         window.location.href = "/main";
       }
     } catch (err) {
-      console.error("Login error:", err.response?.data?.error || err.message);
+      console.error("Full error:", err);
+      console.error("Error response:", err.response?.data || "No response data");
       setError(err.response?.data?.error || "Login failed");
+    }
+  };
+
+  const handleTestRequest = async () => {
+    try {
+      console.log("Testing backend at: http://192.168.1.71:3000/api/test");
+      const response = await axios.get("http://192.168.1.71:3000/api/test");
+      console.log("Test response:", response.data);
+    } catch (err) {
+      console.error("Test error:", err);
     }
   };
 
