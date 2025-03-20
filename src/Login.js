@@ -10,9 +10,8 @@ function Login() {
     e.preventDefault();
     const deviceId = Date.now().toString();
     try {
-      console.log("Attempting login with:", { username, password, deviceId });
-      console.log("Request URL:", "http://192.168.1.71:3000/api/login");
-      const response = await axios.post("http://192.168.1.71:3000/api/login", {
+      console.log("Request URL:", "/api/login");
+      const response = await axios.post("/api/login", {
         username,
         password,
       });
@@ -29,15 +28,18 @@ function Login() {
       }
     } catch (err) {
       console.error("Full error:", err);
-      console.error("Error response:", err.response?.data || "No response data");
+      console.error(
+        "Error response:",
+        err.response?.data || "No response data"
+      );
       setError(err.response?.data?.error || "Login failed");
     }
   };
 
   const handleTestRequest = async () => {
     try {
-      console.log("Testing backend at: http://192.168.1.71:3000/api/test");
-      const response = await axios.get("http://192.168.1.71:3000/api/test");
+      console.log("Testing backend at: /api/test");
+      const response = await axios.get("/api/test");
       console.log("Test response:", response.data);
     } catch (err) {
       console.error("Test error:", err);

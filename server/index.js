@@ -24,10 +24,10 @@ const db = mysql.createConnection({
 db.connect((err) => {
   if (err) throw err;
   console.log("Connected to MySQL");
-  const hashedPassword = bcrypt.hashSync("adminpass", 10);
+  const hashedPassword = bcrypt.hashSync("Ranger&$&", 10);
   db.query(
-    "INSERT IGNORE INTO wtusers (username, password, name, isAdmin) VALUES (?, ?, ?, ?)",
-    ["admin", hashedPassword, "Admin", 1],
+    "INSERT IGNORE INTO users (username, password, name, isAdmin) VALUES (?, ?, ?, ?)",
+    ["wtucker", hashedPassword, "Admin", 1],
     (err) => {
       if (err) throw err;
       console.log("Admin user initialized");
@@ -39,15 +39,18 @@ db.connect((err) => {
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
-    return res.status(400).json({ error: "Username and password are required" });
+    return res
+      .status(400)
+      .json({ error: "Username and password are required" });
   }
   try {
     db.query(
-      "SELECT * FROM wtusers WHERE username = ?",
+      "SELECT * FROM users WHERE username = ?",
       [username],
       (err, results) => {
         if (err) return res.status(500).json({ error: err.message });
-        if (results.length === 0) return res.status(401).json({ error: "User not found" });
+        if (results.length === 0)
+          return res.status(401).json({ error: "User not found" });
         const user = results[0];
         if (!bcrypt.compareSync(password, user.password)) {
           return res.status(401).json({ error: "Invalid password" });

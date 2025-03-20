@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /
+
+# Proxy requests to /api/* to the backend on localhost:3000
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^api/(.*)$ http://127.0.0.1:3000/api/$1 [P,L]
+
+# Serve index.html for all other requests (for React Router)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
