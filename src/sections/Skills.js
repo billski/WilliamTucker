@@ -46,24 +46,24 @@ function Skills() {
     { name: "JWT", icon: <SiJsonwebtokens /> },
     { name: "Parcel", icon: <FaJsSquare /> },
     { name: "PWA", icon: <SiPwa /> },
-    { name: "pm2", icon: <FaNodeJs /> }, // Using Node.js icon as a placeholder
+    { name: "pm2", icon: <FaNodeJs /> },
     { name: "Linux", icon: <FaLinux /> },
     { name: "JavaScript", icon: <SiJavascript /> },
     { name: "HTML", icon: <FaHtml5 /> },
     { name: "CSS", icon: <FaCss3Alt /> },
     { name: "Oracle PL/SQL", icon: <FaDatabase /> },
     { name: "C#", icon: <FaCuttlefish /> },
-    { name: "MSSQL Server", icon: <FaDatabase /> }, // Replaced SiMicrosoft with FaDatabase
+    { name: "MSSQL Server", icon: <FaDatabase /> },
     { name: "T-SQL", icon: <TbSql /> },
     { name: "SQL", icon: <TbSql /> },
     { name: "Java", icon: <FaJava /> },
     { name: "Git", icon: <FaGitAlt /> },
     { name: "REST/SOAP", icon: <TbApi /> },
-    { name: "Entity Framework", icon: <FaCuttlefish /> }, // Using C# icon as a placeholder
+    { name: "Entity Framework", icon: <FaCuttlefish /> },
     { name: "Crystal Reports", icon: <SiCrystal /> },
     { name: "Talend", icon: <SiTalend /> },
     { name: "Groovy/Grails", icon: <FaCode /> },
-    { name: "Classic ASP", icon: <FaJsSquare /> }, // Using JavaScript icon as a placeholder
+    { name: "Classic ASP", icon: <FaJsSquare /> },
     { name: "PHP", icon: <FaPhp /> },
     { name: "Hibernate", icon: <SiHibernate /> },
     { name: "ETL Development", icon: <FaExchangeAlt /> },
@@ -97,7 +97,9 @@ function Skills() {
         />
       </Helmet>
       <div className="px-4 py-6 sm:px-0">
-        <h1 className="text-3xl font-bold mb-6 text-center">Skills</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center text-gray-900">
+          Skills
+        </h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto">
           {skills.map((skill, index) => (
             <div

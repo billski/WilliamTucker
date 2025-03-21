@@ -3,10 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Title and description will be set dynamically by react-helmet -->
-    <!-- Open Graph tags will be set dynamically by react-helmet -->
-
-    <!-- Favicon and Apple Touch Icon -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -26,17 +22,23 @@
       href="/public/favicon-16x16.png"
     />
     <link rel="manifest" href="/public/site.webmanifest" />
-
-    <!-- Theme Color for Mobile Browsers -->
     <meta name="theme-color" content="#1e3a8a" />
-
-    <!-- Apple Startup Image for iPhone/iPad (Commented Out) -->
-    <!-- <link rel="apple-touch-startup-image" href="/public/apple-touch-startup-image.png"> -->
-
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./src/index.css" />
+    <title>William Tucker | Software Developer Portfolio</title>
   </head>
   <body>
     <div id="root"></div>
+    <!-- Fallback message if JavaScript fails -->
+    <noscript>
+      <div style="text-align: center; padding: 20px;">
+        <h1>JavaScript is required</h1>
+        <p>Please enable JavaScript to view this portfolio.</p>
+      </div>
+    </noscript>
     <script type="module" src="./src/index.js"></script>
   </body>
 </html>

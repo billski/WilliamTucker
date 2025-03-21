@@ -1,15 +1,19 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 
-function MainLayout({ children, userName }) {
+function MainLayout({ children, userName, handleLogout }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleLogout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
@@ -23,11 +27,14 @@ function MainLayout({ children, userName }) {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* Fixed Navigation */}
-      <nav className="bg-white shadow-md fixed w-full z-10">
+    <div className="min-h-screen flex flex-col">
+      <nav
+        className={`bg-white shadow-md fixed w-full z-10 transition-all duration-300 ${
+          isScrolled ? "h-12" : "h-16"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
+          <div className="flex justify-between items-center h-full">
             <div className="flex items-center">
               <h2 className="text-xl font-bold text-gray-900">
                 William Tucker
@@ -37,7 +44,11 @@ function MainLayout({ children, userName }) {
                   <Link
                     key={link.path}
                     to={link.path}
-                    className="border-b-2 text-gray-500 hover:border-blue-500 hover:text-gray-700 inline-flex items-center px-1 pt-1 text-sm font-medium border-transparent"
+                    className={`border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium transition-colors ${
+                      location.pathname === link.path
+                        ? "border-blue-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-blue-500 hover:text-gray-700"
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -51,12 +62,11 @@ function MainLayout({ children, userName }) {
               <button
                 onClick={handleLogout}
                 className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+                aria-label="Log out"
               >
                 Logout
               </button>
             </div>
-
-            {/* Mobile Menu Button */}
             {isMobile && (
               <div className="sm:hidden flex items-center">
                 <button
@@ -85,17 +95,24 @@ function MainLayout({ children, userName }) {
               </div>
             )}
           </div>
-
-          {/* Mobile Menu */}
           {isMobile && isMobileMenuOpen && (
-            <div className="sm:hidden bg-white shadow-lg">
+            <motion.div
+              initial={{ height: 0 }}
+              animate={{ height: "auto" }}
+              exit={{ height: 0 }}
+              className="sm:hidden bg-white shadow-lg overflow-hidden"
+            >
               <div className="pt-2 pb-3 space-y-1">
                 {navLinks.map((link) => (
                   <Link
                     key={link.path}
                     to={link.path}
                     onClick={toggleMobileMenu}
-                    className="block w-full text-left px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                    className={`block w-full text-left px-4 py-2 text-sm font-medium ${
+                      location.pathname === link.path
+                        ? "bg-gray-100 text-gray-900"
+                        : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                    }`}
                   >
                     {link.label}
                   </Link>
@@ -110,20 +127,34 @@ function MainLayout({ children, userName }) {
                   Logout
                 </button>
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </nav>
-
-      {/* Content Area */}
-      <div className="pt-16 flex-1">
+      <div className="pt-16 flex-1 bg-gray-50">
         <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">{children}</div>
       </div>
-
-      {/* Footer */}
       <footer className="bg-gray-800 text-white py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p>© 2025 William Tucker. All rights reserved.</p>
+          <div className="flex justify-center space-x-4 mt-2">
+            <a
+              href="https://linkedin.com/in/yourprofile"
+              className="text-gray-400 hover:text-white transition"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/yourprofile"
+              className="text-gray-400 hover:text-white transition"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
       </footer>
     </div>

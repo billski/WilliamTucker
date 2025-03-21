@@ -7,8 +7,9 @@ import About from "./sections/About";
 import Contact from "./sections/Contact";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
+import NotFound from "./sections/NotFound";
 
-function Main() {
+function Main({ handleLogout }) {
   const deviceId = localStorage.getItem("currentDeviceId");
   const user = deviceId
     ? JSON.parse(localStorage.getItem(`user_${deviceId}`) || "{}")
@@ -16,7 +17,7 @@ function Main() {
   const userName = user ? user.name || "Guest" : "Guest";
 
   return (
-    <MainLayout userName={userName}>
+    <MainLayout userName={userName} handleLogout={handleLogout}>
       <Routes>
         <Route path="welcome" element={<Welcome userName={userName} />} />
         <Route path="cv" element={<Cv />} />
@@ -25,6 +26,7 @@ function Main() {
         <Route path="projects" element={<Projects />} />
         <Route path="skills" element={<Skills />} />
         <Route path="/" element={<Navigate to="welcome" />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </MainLayout>
   );

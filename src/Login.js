@@ -5,17 +5,14 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const deviceId = Date.now().toString();
     try {
-      console.log("Request URL:", "/api/login");
-      const response = await axios.post("/api/login", {
-        username,
-        password,
-      });
-      console.log("Login response:", response.data);
+      const response = await axios.post("/api/login", { username, password });
       if (response.data.success) {
         localStorage.setItem(`token_${deviceId}`, response.data.token);
         localStorage.setItem(
@@ -27,22 +24,11 @@ function Login() {
         window.location.href = "/main";
       }
     } catch (err) {
-      console.error("Full error:", err);
-      console.error(
-        "Error response:",
-        err.response?.data || "No response data"
-      );
-      setError(err.response?.data?.error || "Login failed");
-    }
-  };
-
-  const handleTestRequest = async () => {
-    try {
-      console.log("Testing backend at: /api/test");
-      const response = await axios.get("/api/test");
-      console.log("Test response:", response.data);
-    } catch (err) {
-      console.error("Test error:", err);
+      const errorMsg =
+        err.response?.data?.error || "Login failed. Please try again.";
+      setError(errorMsg);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -77,6 +63,7 @@ function Login() {
               placeholder="Enter username"
               required
               autoComplete="username"
+              disabled={isLoading}
             />
           </div>
           <div>
@@ -95,13 +82,16 @@ function Login() {
               placeholder="Enter password"
               required
               autoComplete="current-password"
+              disabled={isLoading}
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 transition"
+            disabled={isLoading}
+            className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 transition disabled:bg-blue-400"
+            aria-label="Log in to portfolio"
           >
-            Log In
+            {isLoading ? "Logging in..." : "Log In"}
           </button>
         </form>
       </div>
