@@ -5,6 +5,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import Login from "./Login";
 import Main from "./Main";
 
@@ -17,12 +18,72 @@ function App() {
   return (
     <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route
-          path="/main"
+          path="/login"
+          element={
+            <>
+              <Helmet>
+                <title>William Tucker | Login</title>
+                <meta
+                  name="description"
+                  content="Log in to view the portfolio of William Tucker, a software developer specializing in system integrations, data reporting, and modernizing legacy systems."
+                />
+                <meta property="og:title" content="William Tucker | Login" />
+                <meta
+                  property="og:description"
+                  content="Log in to view the portfolio of William Tucker, a software developer with over 10 years of experience in system integrations, data reporting, and modernizing legacy systems."
+                />
+                <meta
+                  property="og:image"
+                  content="https://williamtucker.ca/public/preview-image.png"
+                />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta property="og:type" content="website" />
+                <meta
+                  property="og:url"
+                  content="https://williamtucker.ca/login"
+                />
+              </Helmet>
+              <Login />
+            </>
+          }
+        />
+        <Route
+          path="/main/*"
           element={isAuthenticated() ? <Main /> : <Navigate to="/login" />}
         />
-        <Route path="/" element={<PublicLanding />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Helmet>
+                <title>William Tucker | Software Developer Portfolio</title>
+                <meta
+                  name="description"
+                  content="Portfolio of William Tucker, a software developer specializing in system integrations, data reporting, and modernizing legacy systems."
+                />
+                <meta
+                  property="og:title"
+                  content="William Tucker | Software Developer Portfolio"
+                />
+                <meta
+                  property="og:description"
+                  content="Explore the portfolio of William Tucker, a software developer with over 10 years of experience in system integrations, data reporting, and modernizing legacy systems."
+                />
+                <meta
+                  property="og:image"
+                  content="https://williamtucker.ca/public/preview-image.png"
+                />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://williamtucker.ca" />
+              </Helmet>
+              <PublicLanding />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );

@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 // Serve static files from the dist folder
-app.use(express.static(path.join(__dirname, "../dist")));
+app.use(express.static(path.join(__dirname, "../")));
 
 // Database connection
 const db = mysql.createConnection({
@@ -74,7 +74,7 @@ app.post("/api/login", async (req, res) => {
 
 // Catch-all route for React Router
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../", "index.html"));
 });
 
 const PORT = 3000;
