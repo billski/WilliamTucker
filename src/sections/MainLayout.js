@@ -29,7 +29,7 @@ function MainLayout({ children, userName, handleLogout }) {
   return (
     <div className="min-h-screen flex flex-col">
       <nav
-        className={`bg-white shadow-md fixed w-full z-10 transition-all duration-300 ${
+        className={`bg-white shadow-md fixed w-full z-20 transition-all duration-300 ${
           isScrolled ? "h-12" : "h-16"
         }`}
       >
@@ -131,16 +131,20 @@ function MainLayout({ children, userName, handleLogout }) {
           )}
         </div>
       </nav>
-      <div className="pt-16 flex-1 bg-gray-50">
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">{children}</div>
+      <div className="pt-16 flex-1">
+        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-white rounded-lg shadow-md p-6">{children}</div>
+        </div>
       </div>
-      <footer className="bg-gray-800 text-white py-4">
+      <footer className="bg-gray-800 text-white py-4 w-full relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>© 2025 William Tucker. All rights reserved.</p>
+          <p className="text-sm sm:text-base">
+            © 2025 William Tucker. All rights reserved.
+          </p>
           <div className="flex justify-center space-x-4 mt-2">
             <a
               href="https://linkedin.com/in/yourprofile"
-              className="text-gray-400 hover:text-white transition"
+              className="text-gray-400 hover:text-white transition text-sm sm:text-base"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -148,7 +152,7 @@ function MainLayout({ children, userName, handleLogout }) {
             </a>
             <a
               href="https://github.com/yourprofile"
-              className="text-gray-400 hover:text-white transition"
+              className="text-gray-400 hover:text-white transition text-sm sm:text-base"
               target="_blank"
               rel="noopener noreferrer"
             >
