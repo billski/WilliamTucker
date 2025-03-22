@@ -289,7 +289,7 @@ function PublicLanding() {
           </p>
           <div className="flex justify-center space-x-4 mt-2">
             <a
-              href="https://linkedin.com/in/yourprofile"
+              href="https://www.linkedin.com/in/william-tucker-06203044/"
               className="hover:scale-110 transition-transform duration-200"
               target="_blank"
               rel="noopener noreferrer"
@@ -303,7 +303,7 @@ function PublicLanding() {
               </div>
             </a>
             <a
-              href="https://github.com/yourprofile"
+              href="https://github.com/billski"
               className="hover:scale-110 transition-transform duration-200"
               target="_blank"
               rel="noopener noreferrer"
