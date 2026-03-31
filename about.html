@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | BridgeAI</title>
+  <meta name="description" content="Meet William Tucker — senior software engineer with 12+ years of experience, now helping finance teams leverage AI." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="About | BridgeAI" />
+  <meta property="og:description" content="Meet William Tucker — senior software engineer with 12+ years of experience, now helping finance teams leverage AI." />
+  <meta property="og:type" content="website" />
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="sticky top-0 z-50 bg-navy">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="index.html" class="text-xl font-bold text-white">
+          Bridge<span class="text-gold">AI</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          <a href="services.html" class="text-white hover:text-gold font-medium">Services</a>
+          <a href="about.html" class="text-gold font-medium">About</a>
+          <a href="case-studies.html" class="text-white hover:text-gold font-medium">Case Studies</a>
+          <a href="contact.html" class="text-white hover:text-gold font-medium">Contact</a>
+          <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded hover:bg-gold-light transition-colors duration-200">
+            Book a Call
+          </a>
+        </nav>
+
+        <!-- Mobile Hamburger -->
+        <button
+          id="mobile-menu-button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle mobile menu"
+          class="md:hidden text-white p-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"  />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy-light border-t border-white/10">
+      <nav class="flex flex-col px-4 py-4 gap-4" aria-label="Mobile navigation">
+        <a href="services.html" class="text-white hover:text-gold font-medium">Services</a>
+        <a href="about.html" class="text-gold font-medium">About</a>
+        <a href="case-studies.html" class="text-white hover:text-gold font-medium">Case Studies</a>
+        <a href="contact.html" class="text-white hover:text-gold font-medium">Contact</a>
+        <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded text-center hover:bg-gold-light transition-colors duration-200">
+          Book a Call
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section style="background-color: #1a2332;" class="py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <h1 class="text-4xl font-bold text-white">About</h1>
+        <p class="text-gray-300">The engineer behind BridgeAI.</p>
+      </div>
+    </section>
+
+    <!-- ===== BIO SECTION ===== -->
+    <section class="bg-white py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+
+          <!-- Image -->
+          <div class="flex justify-center md:justify-start">
+            <div class="rounded-full overflow-hidden w-48 h-48">
+              <img src="img/placeholder.svg" alt="William Tucker" class="w-full h-full object-cover" />
+            </div>
+          </div>
+
+          <!-- Text -->
+          <div class="md:col-span-2">
+            <h2 class="text-3xl font-bold">William Tucker</h2>
+            <p class="text-gold font-medium mb-6">Senior Software Engineer · AI Consultant</p>
+            <div class="space-y-4">
+              <p class="text-gray-600">I've spent over 12 years building production software — from legacy system modernizations to full-stack applications, CI/CD pipelines to secure authentication systems. I've shipped code that thousands of people rely on daily.</p>
+              <p class="text-gray-600">Working in the finance department at a large institution, I've seen firsthand how the right technology can transform operations — and how the wrong approach wastes time and money. That experience is what drives BridgeAI: practical, no-hype AI consulting grounded in real engineering.</p>
+              <p class="text-gray-600">Before software, I was a journeyman marine technician. I know what it means to build things that have to work, and I bring that same mindset to every project.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERTISE SECTION ===== -->
+    <section class="py-16" style="background-color: #f8f9fa;">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">What I Bring to the Table</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Card 1 -->
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="font-semibold text-lg text-navy mb-2">System Modernization</h3>
+            <p class="text-gray-600">Led full application rewrites from legacy platforms to modern frameworks — delivered in weeks, not months.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="font-semibold text-lg text-navy mb-2">Data &amp; Integration</h3>
+            <p class="text-gray-600">Oracle, SQL, PostgreSQL, ETL pipelines, REST/SOAP APIs. I make systems talk to each other.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="font-semibold text-lg text-navy mb-2">Security-First Engineering</h3>
+            <p class="text-gray-600">SSO, OAuth, JWT, Row Level Security — I build secure systems by default, not as an afterthought.</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="font-semibold text-lg text-navy mb-2">Full-Stack Development</h3>
+            <p class="text-gray-600">.NET, Blazor, Next.js, React, TypeScript. Backend to frontend, I ship the whole stack.</p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="font-semibold text-lg text-navy mb-2">DevOps &amp; CI/CD</h3>
+            <p class="text-gray-600">Git workflows, automated pipelines, review-gated deploys. I set up the infrastructure that lets teams move fast safely.</p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="bg-white rounded-lg p-6 shadow-sm">
+            <h3 class="font-semibold text-lg text-navy mb-2">Team Leadership</h3>
+            <p class="text-gray-600">Mentored developers, wrote team handbooks, established development workflows for teams of six.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PHILOSOPHY SECTION ===== -->
+    <section class="bg-white py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">My Approach</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Item 1 -->
+          <div class="text-center">
+            <h3 class="font-semibold text-xl text-navy mb-3">No Hype</h3>
+            <p class="text-gray-600">I won't tell you AI will solve everything. I'll tell you where it fits and where it doesn't.</p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="text-center">
+            <h3 class="font-semibold text-xl text-navy mb-3">Production-Grade</h3>
+            <p class="text-gray-600">Demos are easy. I build solutions that work in the real world, at scale, with your existing systems.</p>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="text-center">
+            <h3 class="font-semibold text-xl text-navy mb-3">Knowledge Transfer</h3>
+            <p class="text-gray-600">I want your team to own the solution. I document everything and train your people.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="bg-navy py-12 text-center">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col items-center gap-6">
+          <div class="flex gap-6">
+            <a href="https://www.linkedin.com/in/william-tucker-06203044/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gold font-medium transition-colors duration-200">LinkedIn</a>
+            <a href="https://github.com/billski" target="_blank" rel="noopener noreferrer" class="text-white hover:text-gold font-medium transition-colors duration-200">GitHub</a>
+          </div>
+          <a href="contact.html" class="inline-block bg-gold text-navy font-semibold px-8 py-4 rounded hover:bg-gold-light transition-colors duration-200">
+            Book a Discovery Call
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- Col 1: Logo + Tagline -->
+        <div>
+          <p class="text-xl font-bold mb-2">Bridge<span class="text-gold">AI</span></p>
+          <p class="text-gray-400">AI consulting for finance</p>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="services.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Services</a></li>
+            <li><a href="about.html" class="text-gray-300 hover:text-gold transition-colors duration-200">About</a></li>
+            <li><a href="case-studies.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Case Studies</a></li>
+            <li><a href="contact.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Connect -->
+        <div>
+          <h4 class="font-semibold text-white mb-4">Connect</h4>
+          <ul class="space-y-2">
+            <li>
+              <a href="https://www.linkedin.com/in/william-tucker-06203044/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-gold transition-colors duration-200">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/billski" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-gold transition-colors duration-200">
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="mailto:william@williamtucker.ca" class="text-gray-300 hover:text-gold transition-colors duration-200">
+                william@williamtucker.ca
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-4 text-center text-sm text-gray-400">
+        &copy; 2026 BridgeAI. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
