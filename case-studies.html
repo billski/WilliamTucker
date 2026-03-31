@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies | BridgeAI</title>
+  <meta name="description" content="See how BridgeAI delivers practical AI solutions with real results for finance teams and businesses." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Case Studies | BridgeAI" />
+  <meta property="og:description" content="See how BridgeAI delivers practical AI solutions with real results for finance teams and businesses." />
+  <meta property="og:type" content="website" />
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="sticky top-0 z-50 bg-navy">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="index.html" class="text-xl font-bold text-white">
+          Bridge<span class="text-gold">AI</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          <a href="services.html" class="text-white hover:text-gold font-medium">Services</a>
+          <a href="about.html" class="text-white hover:text-gold font-medium">About</a>
+          <a href="case-studies.html" class="text-gold font-medium">Case Studies</a>
+          <a href="contact.html" class="text-white hover:text-gold font-medium">Contact</a>
+          <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded hover:bg-gold-light transition-colors duration-200">
+            Book a Call
+          </a>
+        </nav>
+
+        <!-- Mobile Hamburger -->
+        <button
+          id="mobile-menu-button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle mobile menu"
+          class="md:hidden text-white p-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"  />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy-light border-t border-white/10">
+      <nav class="flex flex-col px-4 py-4 gap-4" aria-label="Mobile navigation">
+        <a href="services.html" class="text-white hover:text-gold font-medium">Services</a>
+        <a href="about.html" class="text-white hover:text-gold font-medium">About</a>
+        <a href="case-studies.html" class="text-gold font-medium">Case Studies</a>
+        <a href="contact.html" class="text-white hover:text-gold font-medium">Contact</a>
+        <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded text-center hover:bg-gold-light transition-colors duration-200">
+          Book a Call
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section style="background-color: #1a2332;" class="py-16">
+      <div class="max-w-7xl mx-auto px-4">
+        <h1 class="text-4xl font-bold text-white mb-4">Case Studies</h1>
+        <p class="text-gray-300">Real problems. Practical solutions. Measurable results.</p>
+      </div>
+    </section>
+
+    <!-- ===== CASE STUDIES ===== -->
+    <section class="bg-white py-16">
+      <div class="max-w-4xl mx-auto px-4">
+
+        <!-- Case Study 1: dogmap.ca -->
+        <div class="border-l-4 border-gold bg-white rounded-lg p-8 shadow-sm mb-8">
+          <span class="inline-block bg-gold/10 text-gold-dark text-sm font-medium px-3 py-1 rounded-full mb-4">Technical Showcase</span>
+          <h2 class="text-2xl font-bold mb-6">Building a Full-Stack PWA from Scratch</h2>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Problem</h3>
+            <p class="text-gray-600">Needed a production-quality progressive web app with real-time data, geospatial features, OAuth authentication, and role-based access control — built and shipped as a solo developer.</p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Approach</h3>
+            <p class="text-gray-600">Designed and built dogmap.ca using Next.js, TypeScript, Supabase (PostgreSQL + PostGIS), and Vercel. Implemented Row Level Security on all tables, OAuth with Google and Apple, JWT-protected API routes, admin dashboard with moderation queue, and MapLibre-powered interactive maps.</p>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="font-semibold text-navy mb-2">Result</h3>
+            <p class="text-gray-600">Live production application at dogmap.ca serving real users. Demonstrates full-stack architecture, security-first design, cloud infrastructure, and the ability to ship end-to-end as a solo engineer.</p>
+          </div>
+
+          <a href="https://dogmap.ca" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-dark font-medium">Visit dogmap.ca &rarr;</a>
+        </div>
+
+        <!-- Case Study 2: Financial Reporting Automation -->
+        <div class="border-l-4 border-gold bg-white rounded-lg p-8 shadow-sm mb-8">
+          <span class="inline-block bg-gold/10 text-gold-dark text-sm font-medium px-3 py-1 rounded-full mb-4">Finance</span>
+          <h2 class="text-2xl font-bold mb-6">AI-Powered Financial Reporting Automation</h2>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Problem</h3>
+            <p class="text-gray-600">A mid-size company spent 40+ hours per month manually compiling financial reports from multiple data sources.</p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Approach</h3>
+            <p class="text-gray-600">Assessed existing workflows, identified automation opportunities, and built an AI-assisted pipeline to extract, reconcile, and generate reports.</p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Result</h3>
+            <p class="text-gray-600">Reduced reporting time by 75% and eliminated manual data entry errors. Team redirected to higher-value analysis work.</p>
+          </div>
+
+          <p class="text-sm text-gray-400 italic mt-4">Details available upon request.</p>
+        </div>
+
+        <!-- Case Study 3: AI Readiness Assessment -->
+        <div class="border-l-4 border-gold bg-white rounded-lg p-8 shadow-sm mb-8">
+          <span class="inline-block bg-gold/10 text-gold-dark text-sm font-medium px-3 py-1 rounded-full mb-4">Strategy</span>
+          <h2 class="text-2xl font-bold mb-6">AI Readiness Assessment for Growing Firm</h2>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Problem</h3>
+            <p class="text-gray-600">A 50-person financial services firm wanted to leverage AI but didn't know where to start or what was realistic.</p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Approach</h3>
+            <p class="text-gray-600">Conducted a 2-week assessment: interviewed stakeholders, audited data infrastructure, and mapped 12 potential AI use cases against ROI and feasibility.</p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Result</h3>
+            <p class="text-gray-600">Delivered a prioritized 12-month roadmap. The firm implemented the top-priority use case within 3 months, saving an estimated $200K annually.</p>
+          </div>
+
+          <p class="text-sm text-gray-400 italic mt-4">Details available upon request.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="py-16 text-center" style="background-color: #f8f9fa;">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-4">Let's Build Your Success Story</h2>
+        <p class="text-gray-600 mb-8">Every engagement starts with a conversation.</p>
+        <a href="contact.html" class="inline-block bg-gold text-navy font-semibold text-lg px-8 py-4 rounded hover:bg-gold-light transition-colors duration-200">
+          Book a Free Discovery Call
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- Col 1: Logo + Tagline -->
+        <div>
+          <p class="text-xl font-bold mb-2">Bridge<span class="text-gold">AI</span></p>
+          <p class="text-gray-400">AI consulting for finance</p>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div>
+          <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="services.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Services</a></li>
+            <li><a href="about.html" class="text-gray-300 hover:text-gold transition-colors duration-200">About</a></li>
+            <li><a href="case-studies.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Case Studies</a></li>
+            <li><a href="contact.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Connect -->
+        <div>
+          <h4 class="font-semibold text-white mb-4">Connect</h4>
+          <ul class="space-y-2">
+            <li>
+              <a href="https://www.linkedin.com/in/william-tucker-06203044/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-gold transition-colors duration-200">
+                LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/billski" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-gold transition-colors duration-200">
+                GitHub
+              </a>
+            </li>
+            <li>
+              <a href="mailto:william@williamtucker.ca" class="text-gray-300 hover:text-gold transition-colors duration-200">
+                william@williamtucker.ca
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-4 text-center text-sm text-gray-400">
+        &copy; 2026 BridgeAI. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
