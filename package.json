@@ -1,0 +1,14 @@
+{
+  "name": "bridgeai-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify",
+    "watch": "npx @tailwindcss/cli -i src/input.css -o css/styles.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tailwindcss": "^4.2.2"
+  }
+}
