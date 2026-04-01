@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI for Small Business | William Tucker Solutions</title>
+  <meta name="description" content="AI that solves real small business problems — not buzzwords. Find your biggest AI opportunity in under 2 minutes." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="AI for Small Business | William Tucker Solutions" />
+  <meta property="og:description" content="AI that solves real small business problems — not buzzwords. Find your biggest AI opportunity in under 2 minutes." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
+  <meta property="og:image" content="img/og-image.png" />
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="sticky top-0 z-50 bg-navy">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+
+        <!-- Logo -->
+        <a href="index.html" class="text-xl font-bold text-white">
+          William Tucker <span class="text-gold">Solutions</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+          <a href="services.html" class="text-white hover:text-gold font-medium">Services</a>
+          <a href="small-business.html" class="text-gold font-medium">Small Business</a>
+          <a href="about.html" class="text-white hover:text-gold font-medium">About</a>
+          <a href="case-studies.html" class="text-white hover:text-gold font-medium">Case Studies</a>
+          <a href="contact.html" class="text-white hover:text-gold font-medium">Contact</a>
+          <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded hover:bg-gold-light transition-colors duration-200">
+            Book a Call
+          </a>
+        </nav>
+
+        <!-- Mobile Hamburger -->
+        <button
+          id="mobile-menu-button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          aria-label="Toggle mobile menu"
+          class="md:hidden text-white p-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="3" y1="6"  x2="21" y2="6"  />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy-light border-t border-white/10">
+      <nav class="flex flex-col px-4 py-4 gap-4" aria-label="Mobile navigation">
+        <a href="services.html" class="text-white hover:text-gold font-medium">Services</a>
+        <a href="small-business.html" class="text-gold font-medium">Small Business</a>
+        <a href="about.html" class="text-white hover:text-gold font-medium">About</a>
+        <a href="case-studies.html" class="text-white hover:text-gold font-medium">Case Studies</a>
+        <a href="contact.html" class="text-white hover:text-gold font-medium">Contact</a>
+        <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded text-center hover:bg-gold-light transition-colors duration-200">
+          Book a Call
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="bg-navy py-16 md:py-28">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-3xl">
+          <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-4">AI for Small Business</p>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            What's eating your week?
+          </h1>
+          <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-10">
+            You didn't start your business to spend Sunday on admin, answer the same emails all week, or manually copy data between spreadsheets. AI can handle all of that — without replacing your existing tools or costing a fortune.
+          </p>
+          <a href="#quiz" class="inline-block bg-gold text-navy font-semibold text-lg px-8 py-4 rounded hover:bg-gold-light transition-colors duration-200">
+            Find Your Biggest AI Win →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PAIN POINTS ===== -->
+    <section class="bg-white py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-4">
+          Sound familiar?
+        </h2>
+        <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">
+          These are the things small business owners tell me are killing their week. Every single one of them has an AI solution.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Answering the same customer questions every single day</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Copying data between spreadsheets and systems by hand</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Writing quotes and proposals from scratch every time</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Losing leads because you forgot to follow up in time</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Building weekly reports that take an hour and could write themselves</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Spending Sunday catching up on admin instead of resting</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">New staff asking questions you've already answered 100 times</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Manually entering the same data into multiple different systems</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Discovering a bad Google review days after it was posted</p>
+          </div>
+
+          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="text-red-400 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </span>
+            <p class="text-gray-700 font-medium">Hunting through old emails to find one piece of information</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEFORE / AFTER ===== -->
+    <section style="background-color: #f8f9fa;" class="py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-4">
+          What does "after AI" actually look like?
+        </h2>
+        <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">
+          Not demos. Not prototypes. Real changes to how your week feels.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+          <!-- Before/After 1 -->
+          <div class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="bg-red-50 border-b border-red-100 px-6 py-5">
+              <p class="text-xs font-bold uppercase tracking-widest text-red-400 mb-3">Before</p>
+              <p class="text-gray-700 leading-relaxed">
+                Every Monday morning you spend 45 minutes pulling numbers from three different places, building a report in Excel that you'll email to yourself and maybe read on Wednesday.
+              </p>
+            </div>
+            <div class="bg-green-50 border-b border-green-100 px-6 py-5">
+              <p class="text-xs font-bold uppercase tracking-widest text-green-600 mb-3">After</p>
+              <p class="text-gray-700 leading-relaxed">
+                Every Monday at 8am a plain-English summary lands in your inbox automatically: <em>"Revenue was up 11%. Your slowest day was Wednesday. Top seller: Product X."</em> You didn't do a thing.
+              </p>
+            </div>
+            <div class="px-6 py-4">
+              <p class="text-sm font-semibold text-navy">Automated Reporting</p>
+              <p class="text-xs text-gray-500 mt-1">Time saved: ~3 hours/week</p>
+            </div>
+          </div>
+
+          <!-- Before/After 2 -->
+          <div class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="bg-red-50 border-b border-red-100 px-6 py-5">
+              <p class="text-xs font-bold uppercase tracking-widest text-red-400 mb-3">Before</p>
+              <p class="text-gray-700 leading-relaxed">
+                You answer "what are your hours?", "do you offer X?", and "how much does Y cost?" across email, phone, and social media. All day. Every day. Including weekends.
+              </p>
+            </div>
+            <div class="bg-green-50 border-b border-green-100 px-6 py-5">
+              <p class="text-xs font-bold uppercase tracking-widest text-green-600 mb-3">After</p>
+              <p class="text-gray-700 leading-relaxed">
+                Your AI assistant handles those questions instantly on your website, 24/7. You get a weekly summary of what customers asked. You answer nothing. Serious inquiries still reach you directly.
+              </p>
+            </div>
+            <div class="px-6 py-4">
+              <p class="text-sm font-semibold text-navy">AI Customer Chatbot</p>
+              <p class="text-xs text-gray-500 mt-1">Time saved: ~5 hours/week</p>
+            </div>
+          </div>
+
+          <!-- Before/After 3 -->
+          <div class="bg-white rounded-xl shadow overflow-hidden">
+            <div class="bg-red-50 border-b border-red-100 px-6 py-5">
+              <p class="text-xs font-bold uppercase tracking-widest text-red-400 mb-3">Before</p>
+              <p class="text-gray-700 leading-relaxed">
+                Every new job means starting from a blank doc, copying an old proposal, adjusting the numbers, making sure it looks professional. An hour gone before the real work starts.
+              </p>
+            </div>
+            <div class="bg-green-50 border-b border-green-100 px-6 py-5">
+              <p class="text-xs font-bold uppercase tracking-widest text-green-600 mb-3">After</p>
+              <p class="text-gray-700 leading-relaxed">
+                You fill in five fields about the job. The AI drafts a complete, professional, branded proposal. You review it, tweak if needed, and hit send. Total time: 4 minutes.
+              </p>
+            </div>
+            <div class="px-6 py-4">
+              <p class="text-sm font-semibold text-navy">AI Proposal Generator</p>
+              <p class="text-xs text-gray-500 mt-1">Time saved: ~2 hours/proposal</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== QUIZ ===== -->
+    <section id="quiz" class="bg-white py-16 md:py-20">
+      <div class="max-w-2xl mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-4">
+          Find Your Biggest AI Win
+        </h2>
+        <p class="text-gray-500 text-center mb-10">
+          5 quick questions. Get a personalised recommendation in under 2 minutes.
+        </p>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container">
+
+          <!-- Progress Bar -->
+          <div class="mb-8">
+            <div class="flex justify-between text-sm text-gray-400 mb-2">
+              <span id="progress-label">Question 1 of 5</span>
+              <span id="progress-pct">20%</span>
+            </div>
+            <div class="w-full bg-gray-100 rounded-full h-2">
+              <div id="progress-bar" class="bg-gold h-2 rounded-full transition-all duration-300" style="width: 20%"></div>
+            </div>
+          </div>
+
+          <!-- Questions -->
+          <div id="questions-wrapper">
+
+            <!-- Q1 -->
+            <div class="quiz-question" data-q="0">
+              <h3 class="text-xl font-semibold text-navy mb-6">What eats most of your time right now?</h3>
+              <div class="flex flex-col gap-3">
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="0" data-val="chatbot">
+                  Answering the same customer questions over and over
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="0" data-val="automation">
+                  Manual data entry and copying between systems
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="0" data-val="proposals">
+                  Writing quotes, proposals, or reports from scratch
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="0" data-val="followup">
+                  Following up with leads before they go cold
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="0" data-val="knowledgebase">
+                  Training staff and answering their questions all day
+                </button>
+              </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="quiz-question hidden" data-q="1">
+              <h3 class="text-xl font-semibold text-navy mb-6">What would make the biggest difference to your business?</h3>
+              <div class="flex flex-col gap-3">
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="1" data-val="time">
+                  Getting my time back — fewer hours on admin
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="1" data-val="customers">
+                  Winning more customers without more effort
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="1" data-val="retention">
+                  Keeping existing customers happier and coming back
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="1" data-val="decisions">
+                  Making smarter decisions with better data
+                </button>
+              </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="quiz-question hidden" data-q="2">
+              <h3 class="text-xl font-semibold text-navy mb-6">Do you have a website where customers find you?</h3>
+              <div class="flex flex-col gap-3">
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="2" data-val="yes_traffic">
+                  Yes, and it gets decent traffic
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="2" data-val="yes_basic">
+                  Yes, but it's pretty basic or outdated
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="2" data-val="social">
+                  No, mostly word of mouth and social media
+                </button>
+              </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="quiz-question hidden" data-q="3">
+              <h3 class="text-xl font-semibold text-navy mb-6">How big is your team?</h3>
+              <div class="flex flex-col gap-3">
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="3" data-val="solo">
+                  Just me — I wear all the hats
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="3" data-val="small">
+                  2–5 people
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="3" data-val="medium">
+                  6–20 people
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="3" data-val="larger">
+                  20+ people
+                </button>
+              </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="quiz-question hidden" data-q="4">
+              <h3 class="text-xl font-semibold text-navy mb-6">What's your industry?</h3>
+              <div class="grid grid-cols-2 gap-3">
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="4" data-val="retail">
+                  Retail or e-commerce
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="4" data-val="trades">
+                  Trades or home services
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="4" data-val="professional">
+                  Professional services
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="4" data-val="food">
+                  Food or hospitality
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="4" data-val="health">
+                  Health or wellness
+                </button>
+                <button class="quiz-option text-left px-5 py-4 rounded-lg border-2 border-gray-200 hover:border-gold hover:bg-gold/5 transition-all duration-150 font-medium text-gray-700" data-q="4" data-val="other">
+                  Something else
+                </button>
+              </div>
+            </div>
+
+          </div><!-- /questions-wrapper -->
+
+          <!-- Result Card (hidden until complete) -->
+          <div id="quiz-result" class="hidden">
+            <div class="border-2 border-gold rounded-xl p-8 bg-gold/5">
+              <p class="text-xs font-bold uppercase tracking-widest text-gold mb-2">Your Recommendation</p>
+              <h3 id="result-title" class="text-2xl font-bold text-navy mb-4"></h3>
+              <p id="result-desc" class="text-gray-700 leading-relaxed mb-6"></p>
+              <div id="result-bullets" class="mb-8"></div>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a href="contact.html" class="inline-block text-center bg-gold text-navy font-semibold px-8 py-4 rounded hover:bg-gold-light transition-colors duration-200">
+                  Book a Free Discovery Call
+                </a>
+                <button id="quiz-restart" class="inline-block text-center border-2 border-navy text-navy font-semibold px-8 py-4 rounded hover:bg-navy hover:text-white transition-all duration-200">
+                  Start Over
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /quiz-container -->
+      </div>
+    </section>
+
+    <!-- ===== CHATBOT TEASER ===== -->
+    <section class="bg-navy py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+          <div>
+            <p class="text-gold font-semibold uppercase tracking-widest text-sm mb-4">Coming Soon</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+              An AI assistant built for your business, on your website
+            </h2>
+            <p class="text-gray-300 leading-relaxed mb-6">
+              Imagine a chatbot on your site that knows everything about your business — your services, prices, FAQs, policies — and answers customer questions instantly, 24/7. Not a generic bot. One trained specifically on your content, that stays on topic and sends serious inquiries straight to you.
+            </p>
+            <p class="text-gray-300 leading-relaxed mb-8">
+              This is one of the services I build for small business clients. It takes about a week to set up, and it works on any website.
+            </p>
+            <a href="contact.html" class="inline-block bg-gold text-navy font-semibold px-8 py-4 rounded hover:bg-gold-light transition-colors duration-200">
+              Ask Me About This →
+            </a>
+          </div>
+
+          <div class="bg-navy-light rounded-xl border border-white/10 p-6">
+            <!-- Simulated chat UI -->
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-white/10">
+              <div class="w-8 h-8 bg-gold rounded-full flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#1a2332" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z"/></svg>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Your Business Assistant</p>
+                <p class="text-green-400 text-xs">● Online 24/7</p>
+              </div>
+            </div>
+            <div class="space-y-4 mb-6">
+              <div class="flex justify-end">
+                <div class="bg-white/10 text-gray-200 text-sm px-4 py-3 rounded-2xl rounded-tr-sm max-w-xs">
+                  What are your weekend hours?
+                </div>
+              </div>
+              <div class="flex justify-start">
+                <div class="bg-gold/20 text-gray-200 text-sm px-4 py-3 rounded-2xl rounded-tl-sm max-w-xs">
+                  We're open Saturday 9am–4pm and closed Sundays. Want me to book you in for a Saturday appointment?
+                </div>
+              </div>
+              <div class="flex justify-end">
+                <div class="bg-white/10 text-gray-200 text-sm px-4 py-3 rounded-2xl rounded-tr-sm max-w-xs">
+                  Yes, this Saturday if possible
+                </div>
+              </div>
+              <div class="flex justify-start">
+                <div class="bg-gold/20 text-gray-200 text-sm px-4 py-3 rounded-2xl rounded-tl-sm max-w-xs">
+                  Perfect — I'll connect you with the team to confirm. Can I get your name and what service you're looking for?
+                </div>
+              </div>
+            </div>
+            <div class="flex gap-2">
+              <input type="text" placeholder="Type a message..." disabled class="flex-1 bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-gray-400 text-sm cursor-not-allowed" />
+              <button disabled class="bg-gold text-navy px-4 py-2 rounded-lg font-semibold text-sm cursor-not-allowed opacity-60">Send</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BOTTOM CTA ===== -->
+    <section class="bg-white py-16 md:py-20">
+      <div class="max-w-3xl mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-navy mb-6">Ready to get your time back?</h2>
+        <p class="text-gray-600 text-lg leading-relaxed mb-10">
+          Every engagement starts with a free 30-minute call. No pressure, no obligation. We'll talk about your business, what's eating your week, and whether AI is actually the right solution. If it's not, I'll tell you.
+        </p>
+        <a href="contact.html" class="inline-block bg-gold text-navy font-semibold text-lg px-10 py-4 rounded hover:bg-gold-light transition-colors duration-200">
+          Book a Free Discovery Call
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-navy text-white">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div>
+          <p class="text-xl font-bold mb-2">William Tucker <span class="text-gold">Solutions</span></p>
+          <p class="text-gray-400">AI consulting for finance &amp; small business</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="services.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Services</a></li>
+            <li><a href="small-business.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Small Business</a></li>
+            <li><a href="about.html" class="text-gray-300 hover:text-gold transition-colors duration-200">About</a></li>
+            <li><a href="case-studies.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Case Studies</a></li>
+            <li><a href="contact.html" class="text-gray-300 hover:text-gold transition-colors duration-200">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Connect</h4>
+          <ul class="space-y-2">
+            <li><a href="https://www.linkedin.com/in/william-tucker-06203044/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-gold transition-colors duration-200">LinkedIn</a></li>
+            <li><a href="https://github.com/billski" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-gold transition-colors duration-200">GitHub</a></li>
+            <li><a href="mailto:william@williamtucker.ca" class="text-gray-300 hover:text-gold transition-colors duration-200">william@williamtucker.ca</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 py-4 text-center text-sm text-gray-400">
+        &copy; 2026 William Tucker Solutions. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ===== QUIZ LOGIC =====
+    const answers = {};
+    const totalQuestions = 5;
+
+    const results = {
+      chatbot: {
+        title: 'AI Customer Assistant',
+        desc: "You're losing hours every week answering questions that an AI could handle instantly — 24 hours a day, 7 days a week. An AI assistant trained on your business handles FAQs, qualifies leads, and lets you focus on actually running things. Serious inquiries still reach you directly.",
+        bullets: ['24/7 customer answers — no staff required', 'Lead qualification before it hits your inbox', 'Appointment booking handled automatically', 'Weekly summary of what customers are asking']
+      },
+      automation: {
+        title: 'Workflow Automation & Integration',
+        desc: "If you're manually moving data between systems, that's not a workflow — it's a time tax you pay every single day. I connect your existing tools so data flows automatically. No expensive replacements, no rip-and-replace. Just your current systems, finally talking to each other.",
+        bullets: ['Automated data sync between your existing tools', 'Weekly reports that generate themselves', 'Zero manual data entry at end of month', 'Works with your current software — no migration required']
+      },
+      proposals: {
+        title: 'AI Proposal & Document Generator',
+        desc: "Describe the job in five fields. Get a complete, professional, branded proposal in seconds. An AI document system built around your business eliminates the blank-page problem and lets you send more proposals faster — which means closing more work.",
+        bullets: ['AI-generated quotes and proposals in minutes', 'Consistent branding and professional format every time', 'Faster turnaround — win jobs before competitors respond', 'Customisable templates for different job types']
+      },
+      followup: {
+        title: 'Automated Follow-Up System',
+        desc: "Most small businesses lose deals not because they weren't the best option — but because someone forgot to follow up. An automated system sends the right message at the right time, every time, without you lifting a finger. Your leads stay warm while you're busy doing the actual work.",
+        bullets: ['Automated follow-up sequences for new leads', 'Re-engagement campaigns for cold prospects', 'Post-job check-ins sent automatically', 'Review requests sent at the right moment']
+      },
+      knowledgebase: {
+        title: 'AI Staff Knowledge Base',
+        desc: "Every time a staff member interrupts you with a question you've answered 50 times, that's your focus broken and their time wasted. An AI-powered knowledge base means your team gets instant answers from your SOPs, training docs, and policies — without bothering you.",
+        bullets: ['AI-searchable knowledge base built from your documents', 'New hires get up to speed in days, not weeks', 'Fewer interruptions to your day', 'Always up to date when you update the source documents']
+      }
+    };
+
+    function updateProgress(questionIndex) {
+      const pct = Math.round(((questionIndex + 1) / totalQuestions) * 100);
+      document.getElementById('progress-bar').style.width = pct + '%';
+      document.getElementById('progress-label').textContent = `Question ${questionIndex + 1} of ${totalQuestions}`;
+      document.getElementById('progress-pct').textContent = pct + '%';
+    }
+
+    function showQuestion(index) {
+      document.querySelectorAll('.quiz-question').forEach(el => el.classList.add('hidden'));
+      const q = document.querySelector(`.quiz-question[data-q="${index}"]`);
+      if (q) q.classList.remove('hidden');
+      updateProgress(index);
+    }
+
+    function showResult() {
+      document.getElementById('questions-wrapper').classList.add('hidden');
+      document.getElementById('progress-bar').style.width = '100%';
+      document.getElementById('progress-label').textContent = 'Complete';
+      document.getElementById('progress-pct').textContent = '100%';
+
+      const primaryAnswer = answers[0] || 'chatbot';
+      const result = results[primaryAnswer];
+
+      document.getElementById('result-title').textContent = result.title;
+      document.getElementById('result-desc').textContent = result.desc;
+
+      const bulletsEl = document.getElementById('result-bullets');
+      bulletsEl.innerHTML = result.bullets.map(b =>
+        `<div class="flex items-start gap-3 mb-2">
+          <span class="text-gold mt-1 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+          </span>
+          <span class="text-gray-700">${b}</span>
+        </div>`
+      ).join('');
+
+      document.getElementById('quiz-result').classList.remove('hidden');
+    }
+
+    document.querySelectorAll('.quiz-option').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const qIndex = parseInt(this.dataset.q);
+        const val = this.dataset.val;
+        answers[qIndex] = val;
+
+        if (qIndex < totalQuestions - 1) {
+          showQuestion(qIndex + 1);
+        } else {
+          showResult();
+        }
+      });
+    });
+
+    document.getElementById('quiz-restart').addEventListener('click', function() {
+      Object.keys(answers).forEach(k => delete answers[k]);
+      document.getElementById('quiz-result').classList.add('hidden');
+      document.getElementById('questions-wrapper').classList.remove('hidden');
+      showQuestion(0);
+    });
+  </script>
+
+</body>
+</html>
