@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy via rsync
+      - name: Setup SSH
         env:
           SSH_KEY: ${{ secrets.DREAMHOST_SSH_KEY }}
         run: |
@@ -19,14 +19,49 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H pdx1-shared-a4-03.dreamhost.com >> ~/.ssh/known_hosts 2>/dev/null
 
+      - name: Deploy files via rsync
+        run: |
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='.github' \
-            --exclude='node_modules' \
-            --exclude='package.json' \
-            --exclude='package-lock.json' \
             --exclude='tailwind.config.js' \
             --exclude='src' \
             --exclude='docs' \
+            --exclude='.env' \
             -e "ssh -i ~/.ssh/deploy_key" \
             ./ dh_xjct9a@pdx1-shared-a4-03.dreamhost.com:/home/dh_xjct9a/williamtucker.ca/
+
+      - name: Write .env on server
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          ssh -i ~/.ssh/deploy_key dh_xjct9a@pdx1-shared-a4-03.dreamhost.com \
+            "printf 'ANTHROPIC_API_KEY=%s\nPORT=8080\n' '${ANTHROPIC_API_KEY}' > /home/dh_xjct9a/williamtucker.ca/.env"
+
+      - name: Install dependencies and restart Passenger
+        run: |
+          ssh -i ~/.ssh/deploy_key dh_xjct9a@pdx1-shared-a4-03.dreamhost.com << 'ENDSSH'
+            set -e
+            cd /home/dh_xjct9a/williamtucker.ca
+
+            # Install nvm if not already present
+            if [ ! -d "$HOME/.nvm" ]; then
+              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+            fi
+
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+            # Install Node 20 if not present
+            nvm install 20 --no-progress
+            nvm use 20
+
+            # Install server dependencies only
+            npm install --omit=dev
+
+            # Passenger restarts the app when this file is touched
+            mkdir -p tmp
+            touch tmp/restart.txt
+
+            echo "Deploy complete. Node $(node -v)"
+          ENDSSH
