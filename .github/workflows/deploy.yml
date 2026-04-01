@@ -12,7 +12,7 @@ jobs:
 
       - name: Setup SSH
         env:
-          SSH_KEY: ${{ secrets.DREAMHOST_SSH_KEY }}
+          SSH_KEY: ${{ secrets.DREAMHOST_SSH_KEY_LAPTOP }}
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_KEY" > ~/.ssh/deploy_key
