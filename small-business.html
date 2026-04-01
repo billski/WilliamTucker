@@ -17,6 +17,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .pain-card {
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .pain-card .pain-solution {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    .pain-card .pain-icon-check { display: none; }
+    .pain-card:hover,
+    .pain-card.revealed {
+      background-color: #f0fdf4;
+      border-color: #bbf7d0;
+    }
+    .pain-card:hover .pain-icon-x,
+    .pain-card.revealed .pain-icon-x { display: none; }
+    .pain-card:hover .pain-icon-check,
+    .pain-card.revealed .pain-icon-check { display: block; }
+    .pain-card:hover .pain-text,
+    .pain-card.revealed .pain-text { color: #166534; }
+    .pain-card:hover .pain-solution,
+    .pain-card.revealed .pain-solution { display: block; }
+  </style>
 </head>
 <body>
 
@@ -100,79 +124,142 @@
         <h2 class="text-3xl md:text-4xl font-bold text-navy text-center mb-4">
           Sound familiar?
         </h2>
-        <p class="text-gray-500 text-center mb-12 max-w-2xl mx-auto">
-          These are the things small business owners tell me are killing their week. Every single one of them has an AI solution.
+        <p class="text-gray-500 text-center mb-3 max-w-2xl mx-auto">
+          These are the things small business owners tell me are killing their week. Every single one has an AI solution.
+        </p>
+        <p class="text-center text-sm text-gold font-medium mb-10">
+          Hover or tap any item to see the fix.
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Answering the same customer questions every single day</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Answering the same customer questions every single day</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">An AI assistant handles this around the clock — customers get instant answers while you stay focused on what actually pays. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Copying data between spreadsheets and systems by hand</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Copying data between spreadsheets and systems by hand</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">Your tools can talk to each other automatically. No copy-paste, no errors, no weekend catch-up sessions. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Writing quotes and proposals from scratch every time</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Writing quotes and proposals from scratch every time</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">Describe the job, get a complete professional proposal in under 2 minutes. Consistent, branded, and ready to send. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Losing leads because you forgot to follow up in time</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Losing leads because you forgot to follow up in time</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">An automated system sends the right message at exactly the right moment — even while you're busy on a job. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Building weekly reports that take an hour and could write themselves</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Building weekly reports that take an hour and could write themselves</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">They can write themselves. Every Monday your numbers are already waiting in your inbox — you didn't lift a finger. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Spending Sunday catching up on admin instead of resting</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Spending Sunday catching up on admin instead of resting</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">Most of that admin doesn't need you — it needs a system. Let's build one and give you your weekends back. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">New staff asking questions you've already answered 100 times</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">New staff asking questions you've already answered 100 times</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">An AI knowledge base answers instantly using your own documents. Your team stops interrupting you, and new hires ramp up in days. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Manually entering the same data into multiple different systems</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Manually entering the same data into multiple different systems</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">Enter it once, everywhere updates. A one-time integration with a permanent payoff — no more double-entry, no more mismatches. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Discovering a bad Google review days after it was posted</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Discovering a bad Google review days after it was posted</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">Get notified the moment a review lands, with a draft response already written and ready to send. Never miss another one. <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
-          <div class="flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
-            <span class="text-red-400 mt-0.5 flex-shrink-0">
+          <div class="pain-card flex items-start gap-4 p-5 rounded-lg border border-red-100 bg-red-50">
+            <span class="pain-icon-x text-red-400 mt-0.5 flex-shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
             </span>
-            <p class="text-gray-700 font-medium">Hunting through old emails to find one piece of information</p>
+            <span class="pain-icon-check text-green-500 mt-0.5 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+            </span>
+            <div>
+              <p class="pain-text text-gray-700 font-medium">Hunting through old emails to find one piece of information</p>
+              <p class="pain-solution text-green-700 text-sm leading-relaxed">AI search over your own business content finds anything in seconds. No more digging, no more "I know I saw that somewhere." <a href="#quiz" class="font-semibold underline">Find out how →</a></p>
+            </div>
           </div>
 
         </div>
@@ -522,6 +609,14 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    // ===== PAIN CARD TAP TOGGLE (mobile) =====
+    document.querySelectorAll('.pain-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('revealed');
+      });
+    });
+  </script>
   <script>
     // ===== QUIZ LOGIC =====
     const answers = {};
