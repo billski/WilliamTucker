@@ -2,6 +2,7 @@
   const NAVY = '#1a2332';
   const GOLD = '#d4a843';
   const GOLD_LIGHT = '#e0be6a';
+  const SESSION_LIMIT = 15; // max user messages per session
 
   const css = `
     #wts-chat-btn {
@@ -38,10 +39,10 @@
     #wts-messages {
       flex: 1; overflow-y: auto; padding: 16px;
       display: flex; flex-direction: column; gap: 10px;
-      font-family: Inter, sans-serif; font-size: 13.5px; line-height: 1.5;
+      font-family: Inter, sans-serif; font-size: 13.5px; line-height: 1.55;
       min-height: 240px;
     }
-    .wts-msg { max-width: 85%; padding: 9px 13px; border-radius: 10px; }
+    .wts-msg { max-width: 88%; padding: 9px 13px; border-radius: 10px; }
     .wts-msg-user {
       align-self: flex-end; background: ${NAVY}; color: #fff;
       border-bottom-right-radius: 3px;
@@ -50,7 +51,34 @@
       align-self: flex-start; background: #f3f4f6; color: #1a2332;
       border-bottom-left-radius: 3px;
     }
+    .wts-msg-assistant p { margin: 0 0 6px 0; }
+    .wts-msg-assistant p:last-child { margin-bottom: 0; }
+    .wts-msg-assistant strong { font-weight: 600; color: #1a2332; }
+    .wts-msg-assistant em { font-style: italic; }
+    .wts-msg-assistant .wts-h2 {
+      font-weight: 700; font-size: 13px; color: #1a2332;
+      margin: 10px 0 4px 0; display: block;
+      border-bottom: 1px solid #e5e7eb; padding-bottom: 3px;
+    }
+    .wts-msg-assistant .wts-h2:first-child { margin-top: 0; }
+    .wts-msg-assistant .wts-h3 {
+      font-weight: 600; font-size: 13px; color: #1a2332;
+      margin: 8px 0 2px 0; display: block;
+    }
+    .wts-msg-assistant ul { margin: 4px 0 6px 0; padding-left: 16px; }
+    .wts-msg-assistant ul:last-child { margin-bottom: 0; }
+    .wts-msg-assistant li { margin-bottom: 3px; }
+    .wts-msg-assistant code {
+      background: #e5e7eb; border-radius: 3px;
+      padding: 1px 4px; font-size: 12px; font-family: monospace;
+    }
     .wts-msg-error { align-self: flex-start; background: #fee2e2; color: #991b1b; border-bottom-left-radius: 3px; }
+    .wts-msg-limit {
+      align-self: stretch; background: #fefce8; color: #713f12;
+      border: 1px solid #fde68a; border-radius: 8px;
+      padding: 10px 13px; font-size: 13px; text-align: center;
+    }
+    .wts-msg-limit a { color: #d4a843; font-weight: 600; text-decoration: underline; }
     .wts-typing { align-self: flex-start; padding: 10px 14px; background: #f3f4f6; border-radius: 10px; border-bottom-left-radius: 3px; }
     .wts-typing span { display: inline-block; width: 7px; height: 7px; background: #9ca3af; border-radius: 50%; margin: 0 2px; animation: wts-bounce 1.2s infinite; }
     .wts-typing span:nth-child(2) { animation-delay: 0.2s; }
@@ -65,6 +93,7 @@
       outline: none; resize: none; line-height: 1.4; max-height: 80px;
     }
     #wts-input:focus { border-color: ${GOLD}; box-shadow: 0 0 0 2px ${GOLD}33; }
+    #wts-input:disabled { background: #f9fafb; color: #9ca3af; }
     #wts-send-btn {
       background: ${GOLD}; border: none; border-radius: 8px;
       width: 38px; height: 38px; cursor: pointer; flex-shrink: 0;
@@ -119,6 +148,45 @@
   const sendBtn = document.getElementById('wts-send-btn');
   let history = [];
   let isOpen = false;
+  let userMessageCount = 0;
+  let cooldown = false;
+
+  // ── Markdown renderer ──────────────────────────────────────────
+  function inlineMd(text) {
+    return text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/`(.+?)`/g, '<code>$1</code>');
+  }
+
+  function renderMarkdown(text) {
+    const lines = text.split('\n');
+    let html = '';
+    let inList = false;
+
+    for (const line of lines) {
+      if (line.startsWith('### ')) {
+        if (inList) { html += '</ul>'; inList = false; }
+        html += `<span class="wts-h3">${inlineMd(line.slice(4))}</span>`;
+      } else if (line.startsWith('## ')) {
+        if (inList) { html += '</ul>'; inList = false; }
+        html += `<span class="wts-h2">${inlineMd(line.slice(3))}</span>`;
+      } else if (/^[-*] /.test(line)) {
+        if (!inList) { html += '<ul>'; inList = true; }
+        html += `<li>${inlineMd(line.slice(2))}</li>`;
+      } else if (line.trim() === '') {
+        if (inList) { html += '</ul>'; inList = false; }
+      } else {
+        if (inList) { html += '</ul>'; inList = false; }
+        html += `<p>${inlineMd(line)}</p>`;
+      }
+    }
+
+    if (inList) html += '</ul>';
+    return html;
+  }
+  // ──────────────────────────────────────────────────────────────
 
   function togglePanel() {
     isOpen = !isOpen;
@@ -135,7 +203,11 @@
   function appendMessage(role, text) {
     const div = document.createElement('div');
     div.className = `wts-msg wts-msg-${role}`;
-    div.textContent = text;
+    if (role === 'assistant') {
+      div.innerHTML = renderMarkdown(text);
+    } else {
+      div.textContent = text;
+    }
     messagesEl.appendChild(div);
     messagesEl.scrollTop = messagesEl.scrollHeight;
     return div;
@@ -154,15 +226,29 @@
     document.getElementById('wts-typing-indicator')?.remove();
   }
 
+  function showLimitMessage() {
+    input.disabled = true;
+    sendBtn.disabled = true;
+    input.placeholder = 'Chat limit reached';
+    const div = document.createElement('div');
+    div.className = 'wts-msg-limit';
+    div.innerHTML = `You've reached the limit for this session. Ready to talk? <a href="/contact.html">Book a free discovery call →</a>`;
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
   async function sendMessage() {
     const text = input.value.trim();
-    if (!text) return;
+    if (!text || cooldown) return;
+
     input.value = '';
     input.style.height = 'auto';
     sendBtn.disabled = true;
+    cooldown = true;
 
     appendMessage('user', text);
     history.push({ role: 'user', content: text });
+    userMessageCount++;
     showTyping();
 
     try {
@@ -192,8 +278,17 @@
     }
 
     messagesEl.scrollTop = messagesEl.scrollHeight;
-    sendBtn.disabled = false;
-    input.focus();
+
+    if (userMessageCount >= SESSION_LIMIT) {
+      showLimitMessage();
+    } else {
+      // 2-second cooldown between messages
+      setTimeout(() => {
+        cooldown = false;
+        sendBtn.disabled = false;
+        input.focus();
+      }, 2000);
+    }
   }
 
   btn.addEventListener('click', togglePanel);
