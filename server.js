@@ -181,6 +181,10 @@ function isRateLimited(ip) {
   return times.length > max;
 }
 
+app.get('/health', (req, res) => {
+  res.json({ ok: true, apiKeySet: !!process.env.ANTHROPIC_API_KEY });
+});
+
 app.post('/api/chat', async (req, res) => {
   const ip = req.ip || 'unknown';
   if (isRateLimited(ip)) {
