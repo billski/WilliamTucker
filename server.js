@@ -8,6 +8,18 @@ config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
+
+// Allow requests from the static site on DreamHost
+app.use((req, res, next) => {
+  const allowed = ['https://williamtucker.ca', 'https://www.williamtucker.ca'];
+  const origin = req.headers.origin;
+  if (allowed.includes(origin)) res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.sendStatus(204);
+  next();
+});
+
 app.use(express.json());
 app.use(express.static(__dirname));
 

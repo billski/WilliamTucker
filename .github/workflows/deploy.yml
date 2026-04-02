@@ -28,40 +28,9 @@ jobs:
             --exclude='src' \
             --exclude='docs' \
             --exclude='.env' \
+            --exclude='node_modules' \
+            --exclude='server.js' \
+            --exclude='package.json' \
+            --exclude='package-lock.json' \
             -e "ssh -i ~/.ssh/deploy_key" \
             ./ dh_xjct9a@pdx1-shared-a4-03.dreamhost.com:/home/dh_xjct9a/williamtucker.ca/
-
-      - name: Write .env on server
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: |
-          ssh -i ~/.ssh/deploy_key dh_xjct9a@pdx1-shared-a4-03.dreamhost.com \
-            "printf 'ANTHROPIC_API_KEY=%s\nPORT=8080\n' '${ANTHROPIC_API_KEY}' > /home/dh_xjct9a/williamtucker.ca/.env"
-
-      - name: Install dependencies and restart Passenger
-        run: |
-          ssh -i ~/.ssh/deploy_key dh_xjct9a@pdx1-shared-a4-03.dreamhost.com << 'ENDSSH'
-            set -e
-            cd /home/dh_xjct9a/williamtucker.ca
-
-            # Install nvm if not already present
-            if [ ! -d "$HOME/.nvm" ]; then
-              curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-            fi
-
-            export NVM_DIR="$HOME/.nvm"
-            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-            # Install Node 18 if not present (Node 20 JIT crashes on DreamHost CPU)
-            nvm install 18 --no-progress
-            nvm use 18
-
-            # Install server dependencies only
-            npm install --omit=dev
-
-            # Passenger restarts the app when this file is touched
-            mkdir -p tmp
-            touch tmp/restart.txt
-
-            echo "Deploy complete. Node $(node -v)"
-          ENDSSH
