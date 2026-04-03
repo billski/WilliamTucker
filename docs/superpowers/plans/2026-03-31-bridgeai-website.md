@@ -1,14 +1,14 @@
-# BridgeAI Website Implementation Plan
+# William Tucker Solutions Website Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a 5-page static brochure website for BridgeAI, an AI consulting business targeting small/medium finance-sector businesses.
+**Goal:** Build a 5-page static brochure website for William Tucker Solutions, an AI consulting business targeting small/medium finance-sector businesses.
 
 **Architecture:** Static HTML pages styled with Tailwind CSS v4 (standalone CLI). No frameworks. Vanilla JS for mobile nav only. Designed for Dreamhost static hosting.
 
 **Tech Stack:** HTML5, Tailwind CSS v4 (standalone CLI), vanilla JavaScript, Google Fonts (Inter)
 
-**Spec:** `docs/superpowers/specs/2026-03-31-bridgeai-website-design.md`
+**Spec:** `docs/superpowers/specs/2026-03-31-williamtucker-website-design.md`
 
 **Brand:**
 - Primary: #1a2332 (dark navy)
@@ -21,7 +21,7 @@
 ## File Structure
 
 ```
-BridgeAI/
+William Tucker Solutions/
 ├── index.html              Homepage
 ├── services.html           Services overview
 ├── about.html              Founder story + CV highlights
@@ -55,7 +55,7 @@ BridgeAI/
 
 ```json
 {
-  "name": "bridgeai-website",
+  "name": "williamtucker-website",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -186,10 +186,10 @@ The homepage includes: nav, hero, value propositions (3-col), services preview (
 
 The page must include these sections in order:
 
-1. **`<head>`**: charset, viewport, title "BridgeAI | AI Consulting for Finance", meta description, Open Graph tags (og:title, og:description, og:type=website), Google Fonts link for Inter (weights 400,500,600,700), link to `css/styles.css`.
+1. **`<head>`**: charset, viewport, title "William Tucker Solutions | AI Consulting for Finance", meta description, Open Graph tags (og:title, og:description, og:type=website), Google Fonts link for Inter (weights 400,500,600,700), link to `css/styles.css`.
 
 2. **`<header>`** (sticky, navy background):
-   - Logo text "BridgeAI" linking to `index.html`, styled in white with gold accent on "AI"
+   - Logo text "William Tucker Solutions" linking to `index.html`, styled in white with gold accent on "AI"
    - Desktop nav links: Services, About, Case Studies, Contact — white text, gold on hover
    - "Book a Call" button styled gold bg with navy text, linking to `contact.html`
    - Mobile: hamburger button (3-line SVG icon, white) with `id="mobile-menu-button"`, `aria-expanded="false"`, `aria-controls="mobile-menu"`
@@ -203,7 +203,7 @@ The page must include these sections in order:
    - CTA link styled as gold button: "Book a Free Discovery Call" -> `contact.html`
 
    b. **Value propositions** (white bg):
-   - Section heading: "Why Work With BridgeAI"
+   - Section heading: "Why Work With William Tucker Solutions"
    - 3 columns (stack on mobile), each with:
      - SVG icon (simple inline SVG — shield for vendor-agnostic, user for senior engineer, lightbulb for knowledge transfer)
      - h3 title
@@ -222,15 +222,15 @@ The page must include these sections in order:
 
    d. **Social proof** (white bg):
    - Section heading: "Trusted By" (or "What Clients Say")
-   - 3 placeholder testimonial cards with italic quote text, name, and company — use realistic placeholder text like "BridgeAI helped us identify three AI opportunities we hadn't considered..." attributed to "— Coming Soon"
+   - 3 placeholder testimonial cards with italic quote text, name, and company — use realistic placeholder text like "William Tucker Solutions helped us identify three AI opportunities we hadn't considered..." attributed to "— Coming Soon"
    - Styled and ready to replace with real testimonials
 
 4. **`<footer>`** (navy bg):
    - 3-column layout (stack on mobile):
-     - Col 1: "BridgeAI" logo text, one-liner tagline "AI consulting for finance"
+     - Col 1: "William Tucker Solutions" logo text, one-liner tagline "AI consulting for finance"
      - Col 2: Nav links (Services, About, Case Studies, Contact)
      - Col 3: "Connect" — LinkedIn link, GitHub link (github.com/billski), email (william@williamtucker.ca)
-   - Bottom bar: "© 2026 BridgeAI. All rights reserved."
+   - Bottom bar: "© 2026 William Tucker Solutions. All rights reserved."
 
 5. **Script tag**: `<script src="js/main.js"></script>` before `</body>`
 
@@ -259,7 +259,7 @@ git commit -m "feat: build homepage with hero, value props, services preview, fo
 
 - [ ] **Step 1: Build services.html**
 
-Same `<head>` as index.html but title "Services | BridgeAI" and description about AI consulting services. Same `<header>` and `<footer>` as index.html (copy). Mark "Services" nav link as active (gold text or underline).
+Same `<head>` as index.html but title "Services | William Tucker Solutions" and description about AI consulting services. Same `<header>` and `<footer>` as index.html (copy). Mark "Services" nav link as active (gold text or underline).
 
 **`<main>`**:
 
@@ -342,13 +342,13 @@ git commit -m "feat: build services page with 4 service cards and process sectio
 
 - [ ] **Step 1: Build about.html**
 
-Same head/header/footer pattern. Title "About | BridgeAI". Mark "About" nav link as active.
+Same head/header/footer pattern. Title "About | William Tucker Solutions". Mark "About" nav link as active.
 
 **`<main>`**:
 
 1. **Page hero** (navy bg):
    - h1: "About"
-   - p: "The engineer behind BridgeAI."
+   - p: "The engineer behind William Tucker Solutions."
 
 2. **Bio section** (white bg):
    - 2-column layout on desktop (stack on mobile): left = placeholder headshot image (img/placeholder.svg in a rounded container), right = bio text
@@ -356,7 +356,7 @@ Same head/header/footer pattern. Title "About | BridgeAI". Mark "About" nav link
    - Subtitle: "Senior Software Engineer · AI Consultant"
    - Bio paragraphs (3 short paragraphs):
      - "I've spent over 12 years building production software — from legacy system modernizations to full-stack applications, CI/CD pipelines to secure authentication systems. I've shipped code that thousands of people rely on daily."
-     - "Working in the finance department at a large institution, I've seen firsthand how the right technology can transform operations — and how the wrong approach wastes time and money. That experience is what drives BridgeAI: practical, no-hype AI consulting grounded in real engineering."
+     - "Working in the finance department at a large institution, I've seen firsthand how the right technology can transform operations — and how the wrong approach wastes time and money. That experience is what drives William Tucker Solutions: practical, no-hype AI consulting grounded in real engineering."
      - "Before software, I was a journeyman marine technician. I know what it means to build things that have to work, and I bring that same mindset to every project."
 
 3. **Expertise section** (light gray bg):
@@ -401,7 +401,7 @@ git commit -m "feat: build about page with bio, expertise, and philosophy sectio
 
 - [ ] **Step 1: Build case-studies.html**
 
-Same head/header/footer pattern. Title "Case Studies | BridgeAI". Mark "Case Studies" nav link as active.
+Same head/header/footer pattern. Title "Case Studies | William Tucker Solutions". Mark "Case Studies" nav link as active.
 
 **`<main>`**:
 
@@ -462,7 +462,7 @@ git commit -m "feat: build case studies page with dogmap.ca showcase and placeho
 
 - [ ] **Step 1: Build contact.html**
 
-Same head/header/footer pattern. Title "Contact | BridgeAI". Mark "Contact" nav link as active.
+Same head/header/footer pattern. Title "Contact | William Tucker Solutions". Mark "Contact" nav link as active.
 
 **`<main>`**:
 
@@ -539,7 +539,7 @@ Check each page at mobile (375px), tablet (768px), and desktop (1280px) widths:
 - [ ] **Step 4: Verify footer consistency**
 
 All 5 pages must have identical footers with:
-- BridgeAI logo text and tagline
+- William Tucker Solutions logo text and tagline
 - Nav links (Services, About, Case Studies, Contact)
 - LinkedIn, GitHub (github.com/billski), email links
 - Copyright 2026

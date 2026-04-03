@@ -1,8 +1,8 @@
-# BridgeAI Website Design Spec
+# William Tucker Solutions Website Design Spec
 
 ## Overview
 
-A static brochure website for BridgeAI, an AI consulting business targeting small/medium finance-sector businesses. Owned and operated by William Tucker, a senior software engineer with 12+ years of experience currently working in a finance department.
+A static brochure website for William Tucker Solutions, an AI consulting business targeting small/medium finance-sector businesses. Owned and operated by William Tucker, a senior software engineer with 12+ years of experience currently working in a finance department.
 
 The site's primary goal is to establish credibility and funnel visitors to a free discovery call.
 
@@ -17,7 +17,7 @@ The site's primary goal is to establish credibility and funnel visitors to a fre
 ## Site Structure
 
 ```
-BridgeAI/
+William Tucker Solutions/
 ├── index.html          Homepage
 ├── services.html       Services overview
 ├── about.html          Founder story + CV highlights
@@ -37,7 +37,7 @@ BridgeAI/
 - **Accent color:** Gold/amber (#d4a843)
 - **Backgrounds:** White (#ffffff) and light gray (#f8f9fa)
 - **Typography:** Inter (Google Fonts) -- single family, multiple weights
-- **Logo:** Text-based "BridgeAI" mark, clean sans-serif, optional subtle bridge/connection icon
+- **Logo:** Text-based "William Tucker Solutions" mark, clean sans-serif, optional subtle bridge/connection icon
 - **Overall feel:** Clean, minimal, professional -- "senior consultant" aesthetic
 - **No stock robot/AI imagery**
 
