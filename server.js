@@ -33,7 +33,7 @@ William Tucker is a senior software engineer based in Kelowna, BC with 12+ years
 ## William's work history
 
 **Founder & AI Consultant — William Tucker Solutions** (2026–present, Kelowna BC)
-AI strategy, implementation, and prototyping for finance teams and small businesses. Uses AI agents (Claude, GPT-4) to accelerate delivery.
+AI strategy, implementation, and prototyping for finance teams and small businesses. Uses AI agents (Claude, GPT-5) to accelerate delivery.
 
 **Programmer/Analyst — Vancouver Island University** (July 2016–present, Nanaimo BC)
 Led full modernization of legacy systems from Classic ASP to .NET 8 Blazor Server. Built SSO landing page tag system — designed Oracle schema (3 tables, sequences, triggers, cascading deletes), implemented 9 REST API endpoints in C#, and rewrote the entire landing page UI with modern patterns (slide-over panels, toast notifications). Replaced Crystal Reports with QuestPDF in the Building Information System, eliminating legacy licensing. Built CDW submission tool with SignalR real-time progress, SSH/SFTP file transfer, and CI pipeline. Transitioned team of six from server-based development to local feature-branch workflow across 30+ git repositories with whitelist .gitignore strategy, multi-repo rollback procedures, and health-check-gated GitLab CI/CD pipelines. Authored modernization assessments with cost-benefit analysis and phased conversion plans. Implemented SSO/ADFS/SAML authentication and designed dynamic CORS architecture for multi-developer local development. Delivered compliance work for CRA T4A/T2202A electronic filing. Wrote team developer handbook.
@@ -56,7 +56,7 @@ Languages: C#, Java, JavaScript, TypeScript, Python, SQL, PL/SQL, T-SQL, Groovy,
 Backend/APIs: .NET 8, ASP.NET Core, Blazor Server, Classic ASP, REST, SOAP, Dapper, Entity Framework, SignalR, Supabase
 Data: Oracle, SQL Server, PostgreSQL, PostGIS (geospatial), stored procedures, schema design, ETL (Talend)
 Frontend: Next.js, React, Blazor, TypeScript, TailwindCSS, Bootstrap 4/5, HTML/CSS, jQuery, MapLibre GL
-AI & LLMs: Claude API (Anthropic), GPT-4, Claude Code, prompt engineering, AI-agent-driven development
+AI & LLMs: Claude API (Anthropic), GPT-5, Claude Code, prompt engineering, AI-agent-driven development
 Reporting: QuestPDF, Crystal Reports, PL/SQL, T-SQL
 DevOps: Git (multi-repo, 30+ repos), GitLab CI/CD, Vercel, PowerShell, YAML, SSH/SFTP, multi-environment release pipelines
 Cloud: Vercel, Supabase (Auth, DB, Storage), cloud ERP integrations
@@ -134,7 +134,7 @@ No. Project engagements are fixed-scope and fixed-price. The fractional advisor 
 ChatGPT is a tool. William helps figure out which tools are worth using, builds them into actual systems and workflows, and makes sure the team knows how to use them effectively.
 
 **What AI tools do you use?**
-Vendor-agnostic — uses whatever fits the problem. In practice often Claude (Anthropic), GPT-4 (OpenAI), and purpose-built tooling layered on existing systems. No platform commissions.
+Vendor-agnostic — uses whatever fits the problem. In practice often Claude (Anthropic), GPT-5 (OpenAI), and purpose-built tooling layered on existing systems. No platform commissions.
 
 **What industries do you serve?**
 Primary focus: finance teams and small businesses. Background spans higher education, e-commerce, and enterprise systems.
