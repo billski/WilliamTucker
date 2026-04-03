@@ -36,7 +36,7 @@ William Tucker is a senior software engineer based in Kelowna, BC with 12+ years
 AI strategy, implementation, and prototyping for finance teams and small businesses. Uses AI agents (Claude, GPT-4) to accelerate delivery.
 
 **Programmer/Analyst — Vancouver Island University** (July 2016–present, Nanaimo BC)
-Led full modernization of legacy systems from Classic ASP to .NET 8 Blazor Server. Established local dev environment and GitLab CI/CD pipelines for a team of six. Implemented SSO, token validation, OAuth, and access control. Delivered compliance work for CRA T4A/T2202A electronic filing. Wrote team developer handbook. Built ETL solutions with Talend. Recreated legacy reports using Crystal Reports, PL/SQL, T-SQL.
+Led full modernization of legacy systems from Classic ASP to .NET 8 Blazor Server. Built SSO landing page tag system — designed Oracle schema (3 tables, sequences, triggers, cascading deletes), implemented 9 REST API endpoints in C#, and rewrote the entire landing page UI with modern patterns (slide-over panels, toast notifications). Replaced Crystal Reports with QuestPDF in the Building Information System, eliminating legacy licensing. Built CDW submission tool with SignalR real-time progress, SSH/SFTP file transfer, and CI pipeline. Transitioned team of six from server-based development to local feature-branch workflow across 30+ git repositories with whitelist .gitignore strategy, multi-repo rollback procedures, and health-check-gated GitLab CI/CD pipelines. Authored modernization assessments with cost-benefit analysis and phased conversion plans. Implemented SSO/ADFS/SAML authentication and designed dynamic CORS architecture for multi-developer local development. Delivered compliance work for CRA T4A/T2202A electronic filing. Wrote team developer handbook.
 
 **Software Analyst — Thompson Rivers University** (January 2013–July 2016, Kamloops BC)
 Designed and built the TRU Student ID Card system in Java — used by thousands of students, integrated with BC Transit and City of Kamloops. Created Employee Survey system using Groovy Grails with Oracle. Delivered a Groovy Grails presentation at the BCNET Conference in 2015. Trained staff on reporting, code review, and SQL tuning.
@@ -53,14 +53,14 @@ SQL, PL/SQL, and PHP development for institutional reporting.
 
 ## Technical skills (full list)
 Languages: C#, Java, JavaScript, TypeScript, Python, SQL, PL/SQL, T-SQL, Groovy, PHP, VBScript, PowerShell, XML
-Backend/APIs: .NET 8, ASP.NET Core, Blazor Server, Classic ASP, REST, SOAP, Dapper, Entity Framework, Supabase
+Backend/APIs: .NET 8, ASP.NET Core, Blazor Server, Classic ASP, REST, SOAP, Dapper, Entity Framework, SignalR, Supabase
 Data: Oracle, SQL Server, PostgreSQL, PostGIS (geospatial), stored procedures, schema design, ETL (Talend)
-Frontend: Next.js, React, Blazor, TypeScript, TailwindCSS, HTML/CSS, jQuery, MapLibre GL
+Frontend: Next.js, React, Blazor, TypeScript, TailwindCSS, Bootstrap 4/5, HTML/CSS, jQuery, MapLibre GL
 AI & LLMs: Claude API (Anthropic), GPT-4, Claude Code, prompt engineering, AI-agent-driven development
-Reporting: Crystal Reports, PL/SQL, T-SQL
-DevOps: Git, GitLab CI/CD, Vercel, PowerShell, YAML, multi-environment release pipelines
+Reporting: QuestPDF, Crystal Reports, PL/SQL, T-SQL
+DevOps: Git (multi-repo, 30+ repos), GitLab CI/CD, Vercel, PowerShell, YAML, SSH/SFTP, multi-environment release pipelines
 Cloud: Vercel, Supabase (Auth, DB, Storage), cloud ERP integrations
-Security: SSO/ADFS, token validation, OAuth (Google, Apple), Row Level Security (RLS), JWT, role-based access, rate limiting
+Security: SSO/ADFS, SAML, token validation, OAuth (Google, Apple), Row Level Security (RLS), JWT, CORS architecture, role-based access, rate limiting
 Other: IIS, Windows Server, Grails, Agile/Scrum
 
 ## Certifications
@@ -154,6 +154,10 @@ Implementation projects include 30 days of post-launch support. Beyond that, fol
 ## Notable projects
 - Facilities Information System: modernized 15 Classic ASP files → .NET 8 Blazor Server in 2 days using AI agents, zero breaking changes, preserved Oracle backend and SSO, became institutional reference implementation
 - Room Booking System: replaced a 705,714-line Oracle PL/SQL package with .NET 8 Blazor Server — MVP in 1 day, production-ready in 8 days, mobile-responsive with real-time conflict detection
+- SSO Landing Page + Tag System: designed Oracle schema (3 tables, sequences, triggers, cascading deletes), built 9 REST API endpoints in C#, rewrote entire landing page UI with modern patterns (slide-over panels, toast notifications, JSON/Mermaid export)
+- Crystal Reports → QuestPDF: replaced legacy licensed reporting engine in BIS with modern .NET-native QuestPDF, eliminating licensing dependency
+- CDW Submission Tool: .NET web app with SignalR real-time progress, SSH/SFTP file transfer via SSH.NET, service account management, GitLab CI pipeline with automated tests
+- Local Dev Environment & CI/CD: transitioned 30+ repos from server-based to local feature-branch development; GitLab pipelines with health-check gates, rollback automation, and multi-environment release
 - dogmap.ca: a live production PWA for BC dog owners, built solo with Next.js, TypeScript, Supabase, PostGIS, OAuth (Google/Apple), Row Level Security, JWT-protected API routes — live at dogmap.ca
 
 ## Contact / booking
