@@ -3,6 +3,8 @@
   const GOLD = '#d4a843';
   const GOLD_LIGHT = '#e0be6a';
   const SESSION_LIMIT = 15; // max user messages per session
+  const IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+  const API_URL = IS_LOCAL ? '/api/chat' : 'https://williamtucker-production.up.railway.app/api/chat';
 
   const css = `
     #wts-chat-btn {
@@ -252,7 +254,7 @@
     showTyping();
 
     try {
-      const res = await fetch('https://williamtucker-production.up.railway.app/api/chat', {
+      const res = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: history }),
