@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Case Studies | William Tucker Solutions</title>
-  <meta name="description" content="AI-accelerated legacy modernization case studies: Classic ASP to .NET 8 Blazor over 7 weeks (institutional playbook), 705K-line Oracle PL/SQL rebuilt in 5 days, and a custom Oracle MCP server extending Claude." />
+  <meta name="description" content="AI-accelerated legacy modernization case studies: Classic ASP to .NET 8 Blazor over 7 weeks (institutional playbook), 705K-line Oracle PL/SQL rebuilt in 5 days, a custom Oracle MCP server extending Claude, and a 12-day parallel-AI-session sprint shipping three concurrent projects." />
   <!-- Open Graph -->
   <meta property="og:title" content="Case Studies | William Tucker Solutions" />
-  <meta property="og:description" content="AI-accelerated legacy modernization case studies: Classic ASP to .NET 8 Blazor over 7 weeks (institutional playbook), 705K-line Oracle PL/SQL rebuilt in 5 days, and a custom Oracle MCP server extending Claude." />
+  <meta property="og:description" content="AI-accelerated legacy modernization case studies: Classic ASP to .NET 8 Blazor over 7 weeks (institutional playbook), 705K-line Oracle PL/SQL rebuilt in 5 days, a custom Oracle MCP server extending Claude, and a 12-day parallel-AI-session sprint shipping three concurrent projects." />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
@@ -207,6 +207,50 @@
           <a href="https://github.com/billski/Claude-Oracle-MCP" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-dark font-medium">View repo on GitHub &rarr;</a>
         </div>
 
+        <!-- Case Study 4: April 2026 Parallel-Session Sprint -->
+        <div class="border-l-4 border-gold bg-white rounded-lg p-8 shadow-sm mb-8">
+          <span class="inline-block bg-gold/10 text-gold-dark text-sm font-medium px-3 py-1 rounded-full mb-4">Parallel AI-Session Pattern</span>
+          <h2 class="text-2xl font-bold mb-2">Three projects in twelve days: the parallel AI-session pattern</h2>
+          <p class="text-sm text-gray-500 mb-6"><span class="font-semibold text-navy">Built for:</span> A BC post-secondary institution &middot; <span class="italic">independently git-verified &middot; reference available on request</span></p>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Problem</h3>
+            <p class="text-gray-600">Three legacy modernization tracks landed in the same window: a Classic ASP SSO landing page that needed a Blazor replacement, a deploy pipeline that was still pulling git into the production directory, and a team that had no shared documentation system for the Oracle SSO chain underneath ~90 web apps. Sequenced traditionally, that's a quarter of work for one engineer.</p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">Approach</h3>
+            <p class="text-gray-600">Twelve days (2026-04-09 &rarr; 2026-04-20) running three concurrent Claude Code sessions against three repositories &mdash; VIUPortal in one, the SRS deploy pipeline in another, the docs vault in a third. AI handled drafting, research, and mechanical edits in parallel; I handled architectural decisions, code review, and reconciliation across the tracks. The leverage came from running tracks <em>simultaneously</em>, not from prompting any single track faster. ~100+ commits across three repos; every commit reviewed.</p>
+          </div>
+
+          <div class="mb-4">
+            <h3 class="font-semibold text-navy mb-2">What shipped</h3>
+            <ul class="list-disc list-outside pl-6 space-y-2 text-gray-600">
+              <li><strong class="text-navy">Greenfield .NET 8 Blazor SSO portal.</strong> Standalone SAML login with direct ADFS flow, impersonation with original-user privilege checks, full pen-test pass (security headers, IP validation, CSP compliance), session polling, UI polish. Replaces the legacy Classic ASP landing.</li>
+              <li><strong class="text-navy">Artifact-based deploy pipeline.</strong> Replaced git-pull-based deploys with a Pester v3 test harness, robocopy /MIR with .git excluded, source/destination validation, pre-deploy snapshots with configurable retention, prod deploy job behind a manual gate, and a Teams Adaptive Card on failure.</li>
+              <li><strong class="text-navy">Team-wide documentation platform.</strong> Multi-phase Obsidian vault: Oracle SSO-chain schema reference verified against the live database, Classic ASP shared-includes reference, end-to-end SSO traces with mermaid diagrams, per-app federation design, and a bootstrap script for spinning up new per-app vaults.</li>
+            </ul>
+          </div>
+
+          <div class="mb-6">
+            <h3 class="font-semibold text-navy mb-2">Result</h3>
+            <p class="text-gray-600">All three deliverables shipped in the same 12-day window. The pattern &mdash; augmented senior engineering across parallel tracks, not one-shot generation &mdash; is the reusable part. The shipped surface area was independently verified by walking the underlying git history of all three repositories.</p>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">.NET 8 Blazor Server</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">SAML/ADFS</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">PowerShell</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Pester</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">GitLab CI/CD</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Teams Adaptive Cards</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Obsidian</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Oracle</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">Parallel AI sessions</span>
+            <span class="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">12-day sprint</span>
+          </div>
+        </div>
+
         <!-- Other modernization wins summary -->
         <div class="bg-navy rounded-lg p-8 text-white mt-12">
           <h3 class="text-xl font-bold text-gold mb-4">More modernization wins</h3>
@@ -217,7 +261,7 @@
             </li>
             <li class="flex items-start gap-3">
               <span class="text-gold mt-1">▸</span>
-              <span><strong class="text-white">VIUPortal (Classic ASP SSO landing &rarr; .NET 10 Blazor).</strong> Replacement for the legacy sso/viulogin.html. Direct ADFS SAML flow, impersonation with original-user privilege checks, CSP hardening. 7 days, active development.</span>
+              <span><strong class="text-white">VIUPortal (Classic ASP SSO landing &rarr; .NET 8 Blazor).</strong> Greenfield Blazor Server replacement for the legacy sso/viulogin.html. Direct ADFS SAML flow, impersonation with original-user privilege checks, CSP hardening, full pen-test pass. Built inside the 12-day parallel-session sprint above; active development.</span>
             </li>
             <li class="flex items-start gap-3">
               <span class="text-gold mt-1">▸</span>
