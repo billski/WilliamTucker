@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-28T00:00:00Z",
+  "title": "Design System: William Tucker Solutions",
+  "extensions": {
+    "colorMeta": {
+      "drafting-navy": {
+        "role": "primary",
+        "displayName": "Drafting Navy",
+        "canonical": "oklch(20.6% 0.029 257)",
+        "tonalRamp": [
+          "oklch(12% 0.022 257)",
+          "oklch(18% 0.027 257)",
+          "oklch(24% 0.029 257)",
+          "oklch(34% 0.029 257)",
+          "oklch(48% 0.028 257)",
+          "oklch(62% 0.024 257)",
+          "oklch(78% 0.018 257)",
+          "oklch(94% 0.008 257)"
+        ]
+      },
+      "drafting-navy-light": {
+        "role": "primary-variant",
+        "displayName": "Drafting Navy Light",
+        "canonical": "oklch(25.3% 0.029 257)",
+        "tonalRamp": []
+      },
+      "drafting-navy-dark": {
+        "role": "primary-variant",
+        "displayName": "Drafting Navy Dark",
+        "canonical": "oklch(15.5% 0.027 257)",
+        "tonalRamp": []
+      },
+      "solder-gold": {
+        "role": "secondary",
+        "displayName": "Solder Gold",
+        "canonical": "oklch(75.3% 0.113 86)",
+        "tonalRamp": [
+          "oklch(35% 0.06 86)",
+          "oklch(48% 0.085 86)",
+          "oklch(60% 0.105 86)",
+          "oklch(68% 0.115 86)",
+          "oklch(75% 0.113 86)",
+          "oklch(83% 0.1 87)",
+          "oklch(90% 0.075 88)",
+          "oklch(96% 0.04 90)"
+        ]
+      },
+      "solder-gold-light": {
+        "role": "secondary-variant",
+        "displayName": "Solder Gold Light",
+        "canonical": "oklch(82.4% 0.103 87)",
+        "tonalRamp": []
+      },
+      "solder-gold-dark": {
+        "role": "secondary-variant",
+        "displayName": "Solder Gold Dark",
+        "canonical": "oklch(67.1% 0.115 84)",
+        "tonalRamp": []
+      },
+      "page-off-white": {
+        "role": "neutral",
+        "displayName": "Page Off-White",
+        "canonical": "oklch(98.4% 0.001 247)",
+        "tonalRamp": []
+      },
+      "page-white": {
+        "role": "neutral",
+        "displayName": "Page White",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero h1 only. One per page." },
+      "headline": { "displayName": "Headline", "purpose": "Section h2 openers." },
+      "title": { "displayName": "Title", "purpose": "Card h3 / h4. Sub-track headers." },
+      "body-lg": { "displayName": "Body Large", "purpose": "Hero subhead and lead paragraphs above the fold." },
+      "body": { "displayName": "Body", "purpose": "Default paragraph text. Color: Ink-700." },
+      "label": { "displayName": "Label", "purpose": "Eyebrow pills, classifier pills, statistic captions. UPPERCASE, wide tracking." }
+    },
+    "shadows": [
+      {
+        "name": "card-lift",
+        "value": "0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1)",
+        "purpose": "The single elevation level. Used only on Page White cards floating over Page Off-White sections."
+      }
+    ],
+    "motion": [
+      {
+        "name": "color-shift",
+        "value": "200ms cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Default transition for color/border changes on links, buttons, and pills. The only motion on the site."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Solder Gold fill, Drafting Navy text. The single brand voice. One per major CTA.",
+      "html": "<button class=\"ds-btn-primary\">Book a Free Discovery Call</button>",
+      "css": ".ds-btn-primary { background: #d4a843; color: #1a2332; font-family: Inter, system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; padding: 1rem 2rem; border: none; border-radius: 0.25rem; cursor: pointer; transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-primary:hover { background: #e0be6a; } .ds-btn-primary:focus-visible { outline: 2px solid #d4a843; outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Transparent fill, 2px Solder Gold/60 border, Solder Gold text. Secondary CTA paired with Primary.",
+      "html": "<button class=\"ds-btn-ghost\">See the Proof &rarr;</button>",
+      "css": ".ds-btn-ghost { background: transparent; color: #d4a843; font-family: Inter, system-ui, sans-serif; font-size: 1.125rem; font-weight: 600; padding: 1rem 2rem; border: 2px solid rgba(212, 168, 67, 0.6); border-radius: 0.25rem; cursor: pointer; transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-btn-ghost:hover { background: rgba(212, 168, 67, 0.1); }"
+    },
+    {
+      "name": "Eyebrow Pill",
+      "kind": "chip",
+      "refersTo": "pill-eyebrow",
+      "description": "Sits above a headline as a category tag. Solder Gold/15 fill, Solder Gold text, uppercase, wide tracking.",
+      "html": "<span class=\"ds-pill-eyebrow\">AI-Accelerated Software Engineering</span>",
+      "css": ".ds-pill-eyebrow { display: inline-block; background: rgba(212, 168, 67, 0.15); color: #d4a843; font-family: Inter, system-ui, sans-serif; font-size: 0.75rem; font-weight: 700; line-height: 1.4; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 9999px; }"
+    },
+    {
+      "name": "Track Classifier Pill (Primary)",
+      "kind": "chip",
+      "refersTo": "pill-classifier-primary",
+      "description": "Solid Solder Gold fill, Drafting Navy text. Marks the primary buyer track on the services preview.",
+      "html": "<span class=\"ds-pill-primary\">Primary</span>",
+      "css": ".ds-pill-primary { display: inline-block; background: #d4a843; color: #1a2332; font-family: Inter, system-ui, sans-serif; font-size: 0.75rem; font-weight: 700; line-height: 1.4; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 9999px; }"
+    },
+    {
+      "name": "Track Classifier Pill (Secondary)",
+      "kind": "chip",
+      "refersTo": "pill-classifier-secondary",
+      "description": "Solid Drafting Navy fill, Page White text. Marks the secondary buyer track on the services preview.",
+      "html": "<span class=\"ds-pill-secondary\">Also</span>",
+      "css": ".ds-pill-secondary { display: inline-block; background: #1a2332; color: #ffffff; font-family: Inter, system-ui, sans-serif; font-size: 0.75rem; font-weight: 700; line-height: 1.4; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.25rem 0.75rem; border-radius: 9999px; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Page White background, single Card Lift shadow, no border, generous internal padding.",
+      "html": "<article class=\"ds-card\"><h4 class=\"ds-card-title\">Rapid Modernization</h4><p class=\"ds-card-body\">Classic ASP, .NET Framework, VB6, or Oracle PL/SQL, rebuilt as modern .NET 8 Blazor with CI/CD, tests, and docs. Fixed price.</p><a class=\"ds-card-link\" href=\"#\">Learn more &rarr;</a></article>",
+      "css": ".ds-card { background: #ffffff; padding: 2rem; border-radius: 0.5rem; box-shadow: 0 1px 3px 0 rgba(0,0,0,0.1), 0 1px 2px -1px rgba(0,0,0,0.1); font-family: Inter, system-ui, sans-serif; max-width: 22rem; } .ds-card-title { font-size: 1.25rem; font-weight: 600; color: #1a2332; margin: 0 0 0.75rem; } .ds-card-body { font-size: 1rem; line-height: 1.625; color: #4b5563; margin: 0 0 1rem; } .ds-card-link { color: #d4a843; font-weight: 500; text-decoration: none; transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-card-link:hover { color: #b8912e; }"
+    },
+    {
+      "name": "Email Input",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "Page White fill, 1px Ink-300 border, Solder Gold focus ring.",
+      "html": "<input class=\"ds-input-text\" type=\"email\" placeholder=\"your@email.com\" />",
+      "css": ".ds-input-text { background: #ffffff; color: #374151; font-family: Inter, system-ui, sans-serif; font-size: 0.875rem; padding: 0.75rem 1rem; border: 1px solid #d1d5db; border-radius: 0.5rem; outline: none; transition: border-color 200ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1); width: 18rem; } .ds-input-text:focus-visible { border-color: transparent; box-shadow: 0 0 0 2px #d4a843; }"
+    },
+    {
+      "name": "Sticky Site Header",
+      "kind": "nav",
+      "description": "Drafting Navy bar with WT/S split-color wordmark, white nav links, gold-on-hover, gold primary CTA.",
+      "html": "<header class=\"ds-nav\"><div class=\"ds-nav-inner\"><a class=\"ds-logo\" href=\"#\"><svg viewBox=\"0 0 32 32\" width=\"28\" height=\"28\" aria-hidden=\"true\"><rect width=\"32\" height=\"32\" rx=\"6\" fill=\"#1a2332\"/><text x=\"3\" y=\"23\" font-family=\"Inter, system-ui, sans-serif\" font-weight=\"700\" font-size=\"14\" fill=\"#ffffff\">WT</text><text x=\"22\" y=\"23\" font-family=\"Inter, system-ui, sans-serif\" font-weight=\"700\" font-size=\"14\" fill=\"#d4a843\">S</text></svg><span>William Tucker <span class=\"ds-logo-accent\">Solutions</span></span></a><nav class=\"ds-nav-links\"><a href=\"#\">Services</a><a href=\"#\">About</a><a href=\"#\">Case Studies</a><a class=\"ds-nav-cta\" href=\"#\">Book a Call</a></nav></div></header>",
+      "css": ".ds-nav { background: #1a2332; font-family: Inter, system-ui, sans-serif; } .ds-nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1.5rem; gap: 2rem; } .ds-logo { display: inline-flex; align-items: center; gap: 0.625rem; color: #ffffff; font-size: 1.125rem; font-weight: 700; text-decoration: none; } .ds-logo-accent { color: #d4a843; } .ds-nav-links { display: flex; align-items: center; gap: 1.5rem; } .ds-nav-links a { color: #ffffff; font-weight: 500; font-size: 0.9375rem; text-decoration: none; transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-nav-links a:hover { color: #d4a843; } .ds-nav-cta { background: #d4a843; color: #1a2332 !important; padding: 0.5rem 1rem; border-radius: 0.25rem; transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-nav-cta:hover { background: #e0be6a; }"
+    },
+    {
+      "name": "Stat Strip",
+      "kind": "custom",
+      "description": "Three-up bordered statistics block. The signature social-proof component. No shadow, internal dividers, every number references a real artifact.",
+      "html": "<div class=\"ds-stat-strip\"><div class=\"ds-stat-cell\"><p class=\"ds-stat-number\">12+</p><p class=\"ds-stat-caption\">Years of production engineering experience</p></div><div class=\"ds-stat-cell\"><p class=\"ds-stat-number\">705K+</p><p class=\"ds-stat-caption\">Lines of legacy code rebuilt with AI-augmented delivery</p></div><div class=\"ds-stat-cell\"><p class=\"ds-stat-number\">0</p><p class=\"ds-stat-caption\">Platform affiliations or vendor commissions</p></div></div>",
+      "css": ".ds-stat-strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid #e5e7eb; border-radius: 0.75rem; overflow: hidden; font-family: Inter, system-ui, sans-serif; max-width: 60rem; } .ds-stat-cell { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 2.5rem 2rem; } .ds-stat-cell + .ds-stat-cell { border-left: 1px solid #e5e7eb; } .ds-stat-number { font-size: 2.25rem; font-weight: 700; color: #1a2332; margin: 0 0 0.5rem; } .ds-stat-caption { font-size: 1rem; line-height: 1.5; color: #4b5563; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Engineer's Statement",
+    "overview": "The visual system reads as a technical document, not a marketing page. Drafting Navy and Solder Gold reference engineering conventions (blueprint ink, soldered brass) rather than financial-services convention (corporate navy, luxury gold). Inter at sharp weights, generous line height, and a single-shadow elevation vocabulary keep every page feeling closer to a printed spec sheet than a product landing page. The site sells competence as proof. The visual system has to read the same way: every element either carries information or steps aside.",
+    "keyCharacteristics": [
+      "Two-color system. Drafting Navy carries surface, Solder Gold carries voice.",
+      "One typeface (Inter), four weights, eight roles. No display face, no script, no mono.",
+      "Flat-by-default. One shadow value, used structurally on cards over off-white sections.",
+      "Eyebrow pills as taxonomy. Every pill names what comes next.",
+      "Numbers as proof, not as ornament. Stat strips reference verifiable artifacts."
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Solder Gold appears on at most 10% of any screen surface. Reserve it for the call-to-action, eyebrow pills, single-word emphasis in headlines, and link affordances.", "section": "colors" },
+      { "name": "The Two-Surface Rule", "body": "Sections alternate between Page White and Page Off-White, or between Page White and Drafting Navy. Never three surface tones in a row without a structural reason.", "section": "colors" },
+      { "name": "The No-Tinted-Card Rule", "body": "Cards are always Page White. Cards on Page Off-White sections gain elevation by shadow, never by tint.", "section": "colors" },
+      { "name": "The Single-Voice Rule", "body": "No second typeface for accents. Inter does every job. Hierarchy is achieved by weight (400 to 700) and scale (1rem to ~3.75rem), never by family contrast.", "section": "typography" },
+      { "name": "The Reading-Width Rule", "body": "Any block of body copy that wraps more than two lines is constrained to 65 to 75 characters per line.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Every surface is flat at rest. The single Card Lift shadow exists to separate cards from their off-white parent section, not to convey mood.", "section": "elevation" },
+      { "name": "The No-Glow Rule", "body": "Glowing borders, soft focus halos, ambient drop shadows under accent elements: all forbidden.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use Solder Gold on at most 10% of any screen surface, reserved for CTAs, eyebrow pills, single-word emphasis, and link affordances.",
+      "Do alternate Page White and Page Off-White (or Page White and Drafting Navy) for section rhythm.",
+      "Do lead every major section with a labelled eyebrow pill. Pills name categories.",
+      "Do keep body copy at 65 to 75 characters per line.",
+      "Do hold the type system to Inter, four weights, eight roles. Hierarchy through weight and scale.",
+      "Do ground every statistic in a verifiable artifact. Prefer specific numbers like 705,714 lines to round ones like 750k+.",
+      "Do honor prefers-reduced-motion on every transition."
+    ],
+    "donts": [
+      "Don't introduce gradient text, gradient buttons, or gradient hero backgrounds.",
+      "Don't introduce a second typeface for personality (no serif display, no script, no mono accent).",
+      "Don't add ambient drop-shadow, glassmorphism, glow halos, or backdrop-blur effects.",
+      "Don't use border-left greater than 1px as a colored accent on cards, alerts, or callouts.",
+      "Don't use a brain icon, abstract circuit illustration, generic AI stock photography, or any 'we harness the power of AI' framing.",
+      "Don't use a hand-drawn arrow, oversized founder portrait, or neon-accent CTA.",
+      "Don't use abstract enterprise nouns like synergies, transformation journey, or value unlock.",
+      "Don't use round-number marketing metrics without a referent (10x, 400% improvement, 100s of clients).",
+      "Don't style cards with internal tints, nested cards, or borders combined with shadow.",
+      "Don't introduce a second elevation level. There is one shadow on this site."
+    ]
+  }
+}
