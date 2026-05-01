@@ -266,7 +266,7 @@ The three-up statistics block on the homepage.
 - **Don't** introduce gradient text, gradient buttons, or gradient hero backgrounds. The visual system is solid color, not transition.
 - **Don't** introduce a second typeface for "personality" (no serif display, no script, no mono accent). Inter is the single voice.
 - **Don't** add ambient drop-shadow, glassmorphism, glow halos, or backdrop-blur effects. These are slop-test failures pulled directly from PRODUCT.md anti-references.
-- **Don't** use `border-left` greater than 1px as a colored accent on cards, alerts, or callouts. (The current site has one residual `border-l-4` to remove.)
+- **Don't** use `border-left` greater than 1px as a colored accent on cards, alerts, or callouts.
 - **Don't** use a brain icon, abstract circuit illustration, generic AI stock photography, or any "we harness the power of AI" framing. Direct quote-by-name from the Squarespace-template anti-reference.
 - **Don't** use a hand-drawn arrow, oversized founder portrait, or neon-accent CTA. Direct quote-by-name from the LinkedIn-influencer anti-reference.
 - **Don't** use abstract enterprise nouns ("synergies", "transformation journey", "value unlock"). Direct quote-by-name from the Big-4 anti-reference.
