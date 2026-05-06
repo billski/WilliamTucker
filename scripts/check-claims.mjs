@@ -184,3 +184,58 @@ export function extractSuppression(line) {
   if (reason.length < MIN_REASON_LEN) return null;
   return { reason };
 }
+
+import { readdir, stat } from 'node:fs/promises';
+import { join, basename, extname } from 'node:path';
+
+const SKIP_DIRS = new Set([
+  'node_modules', '.git', '.claude', '.agents', '.superpowers',
+  '.worktrees', 'css', 'js', 'img', 'dist', '.next',
+]);
+
+const SKIP_PATH_FRAGMENTS = ['docs/superpowers/']; // forward-slash form; matched after normalization
+
+const SCAN_TOP_LEVEL_FILES = (name) =>
+  name === 'server.js' ||
+  name === 'PRODUCT.md' ||
+  (name.endsWith('.html') && !name.startsWith('_'));
+
+const SCAN_NESTED_FILES = (relDir, name) =>
+  relDir === 'prompts' && extname(name) === '.md';
+
+/**
+ * Walk the project root and return absolute file paths to scan.
+ * Uses the scope rules from the design spec §7.1.
+ */
+export async function findFiles(rootDir) {
+  const out = [];
+  await walk(rootDir, '', out);
+  return out;
+
+  async function walk(absDir, relDir, results) {
+    const entries = await readdir(absDir, { withFileTypes: true });
+    for (const entry of entries) {
+      const absPath = join(absDir, entry.name);
+      const relPath = relDir ? `${relDir}/${entry.name}` : entry.name;
+
+      if (entry.isDirectory()) {
+        if (SKIP_DIRS.has(entry.name)) continue;
+        if (SKIP_PATH_FRAGMENTS.some(frag => `${relPath}/`.startsWith(frag))) continue;
+        await walk(absPath, relPath, results);
+        continue;
+      }
+
+      if (!entry.isFile()) continue;
+
+      // Top-level file inclusion.
+      if (relDir === '' && SCAN_TOP_LEVEL_FILES(entry.name)) {
+        results.push(absPath);
+        continue;
+      }
+
+      if (SCAN_NESTED_FILES(relDir, entry.name)) {
+        results.push(absPath);
+      }
+    }
+  }
+}

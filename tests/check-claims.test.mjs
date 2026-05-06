@@ -126,3 +126,39 @@ test('extractSuppression rejects reason shorter than 10 chars', () => {
 test('extractSuppression rejects empty reason', () => {
   assert.equal(extractSuppression('text <!-- check-claims-allow: -->'), null);
 });
+
+import { findFiles } from '../scripts/check-claims.mjs';
+import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+
+test('findFiles returns expected files and skips excluded dirs', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'check-claims-'));
+  try {
+    await writeFile(join(root, 'index.html'), '<p>x</p>');
+    await writeFile(join(root, 'about.html'), '<p>y</p>');
+    await writeFile(join(root, 'server.js'), 'export {};');
+    await writeFile(join(root, 'PRODUCT.md'), '# x');
+    await mkdir(join(root, 'prompts'));
+    await writeFile(join(root, 'prompts', 'foo.md'), 'x');
+    await mkdir(join(root, 'node_modules', 'pkg'), { recursive: true });
+    await writeFile(join(root, 'node_modules', 'pkg', 'index.js'), 'x');
+    await mkdir(join(root, 'css'));
+    await writeFile(join(root, 'css', 'styles.css'), 'x');
+    await mkdir(join(root, 'docs', 'superpowers', 'specs'), { recursive: true });
+    await writeFile(join(root, 'docs', 'superpowers', 'specs', 'spec.md'), 'x');
+
+    const files = (await findFiles(root)).map(f => f.replace(root, '').replace(/\\/g, '/').replace(/^\//, ''));
+    files.sort();
+
+    assert.deepEqual(files, [
+      'PRODUCT.md',
+      'about.html',
+      'index.html',
+      'prompts/foo.md',
+      'server.js',
+    ]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
