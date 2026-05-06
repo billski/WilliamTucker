@@ -169,3 +169,18 @@ function offsetToLine(offset, offsets) {
   }
   return lo + 1;
 }
+
+const SUPPRESS_RE = /(?:<!--|\/\/)\s*check-claims-allow:\s*([^>\n]+?)\s*(?:-->|$)/;
+const MIN_REASON_LEN = 10;
+
+/**
+ * Parse a single line for a check-claims suppression directive.
+ * Returns { reason } or null. Reason text < 10 chars is rejected.
+ */
+export function extractSuppression(line) {
+  const m = line.match(SUPPRESS_RE);
+  if (!m) return null;
+  const reason = m[1].trim();
+  if (reason.length < MIN_REASON_LEN) return null;
+  return { reason };
+}

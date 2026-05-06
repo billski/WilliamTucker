@@ -99,3 +99,30 @@ test('checkProximity emits one violation per primary hit (no dedup)', () => {
     assert.equal(v.patternId, 'room-booking-prod');
   }
 });
+
+import { extractSuppression } from '../scripts/check-claims.mjs';
+
+test('extractSuppression returns null for plain line', () => {
+  assert.equal(extractSuppression('plain text with no comment'), null);
+});
+
+test('extractSuppression accepts an HTML comment with sufficient reason', () => {
+  const r = extractSuppression('quoted phrase here <!-- check-claims-allow: anti-example in DESIGN.md -->');
+  assert.ok(r, 'expected suppression');
+  assert.equal(r.reason, 'anti-example in DESIGN.md');
+});
+
+test('extractSuppression accepts a JS-style comment with sufficient reason', () => {
+  const r = extractSuppression(`const x = "value"; // check-claims-allow: testing only path`);
+  assert.ok(r);
+  assert.equal(r.reason, 'testing only path');
+});
+
+test('extractSuppression rejects reason shorter than 10 chars', () => {
+  assert.equal(extractSuppression('text <!-- check-claims-allow: short -->'), null);
+  assert.equal(extractSuppression('text // check-claims-allow: nope'), null);
+});
+
+test('extractSuppression rejects empty reason', () => {
+  assert.equal(extractSuppression('text <!-- check-claims-allow: -->'), null);
+});
