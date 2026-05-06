@@ -81,3 +81,21 @@ test('checkProximity ignores line-type patterns', () => {
   const linePattern = PATTERNS.find(p => p.type === 'line');
   assert.deepEqual(checkProximity('any text', linePattern), []);
 });
+
+test('checkProximity normalizes line range when near appears before primary', () => {
+  const text = 'this is in production\nlater the Room Booking system';
+  const violations = checkProximity(text, roomProd);
+  assert.equal(violations.length, 1);
+  assert.equal(violations[0].lineNum, 2, 'lineNum should point at the primary match line');
+  assert.ok(violations[0].lineEnd >= violations[0].lineNum, 'lineEnd must not be smaller than lineNum');
+});
+
+test('checkProximity emits one violation per primary hit (no dedup)', () => {
+  // Two Room Booking mentions, single in-production mention reachable from both within window.
+  const text = 'Room Booking one. ' + 'Room Booking two is in production.';
+  const violations = checkProximity(text, roomProd);
+  assert.equal(violations.length, 2, 'each primary hit produces its own violation');
+  for (const v of violations) {
+    assert.equal(v.patternId, 'room-booking-prod');
+  }
+});

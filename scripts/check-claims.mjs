@@ -136,11 +136,12 @@ export function checkProximity(content, pattern) {
     });
     if (found) {
       const lineNum = offsetToLine(p.index, lineOffsets);
+      const nearLine = offsetToLine(found.index, lineOffsets);
       violations.push({
         patternId: pattern.id,
         type: 'proximity',
         lineNum,
-        lineEnd: offsetToLine(found.index, lineOffsets),
+        lineEnd: Math.max(lineNum, nearLine),
         matched: `"${p.text}" + "${found.text}" within ${pattern.window} chars`,
         reason: pattern.reason,
       });
