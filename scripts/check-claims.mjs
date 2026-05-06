@@ -2,6 +2,10 @@
 // from PROFILE.md framing rules and prior credibility-sweep commits.
 // See docs/superpowers/specs/2026-05-06-wts-agent-guardrails-design.md.
 
+import { readdir, readFile } from 'node:fs/promises';
+import { join, extname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 export const PATTERNS = [
   {
     id: 'years-inflated',
@@ -185,9 +189,6 @@ export function extractSuppression(line) {
   return { reason };
 }
 
-import { readdir } from 'node:fs/promises';
-import { join, extname } from 'node:path';
-
 const SKIP_DIRS = new Set([
   'node_modules', '.git', '.claude', '.agents', '.superpowers',
   '.worktrees', 'css', 'js', 'img', 'dist', '.next',
@@ -239,8 +240,6 @@ export async function findFiles(rootDir) {
     }
   }
 }
-
-import { readFile } from 'node:fs/promises';
 
 /**
  * Scan a single piece of text content against the full PATTERNS catalog,
@@ -319,9 +318,6 @@ function relPath(rootDir, absPath) {
 }
 
 // CLI entry — only when invoked directly, not when imported by tests.
-import { fileURLToPath } from 'node:url';
-import { resolve } from 'node:path';
-
 const isDirect = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 if (isDirect) {
   const root = process.cwd();
