@@ -31,10 +31,10 @@ The site sells competence as proof, not promise. Every claim has a referent: a p
 Critical framing rules that govern all copy:
 
 - **12+ years** professional software experience (since 2013). Never "15+", never inflate.
-- **AI-accelerated, never AI-replaced.** The work is augmented senior engineering, not generated automation. William reviews and owns every line.
+- **AI-accelerated, never AI-replaced.** The work is augmented senior engineering, not generated automation. William reviews and owns every line. <!-- check-claims-allow: framing rule quotes the forbidden phrase intentionally -->
 - **Dual-role honesty.** William is currently both Programmer/Analyst at Vancouver Island University and the founder of WTS. The site does not pretend WTS is his sole employment.
-- **Project status accuracy.** RoomBooking is in QA pending organizational approval, not in production. BIS was approximately seven weeks of work (66 commits, 14 branches), not two days. No rounding-up.
-- **Honest stack gaps.** No production MySQL, no AWS, no Salesforce, no native mobile, no modern PHP framework experience. Adjacent skills do not get framed as transferable when they are not.
+- **Project status accuracy.** RoomBooking is in QA pending organizational approval, not in production. BIS was approximately seven weeks of work (66 commits, 14 branches), not two days. No rounding-up. <!-- check-claims-allow: framing rule quotes the forbidden phrase intentionally -->
+- **Honest stack gaps.** No production MySQL, no AWS, no Salesforce, no native mobile, no modern PHP framework experience. Adjacent skills do not get framed as transferable when they are not. <!-- check-claims-allow: framing rule listing honest stack gaps -->
 
 ## Anti-references
 
