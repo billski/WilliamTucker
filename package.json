@@ -4,8 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify",
-    "watch": "npx @tailwindcss/cli -i src/input.css -o css/styles.css --watch"
+    "check:claims": "node scripts/check-claims.mjs",
+    "test:claims": "node --test tests/check-claims.test.mjs",
+    "build": "npm run check:claims && npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify",
+    "watch": "npx @tailwindcss/cli -i src/input.css -o css/styles.css --watch",
+    "start": "node server.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
@@ -13,10 +16,5 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "tailwindcss": "^4.2.2"
-  },
-  "scripts": {
-    "build": "npx @tailwindcss/cli -i src/input.css -o css/styles.css --minify",
-    "watch": "npx @tailwindcss/cli -i src/input.css -o css/styles.css --watch",
-    "start": "node server.js"
   }
 }
