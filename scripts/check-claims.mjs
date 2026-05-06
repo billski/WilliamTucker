@@ -239,3 +239,93 @@ export async function findFiles(rootDir) {
     }
   }
 }
+
+import { readFile } from 'node:fs/promises';
+
+/**
+ * Scan a single piece of text content against the full PATTERNS catalog,
+ * applying suppression directives. Returns array of violations (no `file` field).
+ */
+export function scanContent(content, patterns = PATTERNS) {
+  const lines = content.split(/\r?\n/);
+  const violations = [];
+
+  // Line-type passes.
+  for (const pattern of patterns) {
+    if (pattern.type !== 'line') continue;
+    for (let i = 0; i < lines.length; i++) {
+      const v = checkLine(lines[i], i + 1, pattern);
+      if (!v) continue;
+      if (extractSuppression(lines[i])) continue;
+      violations.push(v);
+    }
+  }
+
+  // Proximity-type passes.
+  for (const pattern of patterns) {
+    if (pattern.type !== 'proximity') continue;
+    const proxHits = checkProximity(content, pattern);
+    for (const v of proxHits) {
+      const primaryLine = lines[v.lineNum - 1] ?? '';
+      if (extractSuppression(primaryLine)) continue;
+      violations.push(v);
+    }
+  }
+  return violations;
+}
+
+/**
+ * Render the violation report. Always returns a single trailing-newline string.
+ */
+export function formatViolations(violations, { fileCount }) {
+  if (violations.length === 0) {
+    return `check-claims: scanned ${fileCount} files, 0 violations.\n`;
+  }
+
+  const lines = [`check-claims: ${violations.length} violations found.`, ''];
+  for (const v of violations) {
+    const range = v.lineNum === v.lineEnd ? `${v.lineNum}` : `${v.lineNum}-${v.lineEnd}`;
+    lines.push(`  ${v.file}:${range}  [${v.patternId}]`);
+    lines.push(`    matched: ${v.matched}`);
+    lines.push(`    reason : ${v.reason}`);
+    lines.push('');
+  }
+  lines.push(
+    'To suppress a known-good case, add a check-claims-allow comment on the',
+    'offending line with a >=10-char reason. Do not weaken patterns to make',
+    'violations disappear; add suppressions or fix the copy.',
+  );
+  return lines.join('\n') + '\n';
+}
+
+/**
+ * Top-level orchestrator. Reads every in-scope file from rootDir, scans, returns
+ * { violations, fileCount }. Pure-ish — does I/O but no console / process work.
+ */
+export async function runCheck(rootDir) {
+  const files = await findFiles(rootDir);
+  const violations = [];
+  for (const file of files) {
+    const content = await readFile(file, 'utf8');
+    const fileViolations = scanContent(content);
+    for (const v of fileViolations) violations.push({ ...v, file: relPath(rootDir, file) });
+  }
+  return { violations, fileCount: files.length };
+}
+
+function relPath(rootDir, absPath) {
+  const r = absPath.startsWith(rootDir) ? absPath.slice(rootDir.length) : absPath;
+  return r.replace(/^[\\/]/, '').replace(/\\/g, '/');
+}
+
+// CLI entry — only when invoked directly, not when imported by tests.
+import { fileURLToPath } from 'node:url';
+import { resolve } from 'node:path';
+
+const isDirect = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+if (isDirect) {
+  const root = process.cwd();
+  const { violations, fileCount } = await runCheck(root);
+  process.stdout.write(formatViolations(violations, { fileCount }));
+  process.exit(violations.length === 0 ? 0 : 1);
+}

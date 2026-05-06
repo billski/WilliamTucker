@@ -189,3 +189,43 @@ test('findFiles only scans direct prompts/*.md, not deeper subdirectories', asyn
     await rm(root, { recursive: true, force: true });
   }
 });
+
+import { scanContent, formatViolations } from '../scripts/check-claims.mjs';
+
+test('scanContent returns no violations for clean text', () => {
+  const v = scanContent('William has 12+ years of experience.\nBIS was 7 weeks of work.');
+  assert.deepEqual(v, []);
+});
+
+test('scanContent flags both line and proximity violations', () => {
+  const text = 'William has 15+ years.\nThe Room Booking system is in production.';
+  const v = scanContent(text);
+  const ids = v.map(x => x.patternId).sort();
+  assert.deepEqual(ids, ['room-booking-prod', 'years-inflated']);
+});
+
+test('scanContent suppresses violations on lines with allow-comment', () => {
+  const text = 'antipattern: 15+ years <!-- check-claims-allow: quoting an anti-example in spec -->';
+  assert.deepEqual(scanContent(text), []);
+});
+
+test('scanContent suppresses proximity violation when allow-comment is on the primary line', () => {
+  const text = 'Room Booking is in production <!-- check-claims-allow: quoting forbidden phrase as example -->';
+  assert.deepEqual(scanContent(text), []);
+});
+
+test('formatViolations renders a clean summary when no violations', () => {
+  const out = formatViolations([], { fileCount: 14 });
+  assert.match(out, /scanned 14 files/);
+  assert.match(out, /0 violations/);
+});
+
+test('formatViolations renders file:line and reason for each violation', () => {
+  const violations = [
+    { file: 'case-studies.html', patternId: 'years-inflated', lineNum: 42, lineEnd: 42, matched: '15+ years', reason: 'PROFILE.md §10' },
+  ];
+  const out = formatViolations(violations, { fileCount: 14 });
+  assert.match(out, /case-studies\.html:42/);
+  assert.match(out, /years-inflated/);
+  assert.match(out, /PROFILE\.md §10/);
+});
