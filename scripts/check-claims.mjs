@@ -291,8 +291,10 @@ export function formatViolations(violations, { fileCount }) {
   }
   lines.push(
     'To suppress a known-good case, add a check-claims-allow comment on the',
-    'offending line with a >=10-char reason. Do not weaken patterns to make',
-    'violations disappear; add suppressions or fix the copy.',
+    'offending line with a >=10-char reason. For proximity violations',
+    '(file:N-M), place the suppression on line N (the first/primary line).',
+    'Do not weaken patterns to make violations disappear; add suppressions',
+    'or fix the copy.',
   );
   return lines.join('\n') + '\n';
 }
