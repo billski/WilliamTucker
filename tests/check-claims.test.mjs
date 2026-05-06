@@ -162,3 +162,30 @@ test('findFiles returns expected files and skips excluded dirs', async () => {
     await rm(root, { recursive: true, force: true });
   }
 });
+
+test('findFiles excludes underscore-prefixed top-level HTML (drafts)', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'check-claims-'));
+  try {
+    await writeFile(join(root, 'real.html'), '<p>x</p>');
+    await writeFile(join(root, '_draft.html'), '<p>y</p>');
+    const files = (await findFiles(root)).map(f => f.replace(root, '').replace(/\\/g, '/').replace(/^\//, ''));
+    files.sort();
+    assert.deepEqual(files, ['real.html'], '_draft.html must be skipped');
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test('findFiles only scans direct prompts/*.md, not deeper subdirectories', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'check-claims-'));
+  try {
+    await mkdir(join(root, 'prompts', 'sub'), { recursive: true });
+    await writeFile(join(root, 'prompts', 'top.md'), 'x');
+    await writeFile(join(root, 'prompts', 'sub', 'nested.md'), 'x');
+    const files = (await findFiles(root)).map(f => f.replace(root, '').replace(/\\/g, '/').replace(/^\//, ''));
+    files.sort();
+    assert.deepEqual(files, ['prompts/top.md'], 'only direct prompts/*.md should be included');
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

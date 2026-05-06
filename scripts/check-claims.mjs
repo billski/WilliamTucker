@@ -185,8 +185,8 @@ export function extractSuppression(line) {
   return { reason };
 }
 
-import { readdir, stat } from 'node:fs/promises';
-import { join, basename, extname } from 'node:path';
+import { readdir } from 'node:fs/promises';
+import { join, extname } from 'node:path';
 
 const SKIP_DIRS = new Set([
   'node_modules', '.git', '.claude', '.agents', '.superpowers',
