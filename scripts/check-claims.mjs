@@ -74,3 +74,21 @@ export const PATTERNS = [
     reason: 'PROFILE.md §10: no Salesforce experience.',
   },
 ];
+
+/**
+ * Check a single line against a single line-type pattern.
+ * Returns a violation object or null.
+ */
+export function checkLine(line, lineNum, pattern) {
+  if (pattern.type !== 'line') return null;
+  const m = line.match(pattern.rule);
+  if (!m) return null;
+  return {
+    patternId: pattern.id,
+    type: 'line',
+    lineNum,
+    lineEnd: lineNum,
+    matched: m[0],
+    reason: pattern.reason,
+  };
+}
