@@ -39,3 +39,45 @@ test('checkLine ignores proximity-type patterns', () => {
   const proxPattern = PATTERNS.find(p => p.type === 'proximity');
   assert.equal(checkLine('any text', 1, proxPattern), null);
 });
+
+import { checkProximity } from '../scripts/check-claims.mjs';
+
+const roomProd = PATTERNS.find(p => p.id === 'room-booking-prod');
+const bisDays = PATTERNS.find(p => p.id === 'bis-compressed');
+
+test('checkProximity returns empty when neither pattern present', () => {
+  const violations = checkProximity('all clean here', roomProd);
+  assert.deepEqual(violations, []);
+});
+
+test('checkProximity returns empty when only one of the two matches', () => {
+  assert.deepEqual(checkProximity('Room Booking is in QA', roomProd), []);
+  assert.deepEqual(checkProximity('this is in production', roomProd), []);
+});
+
+test('checkProximity flags both patterns within window', () => {
+  const text = 'Our Room Booking system is now in production.';
+  const violations = checkProximity(text, roomProd);
+  assert.equal(violations.length, 1);
+  assert.equal(violations[0].patternId, 'room-booking-prod');
+  assert.equal(violations[0].lineNum, 1);
+});
+
+test('checkProximity ignores matches separated by more than the window', () => {
+  // Build a string where the two phrases are 500+ chars apart, exceeding window=240.
+  const text = 'Room Booking system\n' + 'x'.repeat(500) + '\nin production';
+  const violations = checkProximity(text, roomProd);
+  assert.deepEqual(violations, []);
+});
+
+test('checkProximity reports the line number of the primary match', () => {
+  const text = 'line one\nline two\nthe BIS rebuild took 2 days\nline four';
+  const violations = checkProximity(text, bisDays);
+  assert.equal(violations.length, 1);
+  assert.equal(violations[0].lineNum, 3);
+});
+
+test('checkProximity ignores line-type patterns', () => {
+  const linePattern = PATTERNS.find(p => p.type === 'line');
+  assert.deepEqual(checkProximity('any text', linePattern), []);
+});

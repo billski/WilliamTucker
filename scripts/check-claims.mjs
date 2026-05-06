@@ -92,3 +92,79 @@ export function checkLine(line, lineNum, pattern) {
     reason: pattern.reason,
   };
 }
+
+/**
+ * Check whole-file content against a single proximity-type pattern.
+ * Returns an array of violations (zero or more — proximity patterns can match more than once).
+ */
+export function checkProximity(content, pattern) {
+  if (pattern.type !== 'proximity') return [];
+  const violations = [];
+  const lineOffsets = computeLineOffsets(content);
+
+  // Use the global flag clones so we can iterate matches.
+  const primaryRe = new RegExp(pattern.primary.source, pattern.primary.flags.includes('g') ? pattern.primary.flags : pattern.primary.flags + 'g');
+  const nearRe = new RegExp(pattern.near.source, pattern.near.flags.includes('g') ? pattern.near.flags : pattern.near.flags + 'g');
+
+  // Collect every primary match position.
+  const primaryHits = [];
+  let m;
+  while ((m = primaryRe.exec(content)) !== null) {
+    primaryHits.push({ index: m.index, length: m[0].length, text: m[0] });
+    if (m.index === primaryRe.lastIndex) primaryRe.lastIndex++; // safety for zero-width
+  }
+
+  if (primaryHits.length === 0) return [];
+
+  // Collect near-pattern hits.
+  const nearHits = [];
+  while ((m = nearRe.exec(content)) !== null) {
+    nearHits.push({ index: m.index, length: m[0].length, text: m[0] });
+    if (m.index === nearRe.lastIndex) nearRe.lastIndex++;
+  }
+
+  if (nearHits.length === 0) return [];
+
+  // For each primary hit, see whether any near hit lies within the window.
+  for (const p of primaryHits) {
+    const found = nearHits.find((n) => {
+      const distance =
+        n.index >= p.index
+          ? n.index - (p.index + p.length)
+          : p.index - (n.index + n.length);
+      return distance <= pattern.window;
+    });
+    if (found) {
+      const lineNum = offsetToLine(p.index, lineOffsets);
+      violations.push({
+        patternId: pattern.id,
+        type: 'proximity',
+        lineNum,
+        lineEnd: offsetToLine(found.index, lineOffsets),
+        matched: `"${p.text}" + "${found.text}" within ${pattern.window} chars`,
+        reason: pattern.reason,
+      });
+    }
+  }
+  return violations;
+}
+
+function computeLineOffsets(content) {
+  const offsets = [0];
+  for (let i = 0; i < content.length; i++) {
+    if (content[i] === '\n') offsets.push(i + 1);
+  }
+  return offsets;
+}
+
+function offsetToLine(offset, offsets) {
+  // Binary search for the largest offset <= target.
+  let lo = 0;
+  let hi = offsets.length - 1;
+  while (lo < hi) {
+    const mid = (lo + hi + 1) >>> 1;
+    if (offsets[mid] <= offset) lo = mid;
+    else hi = mid - 1;
+  }
+  return lo + 1;
+}
