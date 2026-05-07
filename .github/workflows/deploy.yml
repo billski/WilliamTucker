@@ -3,9 +3,11 @@ name: Deploy to Dreamhost
 on:
   push:
     branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
-  deploy:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,6 +19,13 @@ jobs:
 
       - name: Run claim linter
         run: npm run check:claims
+
+  deploy:
+    needs: lint
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - name: Setup SSH
         env:
