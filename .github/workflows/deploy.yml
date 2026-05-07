@@ -10,6 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run claim linter
+        run: npm run check:claims
+
       - name: Setup SSH
         env:
           SSH_KEY: ${{ secrets.DREAMHOST_SSH_KEY_LAPTOP }}
@@ -27,10 +35,13 @@ jobs:
             --exclude='tailwind.config.js' \
             --exclude='src' \
             --exclude='docs' \
+            --exclude='tests' \
+            --exclude='scripts' \
             --exclude='.env' \
             --exclude='node_modules' \
             --exclude='server.js' \
             --exclude='package.json' \
             --exclude='package-lock.json' \
+            --exclude='CLAUDE.md' \
             -e "ssh -i ~/.ssh/deploy_key" \
             ./ dh_xjct9a@pdx1-shared-a4-03.dreamhost.com:/home/dh_xjct9a/williamtucker.ca/
