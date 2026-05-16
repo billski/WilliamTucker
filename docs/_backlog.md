@@ -16,11 +16,6 @@ _(empty at inception)_
 
 ## Tooling enhancements
 
-- **Extract chatbot system prompt from `server.js:28-194` to
-  `prompts/chatbot-system.md`.** Reduces a ~165-line prose blob inside JS
-  to an editable file. Adds a startup-time read with a hard-fail guard.
-  Deferred — done as its own task when the prompt is next edited.
-
 - **Document an emergency-deploy escape hatch.** If the linter false-positives
   and blocks a legitimate hot-fix deploy, the path forward is undocumented.
   Two options worth picking one of: (a) honor a `SKIP_CLAIMS_CHECK=1` env var
