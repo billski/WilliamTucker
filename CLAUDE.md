@@ -51,7 +51,7 @@ cannot recur.
 | Services | `services.html` | Three AI service tracks |
 | FAQ | `faq.html` | Process / pricing / scope answers |
 | Pricing | `pricing.html` | Service tier prices |
-| Contact | `contact.html` | Calendly + email |
+| Contact | `contact.html` | Reply-in-1-business-day form → posts to `/api/contact` |
 | Small business | `small-business.html` | Kelowna SMB-specific landing page |
 | Privacy | `privacy.html` | Privacy notice |
 
@@ -78,7 +78,7 @@ task — logged in `docs/_backlog.md` — will extract the system prompt to
 
 ## Project shape
 
-- **Stack:** static HTML + Tailwind v4 + Express (chatbot proxy only).
+- **Stack:** static HTML + Tailwind v4 + Express (chatbot proxy + contact-form endpoint).
 - **Deploy:** Railway runs `npm run build`. A linter failure breaks the
   deploy by design.
 - **Commands:**
@@ -86,7 +86,17 @@ task — logged in `docs/_backlog.md` — will extract the system prompt to
   - `npm run test:claims` — run the linter's own unit tests
   - `npm run build` — linter + Tailwind compile (the deploy command)
   - `npm run watch` — Tailwind dev (no linter)
-  - `npm start` — Express chatbot proxy
+  - `npm start` — Express server (chatbot + contact form)
+
+## Server endpoints
+
+Express server (`server.js`, deployed to Railway):
+
+| Route | Purpose | Notes |
+|---|---|---|
+| `POST /api/chat` | Anthropic chatbot proxy | Rate-limited 15/min/IP |
+| `POST /api/contact` | Contact form lead intake | Upserts into WTSAdmin `contacts` table (Supabase service-role key), sends notification + auto-reply via Resend, verifies Cloudflare Turnstile token. See `.env.example` for required env vars. |
+| `GET /health` | Health check | Reports whether the Anthropic API key is configured |
 
 ## Where to start
 
