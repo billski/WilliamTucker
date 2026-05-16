@@ -46,16 +46,14 @@ cannot recur.
 
 | Page | File | Purpose |
 |---|---|---|
-| Home | `index.html` | Hero, dual-track positioning, top of funnel |
+| Home | `index.html` | Hero, three-track positioning, top of funnel |
 | About | `about.html` | William's bio + work history |
-| Services | `services.html` | Modernization + AI consulting service tiers |
-| Case studies | `case-studies.html` | BIS, Room Booking, Oracle MCP server |
+| Services | `services.html` | Three AI service tracks |
 | FAQ | `faq.html` | Process / pricing / scope answers |
 | Pricing | `pricing.html` | Service tier prices |
 | Contact | `contact.html` | Calendly + email |
 | Small business | `small-business.html` | Kelowna SMB-specific landing page |
 | Privacy | `privacy.html` | Privacy notice |
-| Checklist | `checklist.html` | Pre-engagement checklist |
 
 ## Other places facts and rules live
 
