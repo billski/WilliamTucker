@@ -669,7 +669,7 @@ Find the page hero section (`<!-- ===== PAGE HERO ===== -->`, around line 88) an
     <div class="flex flex-wrap gap-3">
       <a href="#ai-development" class="inline-block bg-gold text-navy font-semibold px-5 py-2 rounded hover:bg-gold-light transition-colors duration-200">AI Software Development</a>
       <a href="#ai-training" class="inline-block border-2 border-gold/60 text-gold font-semibold px-5 py-2 rounded hover:bg-gold/10 transition-colors duration-200">AI Training</a>
-      <a href="#ai-automation" class="inline-block border-2 border-gold/60 text-gold font-semibold px-5 py-2 rounded hover:bg-gold/10 transition-colors duration-200">AI Workflow Automation</a>
+      <a href="#ai-workflow-automation" class="inline-block border-2 border-gold/60 text-gold font-semibold px-5 py-2 rounded hover:bg-gold/10 transition-colors duration-200">AI Workflow Automation</a>
     </div>
   </div>
 </section>
@@ -823,7 +823,7 @@ Find `<!-- ===== AI CONSULTING SERVICES ===== -->` and replace the ENTIRE `<sect
 </section>
 
 <!-- ===== TRACK 3: AI WORKFLOW AUTOMATION ===== -->
-<section id="ai-automation" class="bg-white py-16 scroll-mt-16">
+<section id="ai-workflow-automation" class="bg-white py-16 scroll-mt-16">
   <div class="max-w-4xl mx-auto px-4">
 
     <div class="mb-10 text-center">
@@ -1131,7 +1131,7 @@ Immediately after the closing `</section>` of the Track 2 pricing block, append:
 
 ```html
 <!-- ===== TRACK 3: WORKFLOW AUTOMATION PRICING ===== -->
-<section id="ai-automation-pricing" class="bg-white py-16 md:py-20 scroll-mt-16">
+<section id="ai-workflow-automation-pricing" class="bg-white py-16 md:py-20 scroll-mt-16">
   <div class="max-w-6xl mx-auto px-4">
 
     <div class="mb-12 text-center">
@@ -1332,7 +1332,7 @@ Immediately after the closing `</section>` of the Quick Win Package block, inser
         <span class="text-xs font-bold uppercase tracking-widest text-gold-dark mb-3">Track 3</span>
         <h3 class="text-xl font-bold text-navy mb-3">AI Workflow Automation</h3>
         <p class="text-gray-600 text-sm leading-relaxed flex-1 mb-4">Chatbots, automations, integrations. Free discovery, small builds from $2,500, medium builds from $7,500.</p>
-        <a href="services.html#ai-automation" class="text-gold font-semibold text-sm hover:text-gold-dark transition-colors duration-200">Learn more &rarr;</a>
+        <a href="services.html#ai-workflow-automation" class="text-gold font-semibold text-sm hover:text-gold-dark transition-colors duration-200">Learn more &rarr;</a>
       </div>
 
     </div>
@@ -1647,7 +1647,7 @@ Find `<!-- ===== SERVICES PREVIEW ===== -->` and replace the entire `<section>` 
         <span class="text-xs font-bold uppercase tracking-widest text-gold-dark mb-3">Track 3</span>
         <h3 class="text-xl font-semibold text-navy mb-3">AI Workflow Automation</h3>
         <p class="text-gray-600 mb-4 flex-1">Chatbots, integrations, internal tooling. Free discovery, small builds from $2,500, scoped per project.</p>
-        <a href="services.html#ai-automation" class="text-gold font-medium hover:text-gold-dark transition-colors duration-200">Learn more &rarr;</a>
+        <a href="services.html#ai-workflow-automation" class="text-gold font-medium hover:text-gold-dark transition-colors duration-200">Learn more &rarr;</a>
       </div>
 
     </div>
