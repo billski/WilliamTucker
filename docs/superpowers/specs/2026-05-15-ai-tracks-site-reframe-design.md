@@ -103,27 +103,28 @@ Single page, three sections, one per track. Free 30-minute discovery call block 
 | Build | $10,000–$30,000 (scoped per project) | Full delivery of one app, modernization, or enhancement. |
 | Ongoing Support | $1,500/mo (monthly retainer) | Bug fixes, small enhancements, priority response. |
 
-### 5.2 Track 2 — Training pricing (**placeholders — William to confirm**)
+### 5.2 Track 2 — Training pricing (confirmed 2026-05-15 after market research)
 
-| Tier | Price (placeholder) | Use |
+| Tier | Price (CAD) | Use |
 |---|---|---|
-| 1:1 session | ~$200/hr | Individual coaching. |
-| Half-day workshop | ~$1,500 | Group session, up to N people (William sets N). |
-| Full-day workshop | ~$3,000 | Group session, full day. |
-| Custom team curriculum | Quote | Tailored to the team's actual workflows. |
+| 1:1 hands-on session | **$275 / 90 min** | Individual coaching, in-your-systems work. ~$185/hr. |
+| Half-day workshop | **$2,500** | Group session, up to 12 people. 3–4 hours. |
+| Full-day workshop | **$4,000** | Group session, up to 12 people. 6–7 hours. |
+| Custom team curriculum | **Starts at $7,500** | Tailored to the team's actual workflows. |
+| Training retainer (optional) | **$1,250 / month** | Ongoing 1:1 or small-group sessions, 2–3 hours per month, priority email between. |
 
-**Decision needed in spec review:** real numbers, or "Starting at $X — let's talk" placeholder language.
+**Pricing rationale:** positioned as the *hands-on, builder-who-teaches* tier — comparable to Roving Leads' $300 USD ($410 CAD) hands-on coaching and ChatGPT.ca's $2,000–$3,000 CAD half-day workshops. Deliberately *below* the US comparables (~$300/hr CAD market rate for senior boutique) to stay Kelowna-SMB-friendly without underselling. The shallower "strategic advisory" tier ($150 USD / 90 min) is explicitly *not* the comparable — different scope of work.
 
-### 5.3 Track 3 — Workflow Automation pricing (**placeholders — William to confirm**)
+### 5.3 Track 3 — Workflow Automation pricing (confirmed 2026-05-15 after market research)
 
-| Tier | Price (placeholder) | Use |
+| Tier | Price (CAD) | Use |
 |---|---|---|
-| Discovery / scoping | Free or $500 | Figure out what's actually useful to automate. |
-| Small build | ~$2,500 | Site chatbot, simple automation, single integration. |
-| Medium build | ~$7,500 | Custom MCP server, multi-step integration, internal tool. |
-| Maintenance retainer | ~$500/mo | Ongoing care for shipped automations. |
+| Discovery / scoping | **Free** (30–60 min) | Figure out what's actually useful to automate. |
+| Small build | **$2,500** | Site chatbot, simple automation, single integration. |
+| Medium build | **$7,500** | Custom MCP server, multi-step integration, internal tool. |
+| Maintenance retainer | **$1,000 / month** | Ongoing care for shipped automations, priority response, small enhancements. |
 
-**Decision needed in spec review:** real numbers.
+**Pricing rationale:** Discovery stays free as a referral-friendly entry point (no friction). Small/medium build anchors sit at the floor and middle of ChatGPT.ca's Automation Starter ($2,500–$7,500) and AI agent ($5,000–$15,000) ranges respectively. Retainer raised from the original placeholder ($500/mo) to $1,000/mo — still well below market ($2,000/mo entry on ChatGPT.ca, $999 USD hands-on on Roving Leads) but defensible for solo SMB scope.
 
 ---
 
@@ -195,14 +196,14 @@ After all commits land: open PR `feat/ai-tracks-reframe` → `master`. Lint job 
 
 ---
 
-## 10. Open questions (resolve in spec review)
+## 10. Resolved decisions (post-market-research, 2026-05-15)
 
-1. **Training pricing** — real numbers, or "Starting at $X" language?
-2. **Automation pricing** — real numbers, or "Starting at $X" language?
-3. **Discovery call for Automation** — free or $500?
-4. **`small-business.html` voice** — keep "Kelowna" + "your neighbour" framing, or broaden to all of BC?
-5. **About page** — keep VIU career history visible, or trim it to one line ("Senior engineer at a BC institution since 2016") since the site isn't selling credibility?
-6. **Group workshop capacity** — set a max headcount per workshop tier or leave it open?
+1. **Training pricing** — ✅ real numbers locked in §5.2.
+2. **Automation pricing** — ✅ real numbers locked in §5.3.
+3. **Discovery call for Automation** — ✅ Free (30–60 min). Referral-friendly entry, no friction.
+4. **`small-business.html` voice** — ✅ Keep "Kelowna" + local framing. Local angle is the differentiator; broadening to BC dilutes it. SMB owners outside Kelowna will still recognize themselves in the copy.
+5. **About page** — ✅ Trim VIU career history to one line (e.g., *"Senior engineer at a BC post-secondary institution since 2016"*). Per [[project-site-audience]], the site isn't selling credibility — a wall of work history is over-engineered for the referral funnel.
+6. **Group workshop capacity** — ✅ Up to 12 people for the standard half/full-day workshops. Larger groups via the Custom team curriculum tier. Twelve is the sweet spot for hands-on workshop quality with a solo trainer; ChatGPT.ca's 8–25 range is wider because they're doing more presentation, less hands-on.
 
 ---
 
