@@ -62,6 +62,17 @@ app.get('/health', (req, res) => {
   res.json({ ok: true, apiKeySet: !!process.env.ANTHROPIC_API_KEY });
 });
 
+// Public client config for the contact form. The Turnstile site key is
+// public by Cloudflare's design (it ships to the browser as the widget's
+// sitekey) but lives in env vars rather than the repo so it can rotate
+// without code edits. The secret key — which we never ship — is also in
+// env vars (TURNSTILE_SECRET_KEY) and used only by the server below.
+app.get('/api/contact-config', (req, res) => {
+  res.json({
+    turnstileSiteKey: process.env.TURNSTILE_SITE_KEY || null,
+  });
+});
+
 app.post('/api/chat', async (req, res) => {
   const ip = req.ip || 'unknown';
   if (isRateLimited(ip)) {

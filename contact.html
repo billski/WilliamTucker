@@ -170,11 +170,10 @@
                 <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
                 <textarea id="contact-message" name="message" required rows="5" placeholder="Tell me about your project or question..." class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"></textarea>
               </div>
-              <!-- Cloudflare Turnstile — invisible spam check.
-                   Replace data-sitekey with your real site key when you register at
-                   cloudflare.com/products/turnstile. The placeholder below is the
-                   Cloudflare test key that always passes — fine for dev, swap for prod. -->
-              <div class="cf-turnstile mb-4" data-sitekey="1x00000000000000000000AA"></div>
+              <!-- Cloudflare Turnstile container — site key is fetched from
+                   /api/contact-config at runtime and the widget is rendered
+                   explicitly. No key lives in the repo. -->
+              <div id="turnstile-container" class="mb-4"></div>
               <button id="contact-submit" type="submit" class="w-full bg-gold text-navy font-semibold px-6 py-3 rounded-lg hover:bg-gold-light transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
                 Send Message
               </button>
@@ -293,7 +292,7 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit" async defer></script>
   <script>
     // Legacy redirect path — kept so existing /contact.html?sent=1 inbound links still work.
     if (new URLSearchParams(window.location.search).get('sent') === '1') {
@@ -301,13 +300,14 @@
       window.scrollTo(0, 0);
     }
 
-    // Contact form — POST to the Railway API which writes the lead into the
-    // WTSAdmin contacts table and emails William + an auto-reply to the lead.
+    // Contact form — fetches client config (Turnstile site key) from the API
+    // server, renders the widget explicitly, and POSTs the form to the API
+    // which writes the lead into WTSAdmin and emails William + auto-reply.
     (function () {
       const IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-      const API_URL = IS_LOCAL
-        ? '/api/contact'
-        : 'https://williamtucker-production.up.railway.app/api/contact';
+      const API_BASE = IS_LOCAL
+        ? ''
+        : 'https://williamtucker-production.up.railway.app';
 
       const form = document.getElementById('contact-form');
       const submitBtn = document.getElementById('contact-submit');
@@ -315,6 +315,40 @@
       const successEl = document.getElementById('contact-success');
 
       if (!form) return;
+
+      let turnstileScriptReady = false;
+      let turnstileSiteKey = null;
+      let turnstileWidgetId = null;
+
+      function mountTurnstileWhenReady() {
+        if (!turnstileScriptReady || !turnstileSiteKey || turnstileWidgetId !== null) return;
+        if (!window.turnstile) return;
+        turnstileWidgetId = window.turnstile.render('#turnstile-container', {
+          sitekey: turnstileSiteKey,
+          theme: 'light',
+        });
+      }
+
+      // Cloudflare calls this when the Turnstile API JS finishes loading.
+      window.onTurnstileLoad = function () {
+        turnstileScriptReady = true;
+        mountTurnstileWhenReady();
+      };
+
+      // Fetch the Turnstile site key from the API server. Public-by-design
+      // value — kept in env vars (Railway) so it can rotate without code edits.
+      fetch(API_BASE + '/api/contact-config')
+        .then(function (r) { return r.json(); })
+        .then(function (cfg) {
+          turnstileSiteKey = cfg && cfg.turnstileSiteKey ? cfg.turnstileSiteKey : null;
+          if (!turnstileSiteKey) {
+            console.warn('[contact] Turnstile site key not configured on server; widget will not load. Form submits will be rejected unless the server is also missing TURNSTILE_SECRET_KEY (dev only).');
+          }
+          mountTurnstileWhenReady();
+        })
+        .catch(function (err) {
+          console.error('[contact] Failed to load form config:', err);
+        });
 
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
@@ -326,6 +360,10 @@
         submitBtn.textContent = 'Sending...';
 
         const fd = new FormData(form);
+        const turnstileToken = window.turnstile && turnstileWidgetId !== null
+          ? window.turnstile.getResponse(turnstileWidgetId) || ''
+          : '';
+
         const payload = {
           name: (fd.get('name') || '').toString(),
           email: (fd.get('email') || '').toString(),
@@ -333,11 +371,11 @@
           service_interest: (fd.get('service_interest') || '').toString(),
           message: (fd.get('message') || '').toString(),
           _gotcha: (fd.get('_gotcha') || '').toString(),
-          turnstileToken: (fd.get('cf-turnstile-response') || '').toString(),
+          turnstileToken: turnstileToken,
         };
 
         try {
-          const res = await fetch(API_URL, {
+          const res = await fetch(API_BASE + '/api/contact', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
@@ -350,8 +388,8 @@
             form.reset();
             successEl.classList.remove('hidden');
             document.getElementById('success-banner').classList.remove('hidden');
-            if (window.turnstile) {
-              window.turnstile.reset();
+            if (window.turnstile && turnstileWidgetId !== null) {
+              window.turnstile.reset(turnstileWidgetId);
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }
