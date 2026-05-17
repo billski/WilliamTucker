@@ -40,7 +40,9 @@
     .pain-card.revealed .pain-text { color: #166534; }
     .pain-card:hover .pain-solution,
     .pain-card.revealed .pain-solution { display: block; }
-    .pain-card .pain-hint { display: block; }
+    /* Use :where() to keep at-rest rule at specificity 0,0,0
+       so Tailwind's md:hidden (0,1,0) correctly wins on desktop. */
+    :where(.pain-card .pain-hint) { display: block; }
     .pain-card:hover .pain-hint,
     .pain-card.revealed .pain-hint { display: none; }
   </style>
