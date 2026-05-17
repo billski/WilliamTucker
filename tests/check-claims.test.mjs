@@ -229,3 +229,113 @@ test('formatViolations renders file:line and reason for each violation', () => {
   assert.match(out, /years-inflated/);
   assert.match(out, /PROFILE\.md §10/);
 });
+
+// --- Pattern: ai-replaces-engineers ---
+
+const aiReplacesEngineers = PATTERNS.find(p => p.id === 'ai-replaces-engineers');
+
+test('ai-replaces-engineers flags "fully autonomous AI"', () => {
+  assert.ok(aiReplacesEngineers, 'pattern not found in catalog');
+  const v = checkLine('We offer fully autonomous AI for your business.', 1, aiReplacesEngineers);
+  assert.ok(v, 'expected violation');
+  assert.equal(v.patternId, 'ai-replaces-engineers');
+});
+
+test('ai-replaces-engineers flags "no human in the loop"', () => {
+  const v = checkLine('No-human-in-the-loop automation, ready today.', 3, aiReplacesEngineers);
+  assert.ok(v);
+  assert.equal(v.lineNum, 3);
+});
+
+test('ai-replaces-engineers flags "AI replaces developers"', () => {
+  const v = checkLine('AI replaces developers — finally.', 5, aiReplacesEngineers);
+  assert.ok(v);
+});
+
+test('ai-replaces-engineers does not flag legitimate AI-accelerated copy', () => {
+  assert.equal(checkLine('AI-accelerated senior engineering with a human in the loop.', 1, aiReplacesEngineers), null);
+});
+
+// --- Pattern: ai-certified ---
+
+const aiCertified = PATTERNS.find(p => p.id === 'ai-certified');
+
+test('ai-certified flags "certified AI trainer"', () => {
+  assert.ok(aiCertified, 'pattern not found in catalog');
+  assert.ok(checkLine('William is a certified AI trainer.', 1, aiCertified));
+});
+
+test('ai-certified flags "AI-certified consultant"', () => {
+  assert.ok(checkLine('Hire an AI-certified consultant.', 1, aiCertified));
+});
+
+test('ai-certified does not flag generic AI mentions', () => {
+  assert.equal(checkLine('William uses AI in his daily work.', 1, aiCertified), null);
+});
+
+// --- Pattern: quantified-training ---
+
+const quantifiedTraining = PATTERNS.find(p => p.id === 'quantified-training');
+
+test('quantified-training flags "thousands of students trained"', () => {
+  assert.ok(quantifiedTraining, 'pattern not found in catalog');
+  assert.ok(checkLine('Thousands of students trained — see testimonials.', 1, quantifiedTraining));
+});
+
+test('quantified-training flags "trained 50+ teams"', () => {
+  assert.ok(checkLine('Trained 50+ teams in 2025.', 1, quantifiedTraining));
+});
+
+test('quantified-training flags "trained 200 people"', () => {
+  assert.ok(checkLine('Trained 200 people last year.', 1, quantifiedTraining));
+});
+
+test('quantified-training does not flag general training mentions', () => {
+  assert.equal(checkLine('I offer training sessions for teams.', 1, quantifiedTraining), null);
+});
+
+test('quantified-training does not flag small counts like 5 people', () => {
+  assert.equal(checkLine('Trained 5 people last quarter.', 1, quantifiedTraining), null);
+});
+
+// --- Pattern: buzzword-soup ---
+
+const buzzwordSoup = PATTERNS.find(p => p.id === 'buzzword-soup');
+
+test('buzzword-soup flags "industry-leading AI"', () => {
+  assert.ok(buzzwordSoup, 'pattern not found in catalog');
+  assert.ok(checkLine('Our industry-leading AI does it all.', 1, buzzwordSoup));
+});
+
+test('buzzword-soup flags "cutting-edge technology"', () => {
+  assert.ok(checkLine('Built on cutting-edge technology.', 1, buzzwordSoup));
+});
+
+test('buzzword-soup flags "revolutionary AI"', () => {
+  assert.ok(checkLine('A revolutionary AI approach.', 1, buzzwordSoup));
+});
+
+test('buzzword-soup does not flag plain technical language', () => {
+  assert.equal(checkLine('We use modern technology including Claude and PostgreSQL.', 1, buzzwordSoup), null);
+});
+
+// --- Pattern: credibility-theater ---
+
+const credibilityTheater = PATTERNS.find(p => p.id === 'credibility-theater');
+
+test('credibility-theater flags "trusted by"', () => {
+  assert.ok(credibilityTheater, 'pattern not found in catalog');
+  assert.ok(checkLine('Trusted by hundreds of businesses.', 1, credibilityTheater));
+});
+
+test('credibility-theater flags "as featured in"', () => {
+  assert.ok(checkLine('As featured in TechCrunch and Forbes.', 1, credibilityTheater));
+});
+
+test('credibility-theater flags "as seen in"', () => {
+  assert.ok(checkLine('As seen in major publications.', 1, credibilityTheater));
+});
+
+test('credibility-theater does not flag plain mentions of trust', () => {
+  assert.equal(checkLine('You can trust me to deliver what I promise.', 1, credibilityTheater), null);
+});

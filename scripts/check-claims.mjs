@@ -77,6 +77,36 @@ export const PATTERNS = [
     window: 160,
     reason: 'PROFILE.md §10: no Salesforce experience.',
   },
+  {
+    id: 'ai-replaces-engineers',
+    type: 'line',
+    rule: /\b(fully\s+autonomous\s+AI|no[\s-]human[\s-]in[\s-]the[\s-]loop|AI\s+replaces?\s+(developers?|engineers?))\b/i,
+    reason: 'PROFILE.md §10: AI-accelerated, never AI-replaced. Human is in the loop.',
+  },
+  {
+    id: 'ai-certified',
+    type: 'line',
+    rule: /\b(certified\s+AI\s+(trainer|consultant|practitioner)|AI[\s-]certified)\b/i,
+    reason: 'William has no AI certifications. Frame as "daily practitioner", not credentialed.',
+  },
+  {
+    id: 'quantified-training',
+    type: 'line',
+    rule: /\b(thousands\s+of\s+(students|trainees|people)|trained\s+\d{2,}\+?\s+(teams|people|developers|trainees|students))\b/i,
+    reason: 'Training-track quantified claims (thousands trained / 10+/50+/100+ teams) are not backed. Use qualitative framing.',
+  },
+  {
+    id: 'buzzword-soup',
+    type: 'line',
+    rule: /\b(industry[\s-]leading|cutting[\s-]edge|revolutionary)\s+(AI|technology|approach|solution|platform)\b/i,
+    reason: 'Per project-site-audience memory: WTS site is referral-driven, plain-spoken. Buzzword soup is off-voice.',
+  },
+  {
+    id: 'credibility-theater',
+    type: 'line',
+    rule: /\b(trusted\s+by|as\s+featured\s+in|as\s+seen\s+in)\b/i,
+    reason: 'Per project-site-audience memory: WTS is referral-driven, not authority-led. Credibility theater is off-voice.',
+  },
 ];
 
 /**
