@@ -22,7 +22,7 @@ _(empty at inception)_
   Google Appointment Schedule iframe but does not write bookings to the
   WTSAdmin database — Google's free tier has no webhook. A v2 would add
   a small Node poller on the Railway server that queries the Google
-  Calendar API every ~10 min, finds new "Discovery Call (30 min)" events,
+  Calendar API every ~10 min, finds new "Discovery Call (60 min)" events,
   and upserts a row into `contacts` with `source='booking'`. Needs a
   Google OAuth refresh token or service-account credentials in Railway
   env. Roughly half a day of work. Spec:
