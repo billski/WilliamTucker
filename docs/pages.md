@@ -95,7 +95,7 @@ The link to the current page uses `class="text-gold font-medium"` (gold text) in
 
 ### Hamburger touch target
 
-The mobile hamburger button (`<button id="mobile-menu-button">`) currently uses `class="md:hidden text-white p-2"` on every page. Apple HIG minimum is 44×44 px — `p-2` with a 24×24 icon renders at ~40 px, just under the floor. Open backlog item if a future mobile-polish pass.
+The mobile hamburger button (`<button id="mobile-menu-button">`) uses `class="md:hidden text-white p-3"` on every page (since the 2026-05-18 mobile-polish PR). With a 24×24 icon and 12px padding all sides, the tap target is 48×48 px — comfortably above the Apple HIG 44×44 minimum.
 
 ---
 
