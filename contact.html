@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260518b" />
+  <link rel="stylesheet" href="css/styles.css?v=20260518c" />
 </head>
 <body>
 
@@ -101,6 +101,47 @@
       </div>
     </section>
 
+    <!-- ===== PICK A TIME (Google Appointment Schedule embed) ===== -->
+    <section style="background-color: #f8f9fa;" class="py-8 md:py-16">
+      <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-navy mb-3">Pick a Time</h2>
+        <p class="text-gray-600 mb-6 max-w-2xl">Free 30 minutes, no obligation. The calendar below pulls live from my schedule — grab a slot that works and you'll get a Google Calendar invite with a Meet link.</p>
+
+        <!--
+          GOOGLE APPOINTMENT SCHEDULE — embed setup (one-time, by William)
+
+          1. Sign in to calendar.google.com as william@williamtucker.ca (Workspace).
+          2. Create → Appointment schedule. Name: "Discovery Call (30 min)".
+          3. Duration 30m, buffer 15m, min advance notice 24h.
+          4. Availability: pick your weekly window (suggested: Tue–Thu 10:00–16:00 Pacific).
+          5. Intake form fields (all required): Name, Email,
+             "What would you like to talk about?" (free text).
+          6. Conferencing: Google Meet (auto-attaches because Workspace).
+          7. Save → Share → Embed → copy the <iframe ...> snippet Google gives you.
+          8. REPLACE the placeholder div below with that snippet. Keep these attributes
+             on the iframe so styling stays consistent:
+               loading="lazy"
+               title="Book a discovery call with William Tucker"
+               class="w-full rounded-lg" style="min-height: 720px; border: 0;"
+        -->
+        <div class="bg-white rounded-xl border border-gray-200 p-2 md:p-4">
+          <!-- BEGIN PLACEHOLDER — remove this <div> when pasting the real iframe -->
+          <div
+            class="w-full rounded-lg border border-dashed border-gray-300 flex items-center justify-center text-center px-6 text-gray-500"
+            style="min-height: 720px;"
+          >
+            <div>
+              <p class="font-semibold text-navy mb-2">Booking widget loads here</p>
+              <p class="text-sm">See the HTML comment above this block for one-time setup instructions. Once you paste the Google Appointment Schedule embed snippet, this placeholder is replaced by the live calendar.</p>
+            </div>
+          </div>
+          <!-- END PLACEHOLDER -->
+        </div>
+
+        <p class="text-sm text-gray-500 mt-4">Prefer to write a message first? Use the form below and I'll reply within one business day with a few times that work.</p>
+      </div>
+    </section>
+
     <!-- ===== CONTACT SECTION ===== -->
     <section class="bg-white py-8 md:py-16">
       <div class="max-w-5xl mx-auto px-4">
@@ -109,21 +150,21 @@
           <!-- Left on desktop, second on mobile: How This Works -->
           <div class="order-2 md:order-1">
             <h2 class="text-2xl font-bold mb-4">How This Works</h2>
-            <p class="text-gray-600 mb-8">Every engagement starts with a free 30-minute discovery call. Send a message and I'll reply within one business day with a time that works for you.</p>
+            <p class="text-gray-600 mb-8">Every engagement starts with a free 30-minute discovery call. Pick a slot above, or send a message and I'll reply with times.</p>
             <div class="border border-gray-200 rounded-xl p-8">
               <ol class="space-y-5 text-gray-700">
                 <li class="flex gap-4">
                   <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">1</span>
                   <div>
-                    <p class="font-semibold text-navy">You send a message</p>
-                    <p class="text-sm text-gray-600">Fill out the form on the right — name, email, what you're working on.</p>
+                    <p class="font-semibold text-navy">Pick a time</p>
+                    <p class="text-sm text-gray-600">Use the calendar above to grab a slot. Or, if you'd rather write a message first, use the form on the right and I'll suggest times by email.</p>
                   </div>
                 </li>
                 <li class="flex gap-4">
                   <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">2</span>
                   <div>
-                    <p class="font-semibold text-navy">I reply within 1 business day</p>
-                    <p class="text-sm text-gray-600">Personal reply with a few times that work, plus any clarifying questions. No auto-bot, no funnel.</p>
+                    <p class="font-semibold text-navy">You get a calendar invite</p>
+                    <p class="text-sm text-gray-600">With a Google Meet link, a short agenda, and my email. No auto-bot, no funnel.</p>
                   </div>
                 </li>
                 <li class="flex gap-4">
