@@ -30,7 +30,7 @@ The site is a flat collection of 8 hand-authored HTML pages, no framework, no ro
 | `small-business.html` | Kelowna SMB landing — pain-card grid, before/after section, Quick Win package, three-track preview, interactive quiz, chatbot demo | Inline `<style>` block (lines 20–43) for `.pain-card` hover/reveal — the ONLY page-specific stylesheet on the site |
 | `about.html` | Bio, expertise grid, education, independent projects, philosophy | Heaviest individual page in raw vertical height — long scroll |
 | `faq.html` | 18 Q&As across 5 groups, wrapped in `<details>`/`<summary>` accordions | Each Q&A is a `<details class="group ...">` with a `group-open:rotate-180` chevron span |
-| `contact.html` | "Let's Talk" hero + "How This Works" / "Send a Message" two-column layout + "Other Ways to Reach Me" | Form POSTs to `/api/contact` — see [[contact-flow]]. NO chatbot widget loads here. |
+| `contact.html` | "Let's Talk" hero + "Pick a Time" booker (Google Appointment Schedule embed) + "Send a Message" single-column form (demoted, anchored at `#send-a-message`) + "Other Ways to Reach Me" | Form POSTs to `/api/contact` — see [[contact-flow]]. Booker is the primary CTA; the form is the escape hatch. NO chatbot widget loads here. The page hides the gold 'Book a Call' nav pill (visitor is already here). |
 | `privacy.html` | Privacy notice | PIPEDA — must accurately name third-party processors. See known-drift backlog if this is stale. |
 
 The site has **no** `case-studies.html` (deleted in PR #4) or `checklist.html` (deleted in PR #4). The page-routing memory `project-site-no-work-samples` codifies the "no portfolio on the public site" decision — see that memory before reintroducing.
