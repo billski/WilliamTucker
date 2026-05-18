@@ -187,36 +187,22 @@
               <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
               <div class="mb-4">
                 <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                <input id="contact-name" type="text" name="name" required placeholder="Your name" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                <input id="contact-name" type="text" name="name" required autocomplete="name" placeholder="Your name" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
               </div>
               <div class="mb-4">
                 <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input id="contact-email" type="email" name="email" required placeholder="your@email.com" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                <input id="contact-email" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="your@email.com" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
               </div>
               <div class="mb-4">
-                <label for="contact-company" class="block text-sm font-medium text-gray-700 mb-1">Company <span class="text-gray-400 font-normal">(optional)</span></label>
-                <input id="contact-company" type="text" name="company" placeholder="Company name" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
-              </div>
-              <div class="mb-4">
-                <label for="contact-service" class="block text-sm font-medium text-gray-700 mb-1">What can I help with?</label>
-                <select id="contact-service" name="service_interest" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent bg-white">
-                  <option value="">Select an option...</option>
-                  <option value="AI Training">AI Training</option>
-                  <option value="AI-Accelerated Development">AI-Accelerated Development</option>
-                  <option value="Workflow Automation">Workflow Automation</option>
-                  <option value="Something else">Something else</option>
-                </select>
-              </div>
-              <div class="mb-4">
-                <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea id="contact-message" name="message" required rows="5" placeholder="Tell me about your project or question..." class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"></textarea>
+                <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">What would you like to talk about?</label>
+                <textarea id="contact-message" name="message" required rows="4" placeholder="Tell me about your project or question..." class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"></textarea>
               </div>
               <!-- Cloudflare Turnstile container — site key is fetched from
                    /api/contact-config at runtime and the widget is rendered
                    explicitly. No key lives in the repo. -->
               <div id="turnstile-container" class="mb-4"></div>
               <button id="contact-submit" type="submit" class="w-full bg-gold text-navy font-semibold px-6 py-3 rounded-lg hover:bg-gold-light transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
-                Send Message
+                Send and I'll reply within 1 business day
               </button>
               <p id="contact-error" class="hidden mt-3 text-sm text-red-600" role="alert"></p>
               <p id="contact-success" class="hidden mt-3 text-sm text-green-700" role="status">
