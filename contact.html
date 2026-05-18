@@ -143,46 +143,11 @@
     </section>
 
     <!-- ===== CONTACT SECTION ===== -->
-    <section class="bg-white py-8 md:py-16">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-          <!-- Left on desktop, second on mobile: How This Works -->
-          <div class="order-2 md:order-1">
-            <h2 class="text-2xl font-bold mb-4">How This Works</h2>
-            <p class="text-gray-600 mb-8">Every engagement starts with a free 30-minute discovery call. Pick a slot above, or send a message and I'll reply with times.</p>
-            <div class="border border-gray-200 rounded-xl p-8">
-              <ol class="space-y-5 text-gray-700">
-                <li class="flex gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">1</span>
-                  <div>
-                    <p class="font-semibold text-navy">Pick a time</p>
-                    <p class="text-sm text-gray-600">Use the calendar above to grab a slot. Or, if you'd rather write a message first, use the form on the right and I'll suggest times by email.</p>
-                  </div>
-                </li>
-                <li class="flex gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">2</span>
-                  <div>
-                    <p class="font-semibold text-navy">You get a calendar invite</p>
-                    <p class="text-sm text-gray-600">With a Google Meet link, a short agenda, and my email. No auto-bot, no funnel.</p>
-                  </div>
-                </li>
-                <li class="flex gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">3</span>
-                  <div>
-                    <p class="font-semibold text-navy">We talk for 30 minutes</p>
-                    <p class="text-sm text-gray-600">Discuss your goals, the work, whether AI is the right fit. No pressure, no obligation.</p>
-                  </div>
-                </li>
-              </ol>
-              <p class="text-sm text-gray-500 mt-6 pt-6 border-t border-gray-200">References and live demos available on the discovery call.</p>
-            </div>
-          </div>
-
-          <!-- Right on desktop, first on mobile: Contact Form -->
-          <div class="order-1 md:order-2">
-            <h2 class="text-2xl font-bold mb-4">Send a Message</h2>
-            <form id="contact-form" novalidate>
+    <section id="send-a-message" class="bg-white py-8 md:py-16">
+      <div class="max-w-2xl mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-4">Send a Message</h2>
+        <p class="text-gray-600 mb-6">Rather write something first? Fill the form and I'll reply within one business day with a few times that work.</p>
+        <form id="contact-form" data-cta="form" novalidate>
               <!-- Honeypot — hidden from humans, bots fill it and get rejected -->
               <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
               <div class="mb-4">
@@ -209,9 +174,7 @@
                 Message sent — I'll be in touch within one business day.
               </p>
             </form>
-          </div>
-
-        </div>
+        <p class="text-sm text-gray-500 mt-6 pt-6 border-t border-gray-200">References and live demos available on the discovery call.</p>
       </div>
     </section>
 
