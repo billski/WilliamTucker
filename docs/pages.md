@@ -83,7 +83,7 @@ Every page's desktop nav (`<nav class="hidden md:flex items-center gap-8">`) sho
 6. Client Portal (external link to `https://admin.williamtucker.ca/login`)
 7. Book a Call (CTA button, gold fill)
 
-**Known historical drift:** `privacy.html` was missing the Client Portal link in both desktop and mobile nav as of the 2026-05-18 audit. If unfixed, that's the only page out of compliance with this rule.
+All 8 pages are in compliance with this rule. (Earlier drift on `privacy.html` was resolved in the 2026-05-18 post-reframe-cleanup PR.)
 
 ### Mobile nav (hamburger)
 
@@ -107,7 +107,7 @@ Three columns:
 2. **Quick Links list** — Services / Pricing / About / FAQ / Contact / Privacy Policy / Client Portal (7 links)
 3. **Connect list** — LinkedIn / GitHub / Email
 
-**Known historical drift:** As of the 2026-05-18 audit, the Quick Links column was missing the Client Portal `<li>` on `pricing.html`, `faq.html`, and `small-business.html`. The other 5 pages have it. Bottom-bar line includes copyright + Privacy Policy backlink — consistent across all 8.
+All 8 pages have the Client Portal `<li>` in the footer Quick Links. (Earlier drift on `pricing.html` / `faq.html` / `small-business.html` was resolved in the 2026-05-18 post-reframe-cleanup PR.) Bottom-bar line includes copyright + Privacy Policy backlink — consistent across all 8.
 
 ---
 

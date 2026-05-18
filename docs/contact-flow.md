@@ -15,7 +15,7 @@ verified-against:
 
 > **What's in this doc:** the full request/response path from the `contact.html` form submit through Express to Supabase + Resend + Cloudflare Turnstile, every required env var, validation rules, the upsert-on-email behaviour, and the failure-mode design.
 >
-> **What's NOT:** the chatbot endpoint (`/api/chat` — same Express server but unrelated; see [[chatbot]] when written), the deploy pipeline that ships `server.js` (Railway, not the DreamHost rsync — see [[deploy#pipeline-overview]]), or the privacy notice copy on `privacy.html` (which is currently stale and out of step with this flow — see backlog).
+> **What's NOT:** the chatbot endpoint (`/api/chat` — same Express server but unrelated; see [[chatbot]]), the deploy pipeline that ships `server.js` (Railway, not the DreamHost rsync — see [[deploy#pipeline-overview]]). The privacy notice on `privacy.html` was synced with this flow in the 2026-05-18 post-reframe-cleanup PR and now names Supabase / Resend / Cloudflare Turnstile / Railway accurately.
 
 The contact form is the primary conversion path for cold traffic that doesn't book Calendly. PR #3 (`feat/contact-to-wtsadmin`, merged 2026-05-17) replaced the old Formspree integration with a direct write into the WTSAdmin Supabase database, an email notification to William, and an auto-reply to the lead. The whole thing runs through the `/api/contact` endpoint in `server.js`.
 
@@ -224,7 +224,7 @@ CORS allows the static site origin (`williamtucker.ca`, `www.williamtucker.ca`, 
 
 ## Backlog
 
-- **`privacy.html` references Formspree + Calendly.** Both are wrong as of PR #3. Privacy notice must be rewritten to name **Supabase** (DB), **Resend** (email), **Cloudflare Turnstile** (spam), and **Railway** (server hosting). See PIPEDA accuracy requirements.
+- ~~**`privacy.html` references Formspree + Calendly.**~~ Resolved in the 2026-05-18 post-reframe-cleanup PR — privacy notice now names Supabase / Resend / Cloudflare Turnstile / Railway.
 - **The Supabase service-role key bypasses RLS.** If the WTSAdmin team adds RLS to the `contacts` table that should apply to this insert path, this server's write will fail. Coordinate with WTSAdmin owner before tightening RLS.
 - **No dedupe on rapid resubmits.** A user double-clicking submit will create two `notes` entries on the same contact. Not a real issue at current scale; flag if it shows up in admin.
 - **No retry logic on Resend failures.** A transient Resend outage drops the email silently (logged only). Could add a simple exponential-backoff retry, but the DB write covers data preservation so it hasn't been a priority.
