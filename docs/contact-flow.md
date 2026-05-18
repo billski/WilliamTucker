@@ -17,6 +17,8 @@ verified-against:
 >
 > **What's NOT:** the chatbot endpoint (`/api/chat` — same Express server but unrelated; see [[chatbot]]), the deploy pipeline that ships `server.js` (Railway, not the DreamHost rsync — see [[deploy#pipeline-overview]]). The privacy notice on `privacy.html` was synced with this flow in the 2026-05-18 post-reframe-cleanup PR and now names Supabase / Resend / Cloudflare Turnstile / Railway accurately.
 
+> **Also not in this doc:** the discovery-call booking widget added to `contact.html` on 2026-05-18 (a Google Calendar Appointment Schedule iframe). The booker bypasses `/api/contact` entirely — bookings write directly to William's Google Calendar and do not create a row in the WTSAdmin `contacts` table. The form path documented below is unchanged. Spec: `docs/superpowers/specs/2026-05-18-contact-booking-widget-design.md`. A v2 backlog item exists to mirror bookings into `contacts` via a Calendar-API poller.
+
 The contact form is the primary conversion path for cold traffic that doesn't book Calendly. PR #3 (`feat/contact-to-wtsadmin`, merged 2026-05-17) replaced the old Formspree integration with a direct write into the WTSAdmin Supabase database, an email notification to William, and an auto-reply to the lead. The whole thing runs through the `/api/contact` endpoint in `server.js`.
 
 ---

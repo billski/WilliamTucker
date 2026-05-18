@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260518b" />
+  <link rel="stylesheet" href="css/styles.css?v=20260518d" />
 </head>
 <body>
 
@@ -43,9 +43,6 @@
           <a href="pricing.html" class="text-white hover:text-gold font-medium">Pricing</a>
           <a href="contact.html" class="text-gold font-medium">Contact</a>
           <a href="https://admin.williamtucker.ca/login" class="text-white hover:text-gold font-medium">Client Portal</a>
-          <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded hover:bg-gold-light transition-colors duration-200">
-            Book a Call
-          </a>
         </nav>
 
         <!-- Mobile Hamburger -->
@@ -74,9 +71,6 @@
         <a href="pricing.html" class="text-white hover:text-gold font-medium">Pricing</a>
         <a href="contact.html" class="text-gold font-medium">Contact</a>
         <a href="https://admin.williamtucker.ca/login" class="text-white hover:text-gold font-medium">Client Portal</a>
-        <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded text-center hover:bg-gold-light transition-colors duration-200">
-          Book a Call
-        </a>
       </nav>
     </div>
   </header>
@@ -97,94 +91,87 @@
     <section style="background-color: #1a2332;" class="py-8 md:py-16">
       <div class="max-w-7xl mx-auto px-4">
         <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 md:mb-4">Let's Talk</h1>
-        <p class="text-gray-300 text-sm md:text-base">Every engagement starts with a free discovery call. No pressure, no obligation — just a conversation about your goals.</p>
+        <p class="text-gray-300 text-sm md:text-base">Pick a time below, or send a message — I'll reply within one business day.</p>
+      </div>
+    </section>
+
+    <!-- ===== PICK A TIME (Google Appointment Schedule embed) ===== -->
+    <section style="background-color: #f8f9fa;" class="py-8 md:py-16">
+      <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-2xl md:text-3xl font-bold text-navy mb-3">Pick a Time</h2>
+        <p class="text-gray-600 mb-2 max-w-2xl">Free 30 minutes, no obligation. The calendar below pulls live from my schedule — grab a slot that works and you'll get a Google Calendar invite with a Meet link.</p>
+        <p class="text-sm text-gray-500 mb-6">Based in Kelowna. Every call is with me, not a sales rep.</p>
+
+        <!--
+          GOOGLE APPOINTMENT SCHEDULE — embed setup (one-time, by William)
+
+          1. Sign in to calendar.google.com as william@williamtucker.ca (Workspace).
+          2. Create → Appointment schedule. Name: "Discovery Call (30 min)".
+          3. Duration 30m, buffer 15m, min advance notice 24h.
+          4. Availability: pick your weekly window (suggested: Tue–Thu 10:00–16:00 Pacific).
+          5. Intake form fields (all required): Name, Email,
+             "What would you like to talk about?" (free text).
+          6. Conferencing: Google Meet (auto-attaches because Workspace).
+          7. Save → Share → Embed → copy the <iframe ...> snippet Google gives you.
+          8. REPLACE the placeholder div below with that snippet. Keep these attributes
+             on the iframe so styling stays consistent:
+               loading="lazy"
+               title="Book a discovery call with William Tucker"
+               class="w-full h-[560px] md:h-[760px] rounded-lg" style="border: 0;"
+             (The responsive height pair caps mobile so the calendar doesn't
+              create an absurd phone scroll; desktop gets more room to show
+              two full weeks at once.)
+        -->
+        <div data-cta="booker" class="bg-white rounded-xl border border-gray-200 p-2 md:p-4">
+          <!-- BEGIN PLACEHOLDER — remove this <div> when pasting the real iframe -->
+          <div
+            class="w-full h-[560px] md:h-[760px] rounded-lg border border-dashed border-gray-300 flex items-center justify-center text-center px-6 text-gray-500"
+          >
+            <div>
+              <p class="font-semibold text-navy mb-2">Booking widget loads here</p>
+              <p class="text-sm">See the HTML comment above this block for one-time setup instructions. Once you paste the Google Appointment Schedule embed snippet, this placeholder is replaced by the live calendar.</p>
+            </div>
+          </div>
+          <!-- END PLACEHOLDER -->
+        </div>
+
+        <p class="text-sm text-gray-500 mt-4">Prefer to write a message first? <a href="#send-a-message" class="text-gold hover:text-gold-dark font-medium">Send a message instead →</a></p>
       </div>
     </section>
 
     <!-- ===== CONTACT SECTION ===== -->
-    <section class="bg-white py-8 md:py-16">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-          <!-- Left on desktop, second on mobile: How This Works -->
-          <div class="order-2 md:order-1">
-            <h2 class="text-2xl font-bold mb-4">How This Works</h2>
-            <p class="text-gray-600 mb-8">Every engagement starts with a free 30-minute discovery call. Send a message and I'll reply within one business day with a time that works for you.</p>
-            <div class="border border-gray-200 rounded-xl p-8">
-              <ol class="space-y-5 text-gray-700">
-                <li class="flex gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">1</span>
-                  <div>
-                    <p class="font-semibold text-navy">You send a message</p>
-                    <p class="text-sm text-gray-600">Fill out the form on the right — name, email, what you're working on.</p>
-                  </div>
-                </li>
-                <li class="flex gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">2</span>
-                  <div>
-                    <p class="font-semibold text-navy">I reply within 1 business day</p>
-                    <p class="text-sm text-gray-600">Personal reply with a few times that work, plus any clarifying questions. No auto-bot, no funnel.</p>
-                  </div>
-                </li>
-                <li class="flex gap-4">
-                  <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gold text-navy font-bold flex items-center justify-center text-sm">3</span>
-                  <div>
-                    <p class="font-semibold text-navy">We talk for 30 minutes</p>
-                    <p class="text-sm text-gray-600">Discuss your goals, the work, whether AI is the right fit. No pressure, no obligation.</p>
-                  </div>
-                </li>
-              </ol>
-              <p class="text-sm text-gray-500 mt-6 pt-6 border-t border-gray-200">References and live demos available on the discovery call.</p>
-            </div>
-          </div>
-
-          <!-- Right on desktop, first on mobile: Contact Form -->
-          <div class="order-1 md:order-2">
-            <h2 class="text-2xl font-bold mb-4">Send a Message</h2>
-            <form id="contact-form" novalidate>
+    <section id="send-a-message" class="bg-white py-8 md:py-16 scroll-mt-16">
+      <div class="max-w-2xl mx-auto px-4">
+        <h2 class="text-2xl font-bold mb-4">Send a Message</h2>
+        <p class="text-gray-600 mb-6">Rather write something first? Fill the form and I'll reply within one business day with a few times that work.</p>
+        <form id="contact-form" data-cta="form" novalidate>
               <!-- Honeypot — hidden from humans, bots fill it and get rejected -->
               <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
               <div class="mb-4">
                 <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                <input id="contact-name" type="text" name="name" required placeholder="Your name" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                <input id="contact-name" type="text" name="name" required autocomplete="name" placeholder="Your name" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
               </div>
               <div class="mb-4">
                 <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input id="contact-email" type="email" name="email" required placeholder="your@email.com" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                <input id="contact-email" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="your@email.com" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
               </div>
               <div class="mb-4">
-                <label for="contact-company" class="block text-sm font-medium text-gray-700 mb-1">Company <span class="text-gray-400 font-normal">(optional)</span></label>
-                <input id="contact-company" type="text" name="company" placeholder="Company name" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
-              </div>
-              <div class="mb-4">
-                <label for="contact-service" class="block text-sm font-medium text-gray-700 mb-1">What can I help with?</label>
-                <select id="contact-service" name="service_interest" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent bg-white">
-                  <option value="">Select an option...</option>
-                  <option value="AI Training">AI Training</option>
-                  <option value="AI-Accelerated Development">AI-Accelerated Development</option>
-                  <option value="Workflow Automation">Workflow Automation</option>
-                  <option value="Something else">Something else</option>
-                </select>
-              </div>
-              <div class="mb-4">
-                <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea id="contact-message" name="message" required rows="5" placeholder="Tell me about your project or question..." class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"></textarea>
+                <label for="contact-message" class="block text-sm font-medium text-gray-700 mb-1">What would you like to talk about?</label>
+                <textarea id="contact-message" name="message" required rows="4" placeholder="Tell me about your project or question..." class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"></textarea>
               </div>
               <!-- Cloudflare Turnstile container — site key is fetched from
                    /api/contact-config at runtime and the widget is rendered
                    explicitly. No key lives in the repo. -->
               <div id="turnstile-container" class="mb-4"></div>
               <button id="contact-submit" type="submit" class="w-full bg-gold text-navy font-semibold px-6 py-3 rounded-lg hover:bg-gold-light transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
-                Send Message
+                Send and I'll reply within 1 business day
               </button>
               <p id="contact-error" class="hidden mt-3 text-sm text-red-600" role="alert"></p>
               <p id="contact-success" class="hidden mt-3 text-sm text-green-700" role="status">
                 Message sent — I'll be in touch within one business day.
               </p>
             </form>
-          </div>
-
-        </div>
+        <p class="text-sm text-gray-500 mt-6 pt-6 border-t border-gray-200">References and live demos available on the discovery call.</p>
       </div>
     </section>
 
@@ -367,8 +354,6 @@
         const payload = {
           name: (fd.get('name') || '').toString(),
           email: (fd.get('email') || '').toString(),
-          company: (fd.get('company') || '').toString(),
-          service_interest: (fd.get('service_interest') || '').toString(),
           message: (fd.get('message') || '').toString(),
           _gotcha: (fd.get('_gotcha') || '').toString(),
           turnstileToken: turnstileToken,
