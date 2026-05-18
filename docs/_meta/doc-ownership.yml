@@ -1,0 +1,100 @@
+# doc-ownership.yml — code-path → doc routing map.
+#
+# Consumed by `scripts/match-docs.mjs` to determine which docs are affected
+# by a given diff. Edit this file to map your code paths to your domain docs.
+#
+# Notes:
+# - A file can be matched by multiple docs. The script reports it under each.
+# - A file matched by NO doc is reported as "unmatched" — handle in step 3 of
+#   the sync workflow (add ownership, or confirm it legitimately has no owner).
+# - Globs are evaluated relative to the repo root.
+
+docs:
+
+  positioning:
+    paths:
+      - 'PRODUCT.md'
+      - '*.html'  # any HTML page-copy edit can touch positioning
+    concepts:
+      - 'three-track'
+      - 'AI-accelerated'
+      - 'AI-Accelerated Software Development'
+      - 'AI Training'
+      - 'AI Workflow Automation'
+      - 'Kelowna'
+      - '12+ years'
+      - 'RoomBooking'
+      - 'BIS'
+
+  pages:
+    paths:
+      - '*.html'
+      - 'js/*.js'
+    concepts:
+      - 'class="hidden md:flex'  # nav markers
+      - 'mobile-menu'
+      - 'sticky top-0'
+      - 'order-1'
+      - 'order-2'
+      - 'md:order-'
+
+  linter:
+    paths:
+      - 'scripts/check-claims.mjs'
+      - 'tests/check-claims.test.mjs'
+    concepts:
+      - 'PATTERNS'
+      - 'check-claims-allow'
+      - 'checkLine'
+      - 'checkProximity'
+
+  deploy:
+    paths:
+      - '.github/workflows/**'
+      - 'package.json'
+      - 'css/styles.css'  # cache-buster discipline lives here
+    concepts:
+      - 'rsync'
+      - 'DREAMHOST_SSH_KEY'
+      - 'Cloudflare'
+      - 'cache-buster'
+      - '?v=2026'
+      - 'check:claims'
+      - 'tailwindcss'
+
+  contact-flow:
+    paths:
+      - 'contact.html'
+      - 'server.js'
+      - '.env.example'
+    concepts:
+      - '/api/contact'
+      - 'Turnstile'
+      - 'Resend'
+      - 'wts_contact'
+      - 'SUPABASE_SERVICE_ROLE_KEY'
+
+  visual-system:
+    paths:
+      - 'DESIGN.md'
+      - 'DESIGN.json'
+      - 'src/input.css'
+      - 'css/styles.css'
+      - 'tailwind.config.js'
+    concepts:
+      - '--color-gold'
+      - '--color-navy'
+      - 'Solder Gold'
+      - 'Drafting Navy'
+
+  chatbot:
+    paths:
+      - 'prompts/chatbot-system.md'
+      - 'server.js'
+      - 'js/chatbot.js'
+      - 'js/chatbot-demo.js'
+    concepts:
+      - '/api/chat'
+      - 'SYSTEM_PROMPT'
+      - 'Anthropic'
+      - 'claude-'

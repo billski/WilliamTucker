@@ -3,6 +3,26 @@
 This file orients agents working in `D:\code\WTS` (the William Tucker
 Solutions marketing site). Read it before editing any copy.
 
+## Read the vault first
+
+This project has a documentation vault at `docs/` — start there before
+guessing anything about architecture, deploy, contact-form, or
+positioning. The vault is the authoritative source for codebase facts;
+this CLAUDE.md is just orientation.
+
+- **`docs/_index.md`** — vault home; lists every domain doc with
+  one-line task hints. Read this before grepping the repo.
+- **`docs/_meta/vault-conventions.md`** — REQUIRED before editing any
+  doc under `docs/`.
+- **`docs/_meta/docs-sync-prompt.md`** — REQUIRED when the user says
+  "update docs" / "sync docs".
+
+If you're debugging a failure mode and a domain doc seems relevant
+(e.g., deploy caching, linter behavior, contact-form handler), read
+that doc end-to-end before guessing. The vault was created on
+2026-05-18 after a 3-hour cache-debugging incident that a 5-minute
+read of a deploy doc would have prevented.
+
 ## Source of truth
 
 - **`D:\code\cv\PROFILE.md` is canonical** for every fact about William's
@@ -57,24 +77,32 @@ cannot recur.
 
 ## Other places facts and rules live
 
-| Topic | Where |
-|---|---|
-| Brand voice / positioning | `PRODUCT.md` |
-| Visual spec, anti-references | `DESIGN.md` + `DESIGN.json` |
-| Chatbot system prompt | `server.js:28-194` (sync hazard — see below) |
-| Deploy / launch process | `docs/launch-guide.md` |
-| Sales materials | `docs/sales/` |
-| Funding / grants | `GRANTS.md` |
-| Known drift / TODOs | `docs/_backlog.md` |
-| Linter pattern catalog | `scripts/check-claims.mjs` |
+For full docs use the vault. Quick-reference:
+
+| Topic | Vault doc | Other |
+|---|---|---|
+| Three tracks / brand voice / framing rules | `docs/positioning.md` | `PRODUCT.md` (legacy — being migrated) |
+| HTML page map / anchor naming / breakpoints | `docs/pages.md` | — |
+| Linter patterns / suppressions / build integration | `docs/linter.md` | `scripts/check-claims.mjs` |
+| GitHub Actions → DreamHost / Cloudflare / cache-busting | `docs/deploy.md` | `.github/workflows/deploy.yml` |
+| `/api/contact` flow / Supabase / Turnstile / Resend | `docs/contact-flow.md` | `server.js`, `.env.example` |
+| Visual system (colors, type, components) | `docs/visual-system.md` (stub) | `DESIGN.md` + `DESIGN.json` (current source) |
+| Chatbot prompt / `/api/chat` / widget | `docs/chatbot.md` (stub) | `prompts/chatbot-system.md` (loaded by `server.js` at startup) |
+| Known drift / TODO-verify | `docs/_backlog.md` | — |
+
+Local-only / off-site:
+- Launch process: `docs/launch-guide.md` (gitignored — local only)
+- Sales materials: `docs/sales/` (gitignored — local only)
+- Funding / grants: `GRANTS.md` (gitignored — local only)
 
 ## Two surfaces, one source of truth
 
-HTML page copy AND `server.js:28-194` (the chatbot system prompt) both
-restate facts that originate in `PROFILE.md`. When PROFILE.md changes,
-both surfaces must be updated together. The linter scans both. A future
-task — logged in `docs/_backlog.md` — will extract the system prompt to
-`prompts/chatbot-system.md` so it can be edited as plain prose.
+HTML page copy AND `prompts/chatbot-system.md` (the chatbot system
+prompt — loaded by `server.js` at startup) both restate facts that
+originate in `PROFILE.md`. When PROFILE.md changes, both surfaces
+must be updated together. The linter scans both. Pricing numbers,
+in particular, must match exactly between `pricing.html` and the
+prompt — see `docs/positioning.md` for the discipline.
 
 ## Project shape
 
