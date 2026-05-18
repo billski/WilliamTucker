@@ -30,7 +30,7 @@ The site is a flat collection of 8 hand-authored HTML pages, no framework, no ro
 | `small-business.html` | Kelowna SMB landing — pain-card grid, before/after section, Quick Win package, three-track preview, interactive quiz, chatbot demo | Inline `<style>` block (lines 20–43) for `.pain-card` hover/reveal — the ONLY page-specific stylesheet on the site |
 | `about.html` | Bio, expertise grid, education, independent projects, philosophy | Heaviest individual page in raw vertical height — long scroll |
 | `faq.html` | 18 Q&As across 5 groups, wrapped in `<details>`/`<summary>` accordions | Each Q&A is a `<details class="group ...">` with a `group-open:rotate-180` chevron span |
-| `contact.html` | "Let's Talk" hero + "Pick a Time" booker (Google Appointment Schedule embed) + "Send a Message" single-column form (demoted, anchored at `#send-a-message`) + "Other Ways to Reach Me" | Form POSTs to `/api/contact` — see [[contact-flow]]. Booker is the primary CTA; the form is the escape hatch. NO chatbot widget loads here. The page hides the gold 'Book a Call' nav pill (visitor is already here). |
+| `contact.html` | "Pick a Time" booker (Google Appointment Schedule iframe — page H1, no separate hero section) + "Send a Message" single-column form (demoted, anchored at `#send-a-message`) + "Other Ways to Reach Me" | Form POSTs to `/api/contact` — see [[contact-flow]]. Booker is the primary CTA; the form is the escape hatch. NO chatbot widget loads here. The page hides the gold 'Book a Call' nav pill (visitor is already here). |
 | `privacy.html` | Privacy notice | PIPEDA — must accurately name third-party processors. See known-drift backlog if this is stale. |
 
 The site has **no** `case-studies.html` (deleted in PR #4) or `checklist.html` (deleted in PR #4). The page-routing memory `project-site-no-work-samples` codifies the "no portfolio on the public site" decision — see that memory before reintroducing.
@@ -113,7 +113,7 @@ All 8 pages have the Client Portal `<li>` in the footer Quick Links. (Earlier dr
 
 ## Breakpoint discipline (mobile-first)
 
-<!-- verified-against: contact.html:97 (py-8 md:py-16) and css/styles.css ?v=20260517b on 2026-05-18 -->
+<!-- verified-against: contact.html:91 (py-8 md:py-16) and css/styles.css ?v=20260518e on 2026-05-18 -->
 
 Tailwind v4. Breakpoints:
 - Mobile (`< 640px`): no prefix — base classes apply
@@ -124,32 +124,19 @@ Tailwind v4. Breakpoints:
 
 The mobile-specific patterns the contact page incident drove home (see [[deploy#debugging-cache-problems-the-2026-05-17-playbook]]):
 
-### Pattern 1: order-swap on a 2-column grid
+### Pattern 1: compressed mobile padding
 
-When a desktop two-column layout should reorder on mobile, use Tailwind's `order-*` utilities on the grid children:
-
-```html
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-  <div class="order-2 md:order-1"> <!-- second on mobile, first on desktop --> </div>
-  <div class="order-1 md:order-2"> <!-- first on mobile, second on desktop --> </div>
-</div>
-```
-
-Live example: `contact.html:107-141` — the "How This Works" steps go below the form on mobile so the user reaches the submit button without scrolling past the explanation.
-
-### Pattern 2: compressed mobile padding
-
-When section padding is too generous on mobile, compress with `py-8 md:py-16` (saves ~64px) and shrink the heading scale with `text-3xl md:text-4xl` (saves ~12px):
+When section padding is too generous on mobile, compress with `py-8 md:py-16` (saves ~64px). For headings, scale down on mobile with `text-2xl md:text-3xl` or `text-3xl md:text-4xl`:
 
 ```html
 <section class="py-8 md:py-16">
-  <h1 class="text-3xl md:text-4xl font-bold ...">Heading</h1>
+  <h1 class="text-2xl md:text-3xl font-bold ...">Heading</h1>
 </section>
 ```
 
-Live example: `contact.html:97-101`.
+Live example: `contact.html:91-93` (the "Pick a Time" booker section — also serves as the page's H1 since the dedicated hero section was removed for vertical density).
 
-### Pattern 3: hidden-on-desktop affordance
+### Pattern 2: hidden-on-desktop affordance
 
 When a mobile-only hint is needed (e.g., a "tap to reveal" cue for hover-driven UI), use `md:hidden`:
 
