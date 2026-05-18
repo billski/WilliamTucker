@@ -1,0 +1,251 @@
+<style>
+  :root {
+    --navy: #1a2332;
+    --navy-light: #243044;
+    --navy-dark: #111827;
+    --gold: #d4a843;
+    --gold-light: #e0be6a;
+    --gold-dark: #b8912e;
+    --bg: #f8f9fa;
+    --white: #ffffff;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+  }
+
+  h2 { color: var(--gold) !important; }
+  .subtitle { color: var(--text-muted) !important; }
+
+  .entity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 16px;
+  }
+
+  .entity {
+    border: 2px solid var(--gold-dark);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--navy-light);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .entity.featured {
+    grid-column: 1 / -1;
+    border-color: var(--gold);
+    background: linear-gradient(135deg, var(--navy-light), var(--navy));
+  }
+
+  .entity-title {
+    font-weight: bold;
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .entity .field {
+    color: var(--text);
+    padding: 2px 0;
+  }
+
+  .entity .field-group {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(212,168,67,0.2);
+  }
+
+  .field-label {
+    color: var(--gold-light);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .status-flow {
+    margin-top: 6px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .status {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .status.yellow { background: #92400e; color: #fbbf24; }
+  .status.blue { background: #1e3a5f; color: #60a5fa; }
+  .status.green { background: #14532d; color: #4ade80; }
+  .status.red { background: #7f1d1d; color: #f87171; }
+  .status.gray { background: #374151; color: #9ca3af; }
+
+  .arrow { color: var(--gold-dark); font-size: 12px; }
+
+  .relationships {
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--navy-dark);
+    border-radius: 8px;
+    border: 1px solid var(--gold-dark);
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .relationships strong { color: var(--gold); }
+</style>
+
+<h2>Data Model — Core Entities</h2>
+<p class="subtitle">William Tucker Solutions — business admin system foundation</p>
+
+<div class="entity-grid">
+
+  <div class="entity featured">
+    <div class="entity-title">CONTACT (Client Profile & CRM)</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+      <div>
+        <div class="field-label">Identity</div>
+        <div class="field">name, email, phone</div>
+        <div class="field">company, job_title</div>
+        <div class="field">website, linkedin_url</div>
+        <div class="field">avatar_url</div>
+      </div>
+      <div>
+        <div class="field-label">Business Details</div>
+        <div class="field">industry, company_size</div>
+        <div class="field">address (street, city, province, postal)</div>
+        <div class="field">billing_email (if different)</div>
+        <div class="field">preferred_payment_method</div>
+      </div>
+      <div>
+        <div class="field-label">CRM & Pipeline</div>
+        <div class="field">source (calendly / referral / networking / website / other)</div>
+        <div class="field">referred_by (self-ref contact_id)</div>
+        <div class="field">tags (array — e.g. "finance", "AI-ready")</div>
+        <div class="field">lifetime_value (computed)</div>
+      </div>
+    </div>
+    <div class="field-group">
+      <div class="field-label">Status Flow</div>
+      <div class="status-flow">
+        <span class="status yellow">lead</span>
+        <span class="arrow">→</span>
+        <span class="status blue">prospect</span>
+        <span class="arrow">→</span>
+        <span class="status green">client</span>
+        <span class="arrow">→</span>
+        <span class="status gray">archived</span>
+      </div>
+      <div class="field" style="margin-top: 6px; color: var(--text-muted); font-size: 12px;">
+        Lead = discovery call booked/initial contact &nbsp;|&nbsp; Prospect = proposal sent &nbsp;|&nbsp; Client = signed engagement &nbsp;|&nbsp; Archived = inactive
+      </div>
+    </div>
+  </div>
+
+  <div class="entity">
+    <div class="entity-title">PROPOSAL</div>
+    <div class="field">contact_id, title</div>
+    <div class="field">service_type (assessment / implementation / retainer / workshop)</div>
+    <div class="field">billing_model (fixed / retainer / day_rate)</div>
+    <div class="field">amount, description, scope_of_work</div>
+    <div class="field">valid_until, terms_and_conditions</div>
+    <div class="status-flow">
+      <span class="status yellow">draft</span>
+      <span class="arrow">→</span>
+      <span class="status blue">sent</span>
+      <span class="arrow">→</span>
+      <span class="status green">accepted</span>
+      <span class="arrow">/</span>
+      <span class="status red">declined</span>
+    </div>
+  </div>
+
+  <div class="entity">
+    <div class="entity-title">PROJECT</div>
+    <div class="field">contact_id, proposal_id</div>
+    <div class="field">name, description, billing_model</div>
+    <div class="field">rate (hourly / daily / fixed / monthly)</div>
+    <div class="field">budget, start_date, end_date</div>
+    <div class="field">deliverables (JSON array)</div>
+    <div class="status-flow">
+      <span class="status yellow">planned</span>
+      <span class="arrow">→</span>
+      <span class="status blue">active</span>
+      <span class="arrow">→</span>
+      <span class="status green">completed</span>
+      <span class="arrow">→</span>
+      <span class="status gray">archived</span>
+    </div>
+  </div>
+
+  <div class="entity">
+    <div class="entity-title">TIME ENTRY</div>
+    <div class="field">project_id, date, hours</div>
+    <div class="field">description</div>
+    <div class="field">billable (bool) — optional for fixed/retainer</div>
+    <div class="field">invoice_id (null until invoiced)</div>
+  </div>
+
+  <div class="entity">
+    <div class="entity-title">INVOICE</div>
+    <div class="field">project_id, contact_id</div>
+    <div class="field">number (WTS-2026-001)</div>
+    <div class="field">issue_date, due_date</div>
+    <div class="field">subtotal, tax_rate, tax_amount, total</div>
+    <div class="field">line_items (JSON array)</div>
+    <div class="field">payment_method, payment_date, notes</div>
+    <div class="status-flow">
+      <span class="status yellow">draft</span>
+      <span class="arrow">→</span>
+      <span class="status blue">sent</span>
+      <span class="arrow">→</span>
+      <span class="status green">paid</span>
+      <span class="arrow">/</span>
+      <span class="status red">overdue</span>
+    </div>
+  </div>
+
+  <div class="entity">
+    <div class="entity-title">EXPENSE</div>
+    <div class="field">project_id (optional)</div>
+    <div class="field">category (software / travel / office / marketing / other)</div>
+    <div class="field">amount, date, vendor, description</div>
+    <div class="field">receipt_url (Supabase Storage)</div>
+    <div class="field">tax_deductible (bool)</div>
+  </div>
+
+  <div class="entity">
+    <div class="entity-title">ACTIVITY LOG</div>
+    <div class="field">contact_id, project_id</div>
+    <div class="field">type (call / email / meeting / note / follow_up)</div>
+    <div class="field">description, date</div>
+    <div class="field">follow_up_date</div>
+    <div style="margin-top: 6px; font-size: 12px; color: var(--text-muted);">Full interaction history per contact</div>
+  </div>
+
+  <div class="entity">
+    <div class="entity-title">DOCUMENT</div>
+    <div class="field">project_id, contact_id</div>
+    <div class="field">type (proposal_pdf / contract / deliverable / receipt)</div>
+    <div class="field">name, file_url (Supabase Storage)</div>
+    <div class="field">visible_to_client (bool)</div>
+    <div style="margin-top: 6px; font-size: 12px; color: var(--text-muted);">Controls client portal visibility</div>
+  </div>
+
+</div>
+
+<div class="relationships">
+  <strong>Key Relationships:</strong><br>
+  Contact → has many Proposals, Projects, Invoices, Activities, Documents<br>
+  Proposal → accepted → creates Project<br>
+  Project → has many Time Entries, Invoices, Documents, Expenses<br>
+  Invoice → links to Time Entries (for hourly billing)<br>
+  Contact.referred_by → self-referencing for referral tracking<br>
+  All tables → RLS: admin sees all, client portal scoped by contact_id + visible_to_client
+</div>

@@ -1,0 +1,432 @@
+<style>
+  :root {
+    --navy: #1a2332;
+    --navy-light: #243044;
+    --navy-dark: #111827;
+    --gold: #d4a843;
+    --gold-light: #e0be6a;
+    --gold-dark: #b8912e;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+  }
+
+  h2 { color: var(--gold) !important; }
+  .subtitle { color: var(--text-muted) !important; }
+
+  .app-frame {
+    border: 2px solid var(--gold-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+    background: var(--navy-dark);
+  }
+
+  .app-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navy);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--gold-dark);
+  }
+
+  .app-logo {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .app-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  .app-body {
+    display: flex;
+    min-height: 480px;
+  }
+
+  .app-sidebar {
+    width: 200px;
+    background: var(--navy-light);
+    padding: 16px 0;
+    border-right: 1px solid rgba(212,168,67,0.15);
+    flex-shrink: 0;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    color: var(--text-muted);
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  .nav-item:hover { background: rgba(212,168,67,0.08); color: var(--text); }
+  .nav-item.active { background: rgba(212,168,67,0.15); color: var(--gold); }
+
+  .nav-icon { width: 18px; text-align: center; font-size: 14px; }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--gold-dark);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+  }
+
+  .app-main {
+    flex: 1;
+    padding: 24px;
+  }
+
+  .page-title {
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .summary-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .summary-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .summary-value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .summary-detail {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .panel {
+    background: var(--navy-light);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .panel-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .invoice-row {
+    display: grid;
+    grid-template-columns: 120px 1fr 100px 100px 80px;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(212,168,67,0.08);
+    font-size: 13px;
+  }
+
+  .invoice-row:last-child { border-bottom: none; }
+  .invoice-row.header { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+
+  .invoice-num { color: var(--gold); font-weight: 600; }
+  .invoice-desc { color: var(--text); }
+  .invoice-amount { color: var(--text); text-align: right; }
+  .invoice-date { color: var(--text-muted); }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .tag-green { background: #14532d; color: #4ade80; }
+  .tag-yellow { background: #92400e; color: #fbbf24; }
+  .tag-blue { background: #1e3a5f; color: #60a5fa; }
+  .tag-red { background: #7f1d1d; color: #f87171; }
+
+  .pay-btn {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .section-divider {
+    margin: 32px 0 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(212,168,67,0.2);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+    font-size: 13px;
+  }
+
+  .comparison-table th {
+    text-align: left;
+    padding: 10px 16px;
+    background: var(--navy-light);
+    color: var(--gold);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--gold-dark);
+  }
+
+  .comparison-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid rgba(212,168,67,0.08);
+    color: var(--text);
+  }
+
+  .comparison-table td.muted { color: var(--text-muted); }
+
+  .check { color: #4ade80; }
+  .cross { color: #6b7280; }
+
+  .auth-note {
+    margin-top: 20px;
+    padding: 16px;
+    background: var(--navy-dark);
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .auth-note strong { color: var(--gold); }
+</style>
+
+<h2>Client Portal — What Your Clients See</h2>
+<p class="subtitle">Simplified, read-mostly view scoped to their data only via Supabase RLS</p>
+
+<div class="app-frame">
+  <div class="app-topbar">
+    <div class="app-logo">William Tucker Solutions</div>
+    <div class="app-topbar-right">
+      <span>Sarah Chen</span>
+      <span>Acme Corp</span>
+      <span style="color: var(--text-muted);">Sign Out</span>
+    </div>
+  </div>
+  <div class="app-body">
+    <div class="app-sidebar">
+      <div class="nav-item active">
+        <span class="nav-icon">📊</span> Overview
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon">🗂️</span> Projects
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon">💰</span> Invoices
+        <span class="nav-badge">1</span>
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon">📁</span> Documents
+      </div>
+      <div class="nav-item">
+        <span class="nav-icon">📋</span> Proposals
+      </div>
+    </div>
+    <div class="app-main">
+      <div class="page-title">Welcome, Sarah</div>
+      <div class="page-subtitle">Acme Corp — your project overview with William Tucker Solutions</div>
+
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="summary-label">Active Projects</div>
+          <div class="summary-value">1</div>
+          <div class="summary-detail">AI Implementation — in progress</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Outstanding Balance</div>
+          <div class="summary-value">$8,000</div>
+          <div class="summary-detail">1 invoice awaiting payment</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Documents</div>
+          <div class="summary-value">4</div>
+          <div class="summary-detail">Contract, proposal, 2 deliverables</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Invoices</div>
+        <div class="invoice-row header">
+          <div>Invoice #</div>
+          <div>Description</div>
+          <div>Due Date</div>
+          <div style="text-align: right;">Amount</div>
+          <div></div>
+        </div>
+        <div class="invoice-row">
+          <div class="invoice-num">WTS-2026-006</div>
+          <div class="invoice-desc">Retainer — April 2026</div>
+          <div class="invoice-date">Apr 15</div>
+          <div class="invoice-amount">$8,000</div>
+          <div><button class="pay-btn">Pay Now</button></div>
+        </div>
+        <div class="invoice-row">
+          <div class="invoice-num">WTS-2026-005</div>
+          <div class="invoice-desc">AI Assessment — Phase 1</div>
+          <div class="invoice-date">Mar 20</div>
+          <div class="invoice-amount">$7,500</div>
+          <div><span class="tag tag-green">Paid</span></div>
+        </div>
+        <div class="invoice-row">
+          <div class="invoice-num">WTS-2026-003</div>
+          <div class="invoice-desc">Discovery & Scoping</div>
+          <div class="invoice-date">Feb 28</div>
+          <div class="invoice-amount">$5,000</div>
+          <div><span class="tag tag-green">Paid</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-title">Current Project</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 13px;">
+          <div>
+            <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Project</div>
+            <div style="color: var(--text); font-weight: 600;">AI Implementation — Workflow Automation</div>
+            <div style="color: var(--text-muted); margin-top: 8px; font-size: 12px;">Automating invoice processing and reporting workflows using AI agents integrated with existing ERP system.</div>
+          </div>
+          <div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div>
+                <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Status</div>
+                <span class="tag tag-blue">Active</span>
+              </div>
+              <div>
+                <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Billing</div>
+                <div style="color: var(--text);">Monthly Retainer</div>
+              </div>
+              <div>
+                <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Started</div>
+                <div style="color: var(--text);">Mar 1, 2026</div>
+              </div>
+              <div>
+                <div style="color: var(--text-muted); font-size: 11px; text-transform: uppercase; margin-bottom: 4px;">Est. Completion</div>
+                <div style="color: var(--text);">Jun 30, 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<h2 style="color: var(--gold);">Admin vs Client Portal — Feature Comparison</h2>
+<p class="subtitle">What each role can see and do</p>
+
+<table class="comparison-table">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Admin (You)</th>
+      <th>Client Portal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Dashboard</td>
+      <td><span class="check">✓</span> Full KPIs, all clients</td>
+      <td><span class="check">✓</span> Their overview only</td>
+    </tr>
+    <tr>
+      <td>Contacts / CRM</td>
+      <td><span class="check">✓</span> Full CRM, all contacts</td>
+      <td class="muted"><span class="cross">—</span> Not visible</td>
+    </tr>
+    <tr>
+      <td>Proposals</td>
+      <td><span class="check">✓</span> Create, send, track all</td>
+      <td><span class="check">✓</span> View & accept their proposals</td>
+    </tr>
+    <tr>
+      <td>Projects</td>
+      <td><span class="check">✓</span> Full management, all projects</td>
+      <td><span class="check">✓</span> View status, description, dates</td>
+    </tr>
+    <tr>
+      <td>Time Tracking</td>
+      <td><span class="check">✓</span> Log & manage all entries</td>
+      <td class="muted"><span class="cross">—</span> Not visible</td>
+    </tr>
+    <tr>
+      <td>Invoices</td>
+      <td><span class="check">✓</span> Create, send, track all</td>
+      <td><span class="check">✓</span> View, download PDF, pay online</td>
+    </tr>
+    <tr>
+      <td>Expenses</td>
+      <td><span class="check">✓</span> Full expense tracking</td>
+      <td class="muted"><span class="cross">—</span> Not visible</td>
+    </tr>
+    <tr>
+      <td>Documents</td>
+      <td><span class="check">✓</span> All documents, toggle visibility</td>
+      <td><span class="check">✓</span> Only docs marked visible</td>
+    </tr>
+    <tr>
+      <td>Settings</td>
+      <td><span class="check">✓</span> Business config, tax, templates</td>
+      <td class="muted"><span class="cross">—</span> Not visible</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="auth-note">
+  <strong>Authentication & Security:</strong><br>
+  <strong>Admin:</strong> You log in with email/password via Supabase Auth. Single admin account.<br>
+  <strong>Clients:</strong> Magic link (passwordless email login). You create their account when they become a client. No password to manage.<br>
+  <strong>Data isolation:</strong> Supabase Row-Level Security ensures clients can ONLY access rows where contact_id matches their auth user. Enforced at the database level — no app-level bugs can leak data.<br>
+  <strong>Future-proof:</strong> If you hire staff, add a role column to the users table. RLS policies already support it.
+</div>
