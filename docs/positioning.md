@@ -27,7 +27,7 @@ The site is the entire top-of-funnel for a one-engineer consulting practice in K
 |---|---|---|
 | **Track 1 — AI-Accelerated Software Development** | Custom software, modernizations, and apps. AI agents handle the boilerplate; William handles engineering, planning, and review. Client owns the codebase at handoff. | $2,500 audit · $10,000–$30,000 build · $1,500/mo ongoing support |
 | **Track 2 — AI Training** | Hands-on AI training from a daily practitioner. In-person in Kelowna or online. 1:1, group workshops, or custom team curriculum. | $275 per 90-min session · $2,500 half-day · $4,000 full-day · from $7,500 custom curriculum · $1,250/mo retainer |
-| **Track 3 — AI Workflow Automation** | AI plugged into the tools and systems the client already uses — chatbots, custom integrations, internal tooling, agents, MCP servers. | Free 30–60 min discovery · $2,500 small build · $7,500 medium build · $1,000/mo maintenance |
+| **Track 3 — AI Workflow Automation** | AI plugged into the tools and systems the client already uses — chatbots, custom integrations, internal tooling, agents, MCP servers. | Free 30-min discovery · $2,500 small build · $7,500 medium build · $1,000/mo maintenance |
 
 These exact prices appear in two surfaces simultaneously: `pricing.html` and `prompts/chatbot-system.md`. **When pricing changes, BOTH surfaces must be updated together.** The linter doesn't catch numeric drift; agent discipline does.
 

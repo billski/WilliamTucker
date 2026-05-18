@@ -86,6 +86,13 @@
     .wts-typing span:nth-child(2) { animation-delay: 0.2s; }
     .wts-typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes wts-bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
+    @media (prefers-reduced-motion: reduce) {
+      .wts-typing span { animation: none; }
+      #wts-chat-panel { transition: opacity 0.2s; }
+      #wts-chat-panel.wts-hidden { transform: none; }
+      #wts-chat-btn { transition: background 0.2s; }
+      #wts-chat-btn:hover { transform: none; }
+    }
     #wts-input-row {
       display: flex; gap: 8px; padding: 12px; border-top: 1px solid #e5e7eb; background: #fff;
     }

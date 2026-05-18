@@ -80,6 +80,9 @@
     .wts-demo-typing span:nth-child(2) { animation-delay: 0.2s; }
     .wts-demo-typing span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes wts-demo-bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-5px)} }
+    @media (prefers-reduced-motion: reduce) {
+      .wts-demo-typing span { animation: none; }
+    }
     #wts-demo-suggest {
       display: flex; flex-wrap: wrap; gap: 6px;
       padding: 0 16px 8px 16px; background: #0f1824;

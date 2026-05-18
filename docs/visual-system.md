@@ -262,7 +262,7 @@ Target: **WCAG 2.2 AA** for all public marketing pages. Concrete commitments sta
 - Meaningful images carry alt text; decorative use empty alt or `aria-hidden`
 - Form fields have labels; error messages readable by assistive tech
 - No content depends on color alone (status indicators pair color with text or icon)
-- `prefers-reduced-motion` honored on every transition (currently the chatbot widget JS uses 200ms color-only transitions and a typing-indicator bounce that could degrade — backlog item to verify)
+- `prefers-reduced-motion` honored on every transition (chatbot widget JS verified 2026-05-18: bounce animation + panel slide transform disabled under the media query)
 
 AAA is not a target (would over-constrain typography + color choices for marginal real-world benefit).
 
@@ -285,5 +285,5 @@ AAA is not a target (would over-constrain typography + color choices for margina
 
 - `small-business.html` has two consecutive `bg-white` sections (audit 2026-05-18). Either insert a Page Off-White transition or accept the violation as a documented exception.
 - The middle stat strip cell ("3 service tracks") is tautological — replace with a verifiable artifact reference.
-- `prefers-reduced-motion` honoring in `js/chatbot.js` and `js/chatbot-demo.js` has not been verified. Audit on next chatbot edit.
+- ~~`prefers-reduced-motion` honoring in chatbot widgets.~~ Resolved 2026-05-18 — see [[chatbot#backlog]] for the verifying commit.
 - A planned cheatsheet `docs/_cheatsheets/color-tokens.md` could distill the hex/token/Tailwind-class triple from this doc into a ≤30-line lookup. Hold off until the lookup proves repetitive.
