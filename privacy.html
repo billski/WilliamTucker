@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260517a" />
+  <link rel="stylesheet" href="css/styles.css?v=20260518a" />
 </head>
 <body>
 
@@ -32,6 +32,7 @@
           <a href="about.html" class="text-white hover:text-gold font-medium">About</a>
           <a href="pricing.html" class="text-white hover:text-gold font-medium">Pricing</a>
           <a href="contact.html" class="text-white hover:text-gold font-medium">Contact</a>
+          <a href="https://admin.williamtucker.ca/login" class="text-white hover:text-gold font-medium">Client Portal</a>
           <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded hover:bg-gold-light transition-colors duration-200">Book a Call</a>
         </nav>
         <button id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle mobile menu" class="md:hidden text-white p-2">
@@ -48,6 +49,7 @@
         <a href="about.html" class="text-white hover:text-gold font-medium">About</a>
         <a href="pricing.html" class="text-white hover:text-gold font-medium">Pricing</a>
         <a href="contact.html" class="text-white hover:text-gold font-medium">Contact</a>
+        <a href="https://admin.williamtucker.ca/login" class="text-white hover:text-gold font-medium">Client Portal</a>
         <a href="contact.html" class="bg-gold text-navy font-semibold px-4 py-2 rounded text-center hover:bg-gold-light transition-colors duration-200">Book a Call</a>
       </nav>
     </div>
@@ -57,7 +59,7 @@
     <section class="bg-navy py-16">
       <div class="max-w-7xl mx-auto px-4">
         <h1 class="text-4xl font-bold text-white mb-2">Privacy Policy</h1>
-        <p class="text-gray-400 text-sm">Last updated: April 2026</p>
+        <p class="text-gray-400 text-sm">Last updated: May 2026</p>
       </div>
     </section>
 
@@ -96,9 +98,11 @@
 
           <div>
             <h2 class="text-xl font-bold text-navy mb-3">How your information is stored</h2>
-            <p>Contact form submissions are processed by <strong>Formspree</strong> (formspree.io), a third-party form handling service. Their privacy policy is available at formspree.io/legal/privacy-policy. Formspree stores form data on servers in the United States.</p>
-            <p class="mt-3">Discovery call bookings made through the Calendly link are handled by <strong>Calendly</strong> (calendly.com). Their privacy policy is available at calendly.com/legal/privacy-notice.</p>
-            <p class="mt-3">Email correspondence is stored within our email provider's systems and is not shared externally.</p>
+            <p>Contact form submissions are written to our customer record system hosted on <strong>Supabase</strong>, a PostgreSQL provider. Supabase stores data on servers in the United States. Their privacy policy is at supabase.com/privacy.</p>
+            <p class="mt-3">Submission notifications and the auto-reply email you receive are sent via <strong>Resend</strong>, our transactional email provider. Their privacy policy is at resend.com/legal/privacy-policy.</p>
+            <p class="mt-3">The form's spam-protection challenge is provided by <strong>Cloudflare Turnstile</strong>. Their privacy policy is at cloudflare.com/privacypolicy.</p>
+            <p class="mt-3">The server that processes the contact form is hosted on <strong>Railway</strong>. Their privacy policy is at railway.com/legal/privacy.</p>
+            <p class="mt-3">Email correspondence after the initial form submission is stored within our email provider's systems and is not shared externally.</p>
           </div>
 
           <div>
