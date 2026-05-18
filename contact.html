@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -97,7 +97,7 @@
     <section style="background-color: #1a2332;" class="py-8 md:py-16">
       <div class="max-w-7xl mx-auto px-4">
         <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 md:mb-4">Let's Talk</h1>
-        <p class="text-gray-300 text-sm md:text-base">Every engagement starts with a free discovery call. No pressure, no obligation — just a conversation about your goals.</p>
+        <p class="text-gray-300 text-sm md:text-base">Pick a time below, or send a message — I'll reply within one business day.</p>
       </div>
     </section>
 
@@ -105,7 +105,8 @@
     <section style="background-color: #f8f9fa;" class="py-8 md:py-16">
       <div class="max-w-5xl mx-auto px-4">
         <h2 class="text-2xl md:text-3xl font-bold text-navy mb-3">Pick a Time</h2>
-        <p class="text-gray-600 mb-6 max-w-2xl">Free 30 minutes, no obligation. The calendar below pulls live from my schedule — grab a slot that works and you'll get a Google Calendar invite with a Meet link.</p>
+        <p class="text-gray-600 mb-2 max-w-2xl">Free 30 minutes, no obligation. The calendar below pulls live from my schedule — grab a slot that works and you'll get a Google Calendar invite with a Meet link.</p>
+        <p class="text-sm text-gray-500 mb-6">Based in Kelowna. Every call is with me, not a sales rep.</p>
 
         <!--
           GOOGLE APPOINTMENT SCHEDULE — embed setup (one-time, by William)
@@ -122,13 +123,15 @@
              on the iframe so styling stays consistent:
                loading="lazy"
                title="Book a discovery call with William Tucker"
-               class="w-full rounded-lg" style="min-height: 720px; border: 0;"
+               class="w-full h-[560px] md:h-[760px] rounded-lg" style="border: 0;"
+             (The responsive height pair caps mobile so the calendar doesn't
+              create an absurd phone scroll; desktop gets more room to show
+              two full weeks at once.)
         -->
-        <div class="bg-white rounded-xl border border-gray-200 p-2 md:p-4">
+        <div data-cta="booker" class="bg-white rounded-xl border border-gray-200 p-2 md:p-4">
           <!-- BEGIN PLACEHOLDER — remove this <div> when pasting the real iframe -->
           <div
-            class="w-full rounded-lg border border-dashed border-gray-300 flex items-center justify-center text-center px-6 text-gray-500"
-            style="min-height: 720px;"
+            class="w-full h-[560px] md:h-[760px] rounded-lg border border-dashed border-gray-300 flex items-center justify-center text-center px-6 text-gray-500"
           >
             <div>
               <p class="font-semibold text-navy mb-2">Booking widget loads here</p>
@@ -138,7 +141,7 @@
           <!-- END PLACEHOLDER -->
         </div>
 
-        <p class="text-sm text-gray-500 mt-4">Prefer to write a message first? Use the form below and I'll reply within one business day with a few times that work.</p>
+        <p class="text-sm text-gray-500 mt-4">Prefer to write a message first? <a href="#send-a-message" class="text-gold hover:text-gold-dark font-medium">Send a message instead →</a></p>
       </div>
     </section>
 
