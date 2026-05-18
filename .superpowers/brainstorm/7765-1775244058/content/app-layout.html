@@ -1,0 +1,431 @@
+<style>
+  :root {
+    --navy: #1a2332;
+    --navy-light: #243044;
+    --navy-dark: #111827;
+    --gold: #d4a843;
+    --gold-light: #e0be6a;
+    --gold-dark: #b8912e;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+  }
+
+  h2 { color: var(--gold) !important; }
+  .subtitle { color: var(--text-muted) !important; }
+
+  .app-frame {
+    border: 2px solid var(--gold-dark);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 16px;
+    background: var(--navy-dark);
+  }
+
+  .app-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navy);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--gold-dark);
+  }
+
+  .app-logo {
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.3px;
+  }
+
+  .app-topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  .app-body {
+    display: flex;
+    min-height: 500px;
+  }
+
+  .app-sidebar {
+    width: 220px;
+    background: var(--navy-light);
+    padding: 16px 0;
+    border-right: 1px solid rgba(212,168,67,0.15);
+    flex-shrink: 0;
+  }
+
+  .nav-section {
+    padding: 0 16px;
+    margin-bottom: 16px;
+  }
+
+  .nav-section-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gold-dark);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: var(--text-muted);
+    font-size: 13px;
+    cursor: pointer;
+    margin-bottom: 2px;
+  }
+
+  .nav-item:hover { background: rgba(212,168,67,0.08); color: var(--text); }
+  .nav-item.active { background: rgba(212,168,67,0.15); color: var(--gold); }
+
+  .nav-icon { width: 18px; text-align: center; font-size: 14px; }
+
+  .nav-badge {
+    margin-left: auto;
+    background: var(--gold-dark);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+  }
+
+  .app-main {
+    flex: 1;
+    padding: 24px;
+  }
+
+  .page-title {
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .page-subtitle {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .stat-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: 4px;
+  }
+
+  .stat-detail {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .content-panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .panel {
+    background: var(--navy-light);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .panel-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .panel-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(212,168,67,0.08);
+    font-size: 13px;
+  }
+
+  .panel-row:last-child { border-bottom: none; }
+
+  .panel-row-name { color: var(--text); }
+  .panel-row-detail { color: var(--text-muted); font-size: 12px; }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .tag-green { background: #14532d; color: #4ade80; }
+  .tag-yellow { background: #92400e; color: #fbbf24; }
+  .tag-blue { background: #1e3a5f; color: #60a5fa; }
+  .tag-red { background: #7f1d1d; color: #f87171; }
+
+  .section-divider {
+    margin: 32px 0 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(212,168,67,0.2);
+  }
+
+  .page-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+  }
+
+  .page-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(212,168,67,0.15);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+
+  .page-card-title {
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .page-card-desc {
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.5;
+  }
+</style>
+
+<h2>Application Layout — Admin Dashboard</h2>
+<p class="subtitle">Sidebar navigation with dashboard home. This is what you see when you log in.</p>
+
+<div class="app-frame">
+  <div class="app-topbar">
+    <div class="app-logo">WTS Admin</div>
+    <div class="app-topbar-right">
+      <span>Quick Add ▾</span>
+      <span>🔔 2</span>
+      <span>William T.</span>
+    </div>
+  </div>
+  <div class="app-body">
+    <div class="app-sidebar">
+
+      <div class="nav-section">
+        <div class="nav-section-label">Overview</div>
+        <div class="nav-item active">
+          <span class="nav-icon">📊</span> Dashboard
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Pipeline</div>
+        <div class="nav-item">
+          <span class="nav-icon">👤</span> Contacts
+          <span class="nav-badge">12</span>
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">📋</span> Proposals
+          <span class="nav-badge">3</span>
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Work</div>
+        <div class="nav-item">
+          <span class="nav-icon">🗂️</span> Projects
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">⏱️</span> Time Tracking
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">Finance</div>
+        <div class="nav-item">
+          <span class="nav-icon">💰</span> Invoices
+          <span class="nav-badge">2</span>
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">🧾</span> Expenses
+        </div>
+      </div>
+
+      <div class="nav-section">
+        <div class="nav-section-label">System</div>
+        <div class="nav-item">
+          <span class="nav-icon">📁</span> Documents
+        </div>
+        <div class="nav-item">
+          <span class="nav-icon">⚙️</span> Settings
+        </div>
+      </div>
+
+    </div>
+    <div class="app-main">
+      <div class="page-title">Dashboard</div>
+      <div class="page-subtitle">Welcome back, William — here's your business at a glance</div>
+
+      <div class="dashboard-grid">
+        <div class="stat-card">
+          <div class="stat-label">Revenue (This Month)</div>
+          <div class="stat-value">$12,500</div>
+          <div class="stat-detail">+$5,000 from last month</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Outstanding</div>
+          <div class="stat-value">$8,200</div>
+          <div class="stat-detail">2 invoices pending</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Hours This Week</div>
+          <div class="stat-value">32.5</div>
+          <div class="stat-detail">81% utilization</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Active Pipeline</div>
+          <div class="stat-value">$45K</div>
+          <div class="stat-detail">3 proposals out</div>
+        </div>
+      </div>
+
+      <div class="content-panels">
+        <div class="panel">
+          <div class="panel-title">Upcoming Follow-ups</div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">Sarah Chen — Acme Corp</div>
+              <div class="panel-row-detail">Follow up on assessment proposal</div>
+            </div>
+            <span class="tag tag-yellow">Today</span>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">Mike Ross — FinTech Inc</div>
+              <div class="panel-row-detail">Discovery call scheduled</div>
+            </div>
+            <span class="tag tag-blue">Tomorrow</span>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">Lisa Park — Valley Credit Union</div>
+              <div class="panel-row-detail">Send workshop proposal</div>
+            </div>
+            <span class="tag tag-blue">Apr 7</span>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Recent Invoices</div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">WTS-2026-005 — Acme Corp</div>
+              <div class="panel-row-detail">AI Assessment — $7,500</div>
+            </div>
+            <span class="tag tag-green">Paid</span>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">WTS-2026-006 — FinTech Inc</div>
+              <div class="panel-row-detail">Retainer — April — $8,000</div>
+            </div>
+            <span class="tag tag-yellow">Sent</span>
+          </div>
+          <div class="panel-row">
+            <div>
+              <div class="panel-row-name">WTS-2026-004 — Valley CU</div>
+              <div class="panel-row-detail">Workshop day — $4,200</div>
+            </div>
+            <span class="tag tag-red">Overdue</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<h2 style="color: var(--gold);">All Pages</h2>
+<p class="subtitle">Every page in the admin app</p>
+
+<div class="page-list">
+  <div class="page-card">
+    <div class="page-card-title">Dashboard</div>
+    <div class="page-card-desc">Revenue stats, pipeline value, hours/utilization, upcoming follow-ups, recent invoices, overdue alerts</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Contacts</div>
+    <div class="page-card-desc">List/filter all contacts by status. Click into full profile: details, activity timeline, linked proposals/projects/invoices</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Contact Detail</div>
+    <div class="page-card-desc">Full client profile — identity, business info, tags, activity log, linked proposals, projects, invoices, documents. Add notes, log interactions.</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Proposals</div>
+    <div class="page-card-desc">List all proposals by status. Create new from template (per service type). Send, track acceptance, convert to project.</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Projects</div>
+    <div class="page-card-desc">Active engagements with budget tracking, deliverables checklist, hours logged vs budget, billing model display.</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Time Tracking</div>
+    <div class="page-card-desc">Weekly timesheet view. Log hours by project, mark billable/non-billable. Timer option for real-time tracking.</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Invoices</div>
+    <div class="page-card-desc">Create from project/time entries, apply GST/HST, generate PDF, email to client. Track payment status.</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Expenses</div>
+    <div class="page-card-desc">Log expenses by category, upload receipts, link to projects. Filter by date/category for tax time.</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Documents</div>
+    <div class="page-card-desc">Central file storage. Upload contracts, deliverables, receipts. Toggle client visibility for portal.</div>
+  </div>
+  <div class="page-card">
+    <div class="page-card-title">Settings</div>
+    <div class="page-card-desc">Business info (name, address, GST# when ready), invoice defaults (payment terms, numbering), tax rates, email templates.</div>
+  </div>
+</div>
