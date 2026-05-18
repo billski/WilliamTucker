@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" width="1200" height="1200">
+  <!-- Background -->
+  <rect width="1200" height="1200" fill="#1a2332"/>
+
+  <!-- Left gold stripe -->
+  <rect x="0" y="0" width="20" height="1200" fill="#d4a843"/>
+
+  <!-- Brand mark -->
+  <text x="100" y="220"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="700"
+        font-size="92"
+        letter-spacing="-0.01em"
+        fill="#ffffff">William Tucker</text>
+
+  <text x="100" y="320"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="700"
+        font-size="92"
+        letter-spacing="-0.01em"
+        fill="#d4a843">Solutions</text>
+
+  <!-- Thin divider -->
+  <rect x="100" y="400" width="120" height="3" fill="#d4a843"/>
+
+  <!-- Three tracks -->
+  <text x="100" y="580"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="700"
+        font-size="28"
+        letter-spacing="0.1em"
+        fill="#d4a843">01</text>
+  <text x="180" y="580"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="600"
+        font-size="44"
+        fill="#ffffff">AI-Accelerated Software Development</text>
+
+  <text x="100" y="700"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="700"
+        font-size="28"
+        letter-spacing="0.1em"
+        fill="#d4a843">02</text>
+  <text x="180" y="700"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="600"
+        font-size="44"
+        fill="#ffffff">AI Training</text>
+
+  <text x="100" y="820"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="700"
+        font-size="28"
+        letter-spacing="0.1em"
+        fill="#d4a843">03</text>
+  <text x="180" y="820"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="600"
+        font-size="44"
+        fill="#ffffff">AI Workflow Automation</text>
+
+  <!-- URL -->
+  <text x="100" y="1110"
+        font-family="Inter, system-ui, sans-serif"
+        font-weight="400"
+        font-size="32"
+        fill="#9ca3af">williamtucker.ca</text>
+</svg>
