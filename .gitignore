@@ -2,3 +2,22 @@ node_modules/
 .DS_Store
 Thumbs.db
 .env
+
+# Local dev tooling — never commit
+.agents/
+.claude/settings.local.json
+.claude/skills/
+.superpowers/
+skills-lock.json
+
+# Debug + ad-hoc folders
+debug/
+
+# Business-sensitive docs that live in this repo locally but aren't web-facing
+GRANTS.md
+docs/launch-guide.md
+docs/sales/
+
+# Local image experiments / cross-project screenshots
+img/dogmap_sample.png
+img/wtsadmin_login.png
