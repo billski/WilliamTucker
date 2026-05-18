@@ -19,7 +19,7 @@ verified-against:
 
 > **Also not in this doc:** the discovery-call booking widget added to `contact.html` on 2026-05-18 (a Google Calendar Appointment Schedule iframe). The booker bypasses `/api/contact` entirely — bookings write directly to William's Google Calendar and do not create a row in the WTSAdmin `contacts` table. The form path documented below is unchanged. Spec: `docs/superpowers/specs/2026-05-18-contact-booking-widget-design.md`. A v2 backlog item exists to mirror bookings into `contacts` via a Calendar-API poller.
 
-The contact form is the primary conversion path for cold traffic that doesn't book Calendly. PR #3 (`feat/contact-to-wtsadmin`, merged 2026-05-17) replaced the old Formspree integration with a direct write into the WTSAdmin Supabase database, an email notification to William, and an auto-reply to the lead. The whole thing runs through the `/api/contact` endpoint in `server.js`.
+The contact form is the fallback conversion path for visitors who'd rather write a message than book a discovery-call slot directly via the Google Appointment Schedule iframe added on 2026-05-18 (see top callout). PR #3 (`feat/contact-to-wtsadmin`, merged 2026-05-17) replaced the old Formspree integration with a direct write into the WTSAdmin Supabase database, an email notification to William, and an auto-reply to the lead. The whole thing runs through the `/api/contact` endpoint in `server.js`.
 
 ---
 

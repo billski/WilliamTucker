@@ -100,7 +100,7 @@ Secrets:
 Every HTML file's stylesheet link looks like this — `contact.html:19`:
 
 ```html
-<link rel="stylesheet" href="css/styles.css?v=20260517b" />
+<link rel="stylesheet" href="css/styles.css?v=20260518f" />
 ```
 
 The `?v=YYYYMMDDx` query string is the cache-buster. **Every commit that adds new Tailwind utility classes (or otherwise changes CSS output) MUST bump the version in lockstep, across all 8 HTML pages.**
@@ -126,7 +126,7 @@ When you ship any change that modifies CSS:
 4. Run `npm run build` to recompile `css/styles.css` so the new utilities are present.
 5. Commit both `*.html` and `css/styles.css` together.
 
-The 2026-05-17 incident's worst sub-failure was PR #8 only bumping `contact.html` (the file being edited) and leaving 7 pages on the previous `?v=`. Those 7 pages continued serving stale CSS to returning visitors until natural expiration. The current vault state has all 8 pages on `?v=20260517b` — **verify with the grep above before any new bump**.
+The 2026-05-17 incident's worst sub-failure was PR #8 only bumping `contact.html` (the file being edited) and leaving 7 pages on the previous `?v=`. Those 7 pages continued serving stale CSS to returning visitors until natural expiration. The current vault state has all 8 pages on `?v=20260518f` — **verify with the grep above before any new bump**.
 
 ### What does NOT need a bump
 
