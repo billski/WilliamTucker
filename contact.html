@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=20260518d" />
+  <link rel="stylesheet" href="css/styles.css?v=20260518e" />
 </head>
 <body>
 
@@ -103,36 +103,20 @@
         <p class="text-sm text-gray-500 mb-6">Based in Kelowna. Every call is with me, not a sales rep.</p>
 
         <!--
-          GOOGLE APPOINTMENT SCHEDULE — embed setup (one-time, by William)
-
-          1. Sign in to calendar.google.com as william@williamtucker.ca (Workspace).
-          2. Create → Appointment schedule. Name: "Discovery Call (30 min)".
-          3. Duration 30m, buffer 15m, min advance notice 24h.
-          4. Availability: pick your weekly window (suggested: Tue–Thu 10:00–16:00 Pacific).
-          5. Intake form fields (all required): Name, Email,
-             "What would you like to talk about?" (free text).
-          6. Conferencing: Google Meet (auto-attaches because Workspace).
-          7. Save → Share → Embed → copy the <iframe ...> snippet Google gives you.
-          8. REPLACE the placeholder div below with that snippet. Keep these attributes
-             on the iframe so styling stays consistent:
-               loading="lazy"
-               title="Book a discovery call with William Tucker"
-               class="w-full h-[560px] md:h-[760px] rounded-lg" style="border: 0;"
-             (The responsive height pair caps mobile so the calendar doesn't
-              create an absurd phone scroll; desktop gets more room to show
-              two full weeks at once.)
+          Google Calendar Appointment Schedule — "Discovery Call (30 min)".
+          Owner: william@williamtucker.ca (Workspace). Auto-attaches a Google Meet link.
+          Edit availability / intake fields at calendar.google.com → Appointment schedules.
+          To rotate the iframe URL, get a fresh "Share → Embed" snippet from that schedule.
+          Mobile-capped to h-[560px], desktop opens to md:h-[760px].
         -->
         <div data-cta="booker" class="bg-white rounded-xl border border-gray-200 p-2 md:p-4">
-          <!-- BEGIN PLACEHOLDER — remove this <div> when pasting the real iframe -->
-          <div
-            class="w-full h-[560px] md:h-[760px] rounded-lg border border-dashed border-gray-300 flex items-center justify-center text-center px-6 text-gray-500"
-          >
-            <div>
-              <p class="font-semibold text-navy mb-2">Booking widget loads here</p>
-              <p class="text-sm">See the HTML comment above this block for one-time setup instructions. Once you paste the Google Appointment Schedule embed snippet, this placeholder is replaced by the live calendar.</p>
-            </div>
-          </div>
-          <!-- END PLACEHOLDER -->
+          <iframe
+            src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0vq0v_z5wI-Homp20jhliYRqXZkJFjawjIIsMJFgFJ0SWcouf9CtbDMylIWDkgp7b3Pgl31AUJ?gv=true"
+            loading="lazy"
+            title="Book a discovery call with William Tucker"
+            class="w-full h-[560px] md:h-[760px] rounded-lg"
+            style="border: 0;"
+          ></iframe>
         </div>
 
         <p class="text-sm text-gray-500 mt-4">Prefer to write a message first? <a href="#send-a-message" class="text-gold hover:text-gold-dark font-medium">Send a message instead →</a></p>
