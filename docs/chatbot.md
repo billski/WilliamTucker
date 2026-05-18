@@ -130,7 +130,7 @@ Pricing currently in lockstep (verified 2026-05-18):
 | Track 2 Full-day workshop | $4,000 |
 | Track 2 Custom curriculum | starts at $7,500 |
 | Track 2 Training retainer | $1,250/month |
-| Track 3 Discovery | Free 30-min |
+| Track 3 Discovery | Free 60-min |
 | Track 3 Small Build | starting at $2,500 |
 | Track 3 Medium Build | starting at $7,500 |
 | Track 3 Maintenance | $1,000/month |

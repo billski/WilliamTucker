@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WTS LinkedIn Asset Previews</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: Inter, system-ui, sans-serif; margin: 0; padding: 32px; background: #f8f9fa; color: #1a2332; }
+  h1 { margin: 0 0 8px; font-size: 20px; }
+  p.note { color: #4b5563; margin: 0 0 24px; font-size: 14px; }
+  section { margin-bottom: 48px; }
+  h2 { font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7280; margin: 0 0 8px; }
+  .spec { font-size: 12px; color: #6b7280; margin: 0 0 12px; font-family: ui-monospace, monospace; }
+  .frame { background: #243044; padding: 16px; border-radius: 8px; display: inline-block; }
+  img { display: block; max-width: 100%; height: auto; background: #1a2332; }
+  .banner img { width: min(100%, 1056px); aspect-ratio: 1584/396; }
+  .square img { width: min(100%, 600px); aspect-ratio: 1/1; }
+  .og img { width: min(100%, 800px); aspect-ratio: 1200/630; }
+  .li-mock { position: relative; max-width: 1056px; }
+  .li-mock .pp { position: absolute; left: 32px; bottom: -56px; width: 160px; height: 160px; border-radius: 50%; background: #1a2332; border: 4px solid #fff; display: grid; place-items: center; color: #d4a843; font-weight: 700; font-size: 32px; }
+  footer { color: #6b7280; font-size: 12px; margin-top: 64px; }
+</style>
+</head>
+<body>
+  <h1>WTS LinkedIn asset previews</h1>
+  <p class="note">Drafts. Open this file in a browser. PNGs get rasterized after approval.</p>
+
+  <section class="banner">
+    <h2>1. LinkedIn banner</h2>
+    <p class="spec">1584 &times; 396 px &middot; banner.svg</p>
+    <div class="li-mock">
+      <img src="banner.svg" alt="LinkedIn banner draft">
+      <div class="pp">WT</div>
+    </div>
+    <p class="note" style="margin-top: 80px;">Profile-photo overlay shown for safe-zone sanity check. On mobile, the banner crops to the centre ~880px wide.</p>
+  </section>
+
+  <section class="square">
+    <h2>2. Announcement post image</h2>
+    <p class="spec">1200 &times; 1200 px &middot; announcement.svg</p>
+    <img src="announcement.svg" alt="Announcement post image draft">
+  </section>
+
+  <section class="og">
+    <h2>3. Replacement og-image</h2>
+    <p class="spec">1200 &times; 630 px &middot; ../img/og-image.svg &middot; deployed as img/og-image.png</p>
+    <img src="../img/og-image.svg" alt="OG image">
+  </section>
+
+  <footer>
+    All three drafts use the existing brand system: drafting navy #1a2332, solder gold #d4a843, Inter bold. Geometry matches the existing favicon and og-image visual language.
+  </footer>
+</body>
+</html>
