@@ -1,6 +1,6 @@
 ---
 name: William Tucker Solutions
-description: Marketing site for a one-engineer consulting practice (legacy modernization + AI consulting).
+description: Marketing site for a one-engineer consulting practice (AI-accelerated software development, AI training, AI workflow automation).
 colors:
   drafting-navy: "#1a2332"
   drafting-navy-light: "#243044"

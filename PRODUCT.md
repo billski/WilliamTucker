@@ -1,24 +1,28 @@
 # Product
 
+> **Note:** the deep version of this doc — the three tracks, framing rules, audience, anti-references — lives in the docs vault at `docs/positioning.md`. Read that for the canonical, code-cited treatment. This file remains as the brand-voice / design-principles / accessibility quick reference.
+
 ## Register
 
 brand
 
 ## Users
 
-The site fishes for two distinct buyer tracks, and is intentionally scoped wide because William has no signed clients yet and is testing where revenue lands first.
+Referral-driven Kelowna SMB-first. Most visitors arrive via referral; the site is service confirmation + booking, not credibility argument.
 
-**Track A — Legacy modernization.** Decision-maker inside an organization stuck on .NET, Classic ASP, Oracle PL/SQL, or comparable older stacks. Likely titles: IT director, head of applications, CTO at a small org, or the senior dev who has been quietly rewriting the same system for five years. They have been quoted by traditional consultancies in months and six-figure ranges. They arrive skeptical that "AI-accelerated" means anything real.
+Three service tracks (full detail in `docs/positioning.md`):
 
-**Track B — AI consulting for finance teams and small businesses.** Finance manager, controller, or owner-operator who has heard about AI but has been burned by hype, by slide-deck firms, or by tools that did not survive contact with their actual workflow. They want working software, not a strategy deck.
+1. **AI-Accelerated Software Development** — custom software, modernizations, enhancements. AI handles boilerplate; William handles engineering and review.
+2. **AI Training** — 1:1, group workshops, custom curriculum. In-person Kelowna or online. From a daily practitioner, not a credentialled trainer.
+3. **AI Workflow Automation** — chatbots, custom integrations, internal tooling. AI plugged into systems the client already uses.
 
-Both tracks share a posture: they trust evidence over claims, and they have already filtered out the obvious AI-hype consultancies before landing here.
+The previous dual-track structure ("Legacy modernization" + "AI consulting for finance teams") was retired in PR #4 (2026-05-15). Don't reintroduce it.
 
 ## Product Purpose
 
-Convert a one-person consulting practice (William Tucker Solutions) into booked discovery calls. The site is the entire top-of-funnel — there is no paid acquisition, no sales team, no SDR. Every page has to earn the call by itself.
+Convert a one-engineer consulting practice (William Tucker Solutions) into booked discovery calls. The site is the entire top-of-funnel — there is no paid acquisition, no sales team, no SDR. Most clients arrive via referral.
 
-Success is a discovery call booked by a buyer who already understands which track applies to them and arrives with a real project, not a vague "tell me about AI" inquiry.
+Success is a discovery call booked by a referral-warm visitor who picked the right track from the three above and arrives with a real project, not a vague "tell me about AI" inquiry.
 
 ## Brand Personality
 
@@ -52,7 +56,7 @@ The connecting thread is decoration without referent. WTS visuals must read as p
 2. **No hype, no slide decks.** Direct from the site's own positioning. The aesthetic must reinforce this: no gradient text, no glassmorphism, no decorative AI imagery, no animated count-ups, no "transformation journey" diagrams.
 3. **Solo-engineer credibility.** A one-person practice cannot fake enterprise-scale theater, and the design should not try. Tight typography, real names, real timelines, modest scale. Boutique, not boutique-pretending-to-be-enterprise.
 4. **Senior-engineer voice.** Copy reads as one technical professional talking to another. No marketing-speak, no first-person-plural ("our team"), no future-tense vague promises. Present tense, specific verbs, concrete nouns.
-5. **Wide net, sharp evidence.** The site fishes for two distinct buyer tracks, so navigation and entry points must serve both without diluting either. Each track gets its own dedicated proof, not a generic shared frame.
+5. **Wide net, sharp evidence.** The site offers three service tracks, so navigation and entry points must serve all three without diluting any of them. Each track gets its own dedicated section, not a generic shared frame.
 
 ## Accessibility & Inclusion
 
