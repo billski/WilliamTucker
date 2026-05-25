@@ -35,6 +35,7 @@
 import { promises as fs } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { loadOwnership, globToRegExp, compileOwnership } from './match-docs.mjs';
 
 const DEFAULT_MAX_AGE_DAYS = 60;
 const DEFAULT_MAX_DOC_LINES = 600;
@@ -56,6 +57,15 @@ OPTIONS
                           A long doc burns agent context budget; split or
                           extract a cheatsheet. Per-doc override: frontmatter
                           \`max-doc-lines: N\` (set to 0 to disable for that doc).
+  --check-coverage        Enable the coverage check: for each domain doc
+                          with paths declared in doc-ownership.yml, report
+                          which files in that glob are not cited in the doc.
+                          Off by default (opt-in).
+  --enforce-coverage <n>  Implies --check-coverage. Treat docs with file
+                          coverage below N% as violations (exit 1). Without
+                          this flag, coverage gaps are informational only.
+  --repo-root <path>      Path to repo root (where doc-ownership.yml's path
+                          globs are evaluated). Default: parent of --root.
   --json                  Emit machine-readable JSON instead of human text.
   --help, -h              Show this help.
 
@@ -64,6 +74,8 @@ ESCAPE HATCHES (frontmatter, per-doc)
   vault-doctor-skip-checks: [stale, wikilink]     # skip a subset
   max-age: 30                                     # override --max-age for this doc
   max-doc-lines: 800                              # override --max-doc-lines for this doc
+  coverage-extensions: [.ts, .tsx]                # restrict coverage to these exts only
+  coverage-exclude: [path/to/file.ts]             # exempt specific files from coverage
 
 INLINE ESCAPE HATCH (in doc body)
   See [[business#planned-section]] <!-- vault-doctor: ignore -->
@@ -81,6 +93,9 @@ function parseArgs(argv) {
     maxDocLines: DEFAULT_MAX_DOC_LINES,
     json: false,
     help: false,
+    checkCoverage: false,
+    enforceCoverage: null,  // null = report only; integer = % threshold
+    repoRoot: null,         // null = inferred from --root
   };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
@@ -95,7 +110,17 @@ function parseArgs(argv) {
       const n = parseInt(argv[++i], 10);
       if (!Number.isFinite(n) || n < 0) die(`--max-doc-lines must be a non-negative integer, got "${argv[i]}".`, 2);
       args.maxDocLines = n;
-    } else {
+    } else if (a === '--check-coverage') args.checkCoverage = true;
+    else if (a === '--enforce-coverage') {
+      const n = parseInt(argv[++i], 10);
+      if (!Number.isFinite(n) || n < 0 || n > 100) {
+        die(`--enforce-coverage must be an integer 0–100, got "${argv[i]}".`, 2);
+      }
+      args.enforceCoverage = n;
+      args.checkCoverage = true; // enforce implies enabled
+    }
+    else if (a === '--repo-root') args.repoRoot = argv[++i];
+    else {
       die(`Unknown argument: ${a}\nRun --help for usage.`, 2);
     }
   }
@@ -211,6 +236,37 @@ async function walk(dir, excludeDirs) {
     }
   }
   await recurse(dir);
+  return out;
+}
+
+const DEFAULT_REPO_EXCLUDES = new Set([
+  'node_modules', '.git', 'dist', 'build', 'out', '.next',
+  'coverage', 'bin', 'obj', '.venv', '__pycache__', 'target',
+]);
+
+// Walk a repo root (not the vault root). Returns posix-style relative paths.
+// Defaults (node_modules, .git, dist, etc.) are always applied. Pass
+// `excludeDirs` to add additional directories to exclude.
+async function walkRepo(repoRoot, excludeDirs = DEFAULT_REPO_EXCLUDES) {
+  const combined = new Set([...DEFAULT_REPO_EXCLUDES, ...excludeDirs]);
+  const out = [];
+  async function recurse(d, relPrefix) {
+    let entries;
+    try {
+      entries = await fs.readdir(d, { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const ent of entries) {
+      if (ent.isDirectory()) {
+        if (combined.has(ent.name)) continue;
+        await recurse(path.join(d, ent.name), relPrefix ? `${relPrefix}/${ent.name}` : ent.name);
+      } else if (ent.isFile()) {
+        out.push(relPrefix ? `${relPrefix}/${ent.name}` : ent.name);
+      }
+    }
+  }
+  await recurse(repoRoot, '');
   return out;
 }
 
@@ -344,6 +400,59 @@ function checkDocLength(doc, defaultMax) {
   return [];
 }
 
+// Coverage check: for a domain doc with declared `paths` in
+// doc-ownership.yml, count how many files matching those paths are cited
+// (by literal path substring) anywhere in the doc body. Reports uncovered
+// files so an author can either document them or remove them from the doc's
+// territory.
+//
+// Citation detection is a literal substring match against the doc body
+// (after frontmatter). This is robust to formatting variation:
+//   - `src/api/auth/route.ts:42` (backticks + line)
+//   - `src/api/auth/route.ts` (backticks, no line)
+//   - src/api/auth/route.ts (bare in prose)
+// all match. False-positive risk is low; documents don't accidentally embed
+// realistic file paths.
+function checkCoverage(doc, ownedFiles) {
+  const total = ownedFiles.length;
+  if (total === 0) {
+    return { total: 0, cited: 0, uncovered: [], percent: 100 };
+  }
+  const cited = [];
+  const uncovered = [];
+  for (const f of ownedFiles) {
+    if (doc.body.includes(f)) {
+      cited.push(f);
+    } else {
+      uncovered.push(f);
+    }
+  }
+  const percent = Math.round((cited.length / total) * 100);
+  return { total, cited: cited.length, uncovered, percent };
+}
+
+const DEFAULT_COVERAGE_SKIP_EXTS = new Set([
+  '.md', '.json', '.yml', '.yaml', '.svg', '.png', '.jpg', '.jpeg',
+  '.gif', '.ico', '.css', '.scss', '.lock', '.txt',
+]);
+
+// Filter a list of repo-relative file paths down to those that should
+// require doc coverage. By default, drops configs/assets (see
+// DEFAULT_COVERAGE_SKIP_EXTS). When `opts.allow` is provided, switches to
+// allowlist mode: only files with those extensions are kept.
+function filterCoverageEligible(files, opts = {}) {
+  const allow = opts.allow
+    ? new Set(opts.allow.map(e => e.toLowerCase()))
+    : null;
+  return files.filter(f => {
+    const dot = f.lastIndexOf('.');
+    if (dot === -1 || dot < f.lastIndexOf('/')) return true; // no ext = keep
+    const ext = f.slice(dot).toLowerCase();
+    if (allow) return allow.has(ext);
+    return !DEFAULT_COVERAGE_SKIP_EXTS.has(ext);
+  });
+}
+
 // GitHub-style heading slug: lowercase, drop most punctuation, EACH whitespace
 // char → one hyphen (no collapsing — that's how GitHub renders "X & Y" as
 // `x--y`). Tested against real headings like:
@@ -463,8 +572,11 @@ async function loadDoc(absPath, rootAbs) {
   };
 }
 
-async function audit({ root, maxAge, maxDocLines }) {
+async function audit({ root, maxAge, maxDocLines, checkCoverage: coverageEnabled, enforceCoverage, repoRoot }) {
   const rootAbs = path.resolve(root);
+  const repoRootAbs = repoRoot
+    ? path.resolve(repoRoot)
+    : path.resolve(rootAbs, '..');
   let stat;
   try {
     stat = await fs.stat(rootAbs);
@@ -475,6 +587,26 @@ async function audit({ root, maxAge, maxDocLines }) {
 
   const files = await walk(rootAbs, new Set(['_archive']));
   const docs = await Promise.all(files.map(f => loadDoc(f, rootAbs)));
+
+  // Build per-doc owned-files lists once. Cheap when coverage is off (skipped
+  // entirely); when on, we walk the repo once and run each doc's globs.
+  let coverageByDoc = null; // Map<slug, string[]> (eligible owned files)
+  if (coverageEnabled) {
+    const ownershipPath = path.join(rootAbs, '_meta', 'doc-ownership.yml');
+    let ownershipLoad;
+    try {
+      ownershipLoad = await loadOwnership(ownershipPath);
+    } catch (err) {
+      die(`Coverage check enabled but could not load ownership file:\n  ${err.message}`, 2);
+    }
+    const compiled = compileOwnership(ownershipLoad.ownership);
+    const allFiles = await walkRepo(repoRootAbs);
+    coverageByDoc = new Map();
+    for (const { doc, pathRegexes } of compiled) {
+      const matched = allFiles.filter(f => pathRegexes.some(({ re }) => re.test(f)));
+      coverageByDoc.set(doc, matched);
+    }
+  }
 
   // Index by stem (filename without .md, relative path components joined with /).
   // Wikilinks use bare stems like [[auth]] or [[vault-conventions]] (without path),
@@ -499,7 +631,7 @@ async function audit({ root, maxAge, maxDocLines }) {
     const vdValue = d.frontmatter.data?.['vault-doctor'];
     const vdSkipChecks = d.frontmatter.data?.['vault-doctor-skip-checks'];
     if (vdValue === 'skip') {
-      report.push({ relPath: d.relPath, klass: d.klass, violations: [], skipped: true });
+      report.push({ relPath: d.relPath, klass: d.klass, violations: [], skipped: true, coverageResult: null });
       continue;
     }
     const skipChecks = new Set();
@@ -535,12 +667,39 @@ async function audit({ root, maxAge, maxDocLines }) {
       violations.push(...checkDocLength(d, maxDocLines));
     }
 
+    // Coverage (opt-in, domain docs only).
+    let coverageResult = null;
+    if (coverageEnabled && d.klass === 'domain' && !skipChecks.has('coverage')) {
+      const slug = path.basename(d.relPath, '.md');
+      const ownedRaw = coverageByDoc.get(slug) || [];
+      // Per-doc extension allowlist via frontmatter.
+      const allow = d.frontmatter.data?.['coverage-extensions'];
+      const filtered = filterCoverageEligible(
+        ownedRaw,
+        Array.isArray(allow) ? { allow } : {},
+      );
+      // Per-doc file-level exclusions.
+      const excludes = new Set(
+        Array.isArray(d.frontmatter.data?.['coverage-exclude'])
+          ? d.frontmatter.data['coverage-exclude']
+          : [],
+      );
+      const owned = filtered.filter(f => !excludes.has(f));
+      coverageResult = checkCoverage(d, owned);
+      if (enforceCoverage !== null && owned.length > 0 && coverageResult.percent < enforceCoverage) {
+        violations.push({
+          check: 'coverage',
+          detail: `${coverageResult.cited}/${coverageResult.total} files cited (${coverageResult.percent}%) — below threshold ${enforceCoverage}% — uncovered: ${coverageResult.uncovered.slice(0, 5).join(', ')}${coverageResult.uncovered.length > 5 ? `, +${coverageResult.uncovered.length - 5} more` : ''}`,
+        });
+      }
+    }
+
     // Wikilinks apply to everything except 'skip'.
     if (!skipChecks.has('wikilink')) {
       violations.push(...checkWikilinks(d, docsByStem));
     }
 
-    report.push({ relPath: d.relPath, klass: d.klass, violations, skipped: false });
+    report.push({ relPath: d.relPath, klass: d.klass, violations, skipped: false, coverageResult });
   }
 
   return { rootAbs, report };
@@ -566,6 +725,15 @@ function printHuman(rootAbs, report) {
         totalViolations++;
       }
     }
+    // Coverage INFO line (informational, doesn't count as a violation).
+    // Skipped for docs whose owned-files filter dropped everything (total 0).
+    if (r.coverageResult && r.coverageResult.total > 0) {
+      const cr = r.coverageResult;
+      const tail = cr.uncovered.length === 0
+        ? ''
+        : ` — uncovered: ${cr.uncovered.slice(0, 5).join(', ')}${cr.uncovered.length > 5 ? `, +${cr.uncovered.length - 5} more` : ''}`;
+      console.log(`i ${r.relPath}: [coverage] ${cr.cited}/${cr.total} files cited (${cr.percent}%)${tail}`);
+    }
   }
   console.log('');
   const checked = report.length - skippedCount;
@@ -580,10 +748,20 @@ function printHuman(rootAbs, report) {
 function printJson(rootAbs, report) {
   let totalViolations = 0;
   const violations = [];
+  const coverage = [];
   for (const r of report) {
     for (const v of r.violations) {
       violations.push({ file: r.relPath, check: v.check, detail: v.detail });
       totalViolations++;
+    }
+    if (r.coverageResult && r.coverageResult.total > 0) {
+      coverage.push({
+        file: r.relPath,
+        cited: r.coverageResult.cited,
+        total: r.coverageResult.total,
+        percent: r.coverageResult.percent,
+        uncovered: r.coverageResult.uncovered,
+      });
     }
   }
   const out = {
@@ -594,6 +772,7 @@ function printJson(rootAbs, report) {
       exitCode: totalViolations === 0 ? 0 : 1,
     },
     violations,
+    coverage,
   };
   console.log(JSON.stringify(out, null, 2));
   return totalViolations;
@@ -612,6 +791,9 @@ async function main() {
     root,
     maxAge: args.maxAge,
     maxDocLines: args.maxDocLines,
+    checkCoverage: args.checkCoverage,
+    enforceCoverage: args.enforceCoverage,
+    repoRoot: args.repoRoot,
   });
   const violations = args.json ? printJson(rootAbs, report) : printHuman(rootAbs, report);
   return violations === 0 ? 0 : 1;
@@ -634,6 +816,7 @@ if (invokedDirectly) {
 // Test-only exports. Not part of the CLI contract; do not depend on these
 // from outside `tests/`.
 export {
+  audit,
   parseFrontmatter,
   unquote,
   classify,
@@ -645,6 +828,11 @@ export {
   checkCallout,
   checkDomainStem,
   checkDocLength,
+  checkCoverage,
   checkWikilinks,
   WIKILINK_RE,
+  walkRepo,
+  DEFAULT_REPO_EXCLUDES,
+  filterCoverageEligible,
+  DEFAULT_COVERAGE_SKIP_EXTS,
 };

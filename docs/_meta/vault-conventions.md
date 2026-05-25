@@ -2,7 +2,7 @@
 title: Vault Conventions
 domain: meta
 status: active
-last-reviewed: 2026-05-18
+last-reviewed: 2026-05-24
 ---
 
 # Vault Conventions
@@ -96,6 +96,28 @@ Any section citing schema, RLS policies, API shape, or live system state must:
 3. **Update the doc's frontmatter:** bump `last-reviewed` to today, add the relevant migration/spec to `verified-against:` if it's now load-bearing.
 
 If a section cannot be verified (tool unavailable, query ambiguous), add a `TODO verify: <what>` entry to `docs/_backlog.md` rather than guessing.
+
+## Coverage
+
+For docs with `paths:` declared in `doc-ownership.yml`, the linter
+(`vault-doctor --check-coverage`) reports source files in that glob that
+the doc does not cite. The unit is **files** (a path is "cited" iff it
+appears as a literal substring in the doc body — usually as a `file:line`
+reference inside backticks).
+
+Defaults:
+- Config/asset extensions (`.md`, `.json`, `.yml`, `.svg`, `.png`, …) are
+  exempt. Override per-doc via frontmatter:
+  - `coverage-extensions: [.ts, .tsx]` — allowlist (only these count).
+  - `coverage-exclude: [src/legacy/foo.ts]` — exempt specific files.
+- Output is informational (prefix `i`). To make low coverage a violation,
+  run with `--enforce-coverage <pct>`.
+- Frontmatter `vault-doctor-skip-checks: [coverage]` opts a doc out entirely.
+
+The check exists to catch the failure mode of "doc passes freshness and
+shape checks but silently covers half of its declared territory" — a
+hallucination risk because an agent reading the doc sees a clean health
+signal and may fabricate behavior for the undocumented files.
 
 ## Mermaid diagrams
 
