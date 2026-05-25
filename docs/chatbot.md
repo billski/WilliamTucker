@@ -2,10 +2,10 @@
 title: Chatbot
 domain: chatbot
 status: active
-last-reviewed: 2026-05-18
+last-reviewed: 2026-05-24
 verified-against:
   - server: server.js:36-105 (/api/chat handler + prompt loader)
-  - prompt: prompts/chatbot-system.md (full content) on 2026-05-18
+  - prompt: prompts/chatbot-system.md (full content) on 2026-05-18; 30→60-min copy-fix only on 2026-05-24
   - widget: js/chatbot.js (floating widget) on 2026-05-18
   - widget: js/chatbot-demo.js (inline demo on small-business.html) on 2026-05-18
 ---
@@ -118,7 +118,7 @@ These are the textbook use case for `check-claims-allow`. See [[linter#suppressi
 
 **`prompts/chatbot-system.md` AND `pricing.html` both contain the canonical pricing.** They must match exactly. The linter doesn't catch numeric drift — agent discipline does.
 
-Pricing currently in lockstep (verified 2026-05-18):
+Pricing currently in lockstep (verified 2026-05-18; Track 3 Discovery duration corrected 2026-05-24):
 
 | Tier | Both surfaces say |
 |---|---|

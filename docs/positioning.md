@@ -2,9 +2,9 @@
 title: Positioning & Brand Voice
 domain: positioning
 status: active
-last-reviewed: 2026-05-18
+last-reviewed: 2026-05-24
 verified-against:
-  - source: 8 HTML pages on 2026-05-18
+  - source: 8 HTML pages on 2026-05-18; Track 3 Discovery duration row corrected 2026-05-24
   - prompt: prompts/chatbot-system.md
   - profile: D:/code/cv/PROFILE.md §10 framing rules
 ---
