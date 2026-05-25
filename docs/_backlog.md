@@ -2,7 +2,7 @@
 title: WTS Backlog
 domain: meta
 status: active
-last-reviewed: 2026-05-18
+last-reviewed: 2026-05-24
 ---
 
 # WTS Backlog
@@ -13,7 +13,28 @@ or silently fixing.
 
 ## Suspected drift
 
-_(empty at inception)_
+- **`pricing.html:84` still says "Free 30-Minute Discovery Call"** (the
+  big navy promo card H2 at the top of the page) — the 2026-05-18
+  copy-fix commit `e770f76` updated lines 233 and 275 ("Discovery card
+  subtitle + closing CTA blurb") but missed the hero promo card title.
+  Production currently has 30 in one place, 60 in two. Out of scope for
+  a docs sync (the rule is "do not touch files outside `docs/**` and
+  `docs/_backlog.md`"); needs a one-line copy fix on a separate branch.
+  When fixed, add a `discovery-call-duration` claim-linter pattern in
+  `scripts/check-claims.mjs` so a future drift in either direction trips
+  the build — same discipline as the other recurring-drift patterns.
+
+- **Brand assets shipped 2026-05-24 have no doc owner.** The `linkedin/`
+  directory (announcement.png + svg, banner.png + svg, preview.html) and
+  the refreshed `img/og-image.png` + new `img/og-image.svg` from commit
+  `89a1c66` are unmatched by `doc-ownership.yml`. Two options worth
+  picking one of: (a) extend `visual-system:` ownership to include
+  `img/og-image.*` and `linkedin/**`, with a short "Brand assets" section
+  added to `visual-system.md` listing each artifact and where it's used;
+  or (b) confirm these are out-of-band launch artifacts that legitimately
+  don't belong to any domain doc, and add a `coverage-exclude:` entry on
+  `visual-system.md`. Decide before the next docs sync — silence here
+  becomes the new precedent.
 
 ## Feature follow-ups
 
@@ -29,6 +50,16 @@ _(empty at inception)_
   `docs/superpowers/specs/2026-05-18-contact-booking-widget-design.md` §12.
 
 ## Tooling enhancements
+
+- **Try `vault-doctor --check-coverage` against the live vault.** Synced
+  in from `wts-ai-docs` v0.3 on 2026-05-24 alongside this entry. For
+  each domain doc with `paths:` in `doc-ownership.yml`, the check reports
+  source files matching the glob that the doc does not cite. Run it once
+  to surface gaps (`node scripts/vault-doctor.mjs --check-coverage`),
+  decide which findings are real vs noise, then opt the noisy ones out
+  per-doc via frontmatter `coverage-exclude:` / `coverage-extensions:`
+  before enabling `--enforce-coverage <pct>` in CI. See
+  `_meta/vault-conventions.md` §Coverage for the full rule.
 
 - **Document an emergency-deploy escape hatch.** If the linter false-positives
   and blocks a legitimate hot-fix deploy, the path forward is undocumented.
